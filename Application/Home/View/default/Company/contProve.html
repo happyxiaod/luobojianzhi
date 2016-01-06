@@ -1,0 +1,179 @@
+    <div id="person">
+        <!-- 个人中心start -->
+        <div class="per_t">
+            <include file="blocks/per_t"/>
+        </div> 
+        <div class="per_b clearfix">
+            <include file="blocks/mainnav"/>
+            <div class="per_r_dal">
+                <h4 class="font-orange">企业信息</h4>
+                <div class="per_cont" gt-model="saveProve">
+                    <div>
+                        <span class="label_text">单位名称</span>
+                        <input type="hidden" gt-islabel="单位名称"/>
+                        <input type="text" id="companyname" gt-isparam="companyname" value="{$user.companyname}"/>
+                        <s>*</s>
+                    </div>
+                    <label id="companynameWrong"></label> 
+                    <div>
+                        <span class="label_text">营业执照编号</span>
+                        <input type="hidden" gt-islabel="营业执照编号"/>
+                        <input type="text"  gt-isparam="buslicense" value="{$user.buslicense}"/>
+                    </div>
+                    <label id="buslicenseWrong"></label>
+                    <div class="per_company" style="overflow:hidden;height:auto;">
+                        <span class="label_text">证件上传</span>
+                        <div class="person_r">
+                            <div class="papers">公司logo</div>
+                            <img class="reg-id-img" id="pic_logo" src="__ROOT__/Uploads/{$user.logo}" />
+                            <input type="hidden" gt-islabel="公司logo"/>
+                            <input type="file" gt-isparam="logo"/>              
+                        </div>
+                        <div class="person_r">
+                            <div class="papers">营业执照</div>
+                            <img  class="reg-id-img" id="pic_orgauth" src="__ROOT__/Uploads/{$user.orgauth}" />
+                            <input type="hidden" gt-islabel="营业执照"/>
+                            <input type="file" gt-isparam="orgauth"/>           
+                        </div>  
+                        <div class="person_r">
+                            <div class="papers">负责人身份证</div>
+                            <img  class="reg-id-img" id="pic_idobverse" src="__ROOT__/Uploads/{$user.idobverse}" />
+                            <input type="hidden" gt-islabel="负责人身份证"/>
+                            <input type="file" gt-isparam="idobverse"/>           
+                        </div>
+                        <s class="ml10">*</s>
+                    </div>
+                       <label for="" id="uploadWrong" class="wrong"></label>
+                    <div>
+                        <span class="label_text">企业类型</span>
+                        <div class="input-group spinner">
+                            <select name="" gt-isparam="companytype"  style="width:100%">
+                                <option value="<?php echo $user['companytype']?$user['companytype']:'请选择';?>"><?php echo $user['companytype']?$user['companytype']:'请选择';?></option>
+                                <option value="外资（欧美）">外资（欧美）</option>
+                                <option value="外资（非欧美）">外资（非欧美）</option>
+                                <option value="合资">合资</option>
+                                <option value="国企">国企</option>
+                                <option value="上市公司">上市公司</option>
+                                <option value="创业公司">创业公司</option>
+                                <option value="外企代表处">外企代表处</option>
+                                <option value="政府机关">政府机关</option>
+                                <option value="事业单位">事业单位</option>
+                                <option value="非盈利机构">非盈利机构</option>
+                            </select>
+                        </div>
+                        <s class="ml0">*</s>
+                    </div>
+                    <div>
+                        <span class="label_text">企业规模</span>
+                        <div class="input-group spinner">
+                             <select name="" gt-isparam="companyscale"  style="width:100%">
+                                <option value="<?php echo $user['companyscale']?$user['companyscale']:'请选择';?>"><?php echo $user['companyscale']?$user['companyscale']:'请选择';?></option>
+                                <option value="少于50人">少于50人</option>
+                                <option value="50-150人">50-150人</option>
+                                <option value="500-1000人">500-1000人</option>
+                                <option value="1000-5000人">1000-5000人</option>
+                                <option value="5000-10000人">5000-10000人</option>
+                                <option value="10000人以上">10000人以上</option>
+                            </select>
+                        </div>
+                        <s class="ml0">*</s>
+                    </div>
+                    <div style="overflow:hidden;height:auto;">
+                        <span class="label_text">企业简介</span>
+                        <input type="hidden" gt-islabel="企业简介"/>
+                        <textarea cols="30" rows="10"  gt-isparam="intro">{$user.intro}</textarea>
+                    </div>
+                    <div>
+                        <span class="label_text">联系人</span>
+                        <input type="hidden" gt-islabel="联系人"/>
+                        <input type="text"  gt-isparam="contacter" value="{$user.contacter}"/>
+                        <s>*</s>
+                    </div>
+                    <div>
+                        <span class="label_text">联系电话</span>
+                        <input type="hidden" gt-islabel="联系电话"/>
+                        <input type="text"  gt-isparam="contacterphone" gt-check="phone" value="{$user.contacterphone}"/>
+                        <s>*</s>
+                    </div>
+                    <label  id="phoneWrong"></label>
+                    <div>
+                        <span class="label_text">企业详细地址</span>
+                        <input type="hidden" gt-islabel="企业详细地址"/>
+                        <input type="text"  gt-isparam="address" value="{$user.address}"/>
+                        <s>*</s>
+                    </div>
+                    <div class="company_tk">
+                        <input type="checkbox" name="" id="" />我已阅读<a href="" class="font-blue">《萝卜兼职协议条款》</a>
+                    </div>
+                    <input type="button" value="立即确认" class="btn_save" id="saveProve"/>
+                </div>
+            </div>
+        </div>
+        <!-- 个人中心end -->
+    </div>
+<script>
+
+    $("#saveProve").on('click', '', function (event) {
+        event.preventDefault();
+        data = M3("saveProve");
+        if(data['companytype'] == "请选择") {
+            alert("请选择企业类型");
+            return;
+        }
+        if(data['companyscale'] == "请选择") {
+            alert("请选择企业规模");
+            return;
+        }
+         if(data['companyname'] == "") {
+            alert("请填写单位名称");
+            return;
+        }
+         if(data['buslicense'] == ''||data['buslicense']==null) {
+            alert("请填写营业执照");
+            return;
+        }
+         if(data['contacterphone'] == ''||data['contacterphone']==null) {
+            alert("请填写企业负责人电话");
+            return;
+        }
+         if(data['contacter'] == ''||data['contacter']==null) {
+            alert("请填写企业负责人姓名");
+            return;
+        }
+          if(data['address'] == ''||data['address']==null) {
+            alert("请填写企业详细地址");
+            return;
+        }
+        checkPicture();
+
+    });
+
+    $("select[name='city']").change(function(){
+        getCounty();
+    });
+
+ //判断图片src是否为空
+    function checkPicture(){
+        pic_logo=$("#pic_logo").attr('src');
+        pic_orgauth=$("#pic_orgauth").attr('src');
+        pic_idobverse=$("#pic_idobverse").attr('src');
+        checkPictureSrc();
+        if (!checkPictureSrc(pic_idobverse)) {
+         $("#uploadWrong").html("请上传负责人身份证"); 
+         alert("请上传负责人身份证");
+         return false;
+        }else if(!checkPictureSrc(pic_orgauth)){
+         $("#uploadWrong").html("请上传营业执照"); 
+         alert("请上传营业执照");
+         return false;
+        }else if (!checkPictureSrc(pic_logo)) {
+         $("#uploadWrong").html("请上传公司logo"); 
+         alert("请上传公司logo");
+         return false;
+        }else{
+         post(CON_PATH + "/saveProve", data);
+        }
+     }
+
+
+</script>

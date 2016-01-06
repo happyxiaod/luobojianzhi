@@ -1,0 +1,25 @@
+<div class="text-center footer" style="margin-top: 15px">
+    <div>
+        <a href="__MODULE__/Mobile/login" class="footer-btn">登录</a>
+        &nbsp;
+      <a href="__MODULE__/Mobile/reg" class="footer-btn">注册</a>
+       <!--  <a href="__ROOT__/index.php/Home/Index/pageReg" class="footer-btn">注册</a> -->
+        &nbsp;
+        城市:
+        <span class="">
+            <a href="__MODULE__/Mobile/choseArea">{$Think.session.city}</a>
+        </span>
+    </div>
+    <!--底部导航-->
+    <div class="text-center footer-nav" style="margin-top: 8px">
+        <a href="__MODULE__/Jobs/pageJobs">首页</a>
+        <a href="__MODULE__/Mobile/myCenter">我的</a>
+        <a href="__MODULE__/Mobile/download">下载APP</a>
+        <a href="__MODULE__/Mobile/about">关于我们</a>
+    </div>
+
+    <div class="">
+        <img src="__PUBLIC__/default/images/footer.png" width="100%"/>
+    </div>
+
+</div>

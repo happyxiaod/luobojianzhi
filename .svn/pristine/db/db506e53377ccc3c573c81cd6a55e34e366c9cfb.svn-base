@@ -1,0 +1,85 @@
+<style type="text/css">
+	.list_hot .hot-money span{line-height:normal;padding-top:23px;}
+</style>
+<?php
+function getparam($k) {
+  $param = $_GET;
+  if(isset($_GET[$k])) unset($param[$k]);
+
+  $param[$k] = '';
+  return http_build_query($param);
+}
+
+?>
+<div id="assort">
+		<h2>兼职分类</h2>
+		<div class="assort_class">
+			<div class="trades">
+				<span>行业</span>
+				<a href="__ACTION__" class="assort_all">全部</a>
+				<ul>
+					<volist name="job_level1" id="vo">
+					<?php $param = getparam('l1');?>
+				<li class="current"><a href="?<?php echo $param;?>{$vo.name}" <?php if($vo['name']==$_GET['l1']){echo'style="color:#ed7612"';}?>>{$vo.name}</a></li>
+					</volist>
+				</ul>
+			</div>
+			<div class="add">
+				<span>地区</span>
+				<a href="__ACTION__" class="assort_all">全部</a>
+				<ul>
+					<volist name="countyList" id="vo">
+					<?php $param = getparam('county');?>
+					<li><a href="?<?php echo $param;?>{$vo.name}" <?php if($vo['name']==$_GET['county']){echo'style="color:#ed7612"';}?>>{$vo.name}</a></li>
+					</volist>
+				</ul>
+			</div>
+			<div class="time">
+				<span>时间</span>
+				<a href="__ACTION__" class="assort_all" >全部</a>
+				<tr>
+				<?php $param = getparam('time');?>
+				<ul>
+					<li><a href="?<?php echo $param;?>day" <?php if($_GET['time']=='day'){echo'style="color:#ed7612"';}?>>今天</a></li>
+					<li><a href="?<?php echo $param;?>week" <?php if($_GET['time']=='week'){echo'style="color:#ed7612"';}?>>本周</a></li>
+					<li><a href="?<?php echo $param;?>month"<?php if($_GET['time']=='month'){echo'style="color:#ed7612"';}?> >本月</a></li>
+					<li><a href="?<?php echo $param;?>year" <?php if($_GET['time']=='year'){echo'style="color:#ed7612"';}?>>今年</a></li>
+				</ul>
+				</tr>
+			</div>
+		</div>
+	</div>
+	<!-- 兼职分类end -->
+
+	<!-- 兼职分类列表start -->
+	<div id="sortList">
+		<div class="sort_hot">
+			<a href="__ACTION__?host=host">热门</a>
+			<a href="pageJobsLists" >最新</a>
+			<span>共{$count}个职位</span>
+		</div>
+		<div class="work">
+			<ul class="list_hot">
+			<volist name="commonJobLists" id="vo">
+				<li>
+					<span class="color-class{$vo.colorId}">{$vo.level2}</span>
+					<div class="job_show">
+						<a href="__MODULE__/Jobs/pageJobsDetails?id={$vo.id}" title="{$vo.title}">{$vo.subtitle}</a>
+						<span>{$vo.city}{$vo.county}</span>
+						<span>发布时间：{$vo.date}</span>
+						<span>浏览次数：{$vo.view|default="0"}</span>
+					</div>
+					<div class="hot-icon">
+						<i></i><i></i>
+					</div>
+					<div class="hot-money">	
+						<span>{$vo.price} {$vo.pricetype}</span>
+					</div>
+				</li>
+			</volist>
+			</ul>	
+		</div>		
+		<include file="blocks/pagedivide"/>
+			
+	</div>
+	<!-- 兼职分类列表end -->

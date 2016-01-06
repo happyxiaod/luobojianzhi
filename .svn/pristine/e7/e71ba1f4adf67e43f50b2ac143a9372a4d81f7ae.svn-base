@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>萝卜兼职，最靠谱的大学生兼职平台</title>
+	<include file="blocks/import_jobs"/>
+</head>
+<body>
+<div class="container-fluid">
+	<!-- 头部内容 -->
+		<include file="blocks/header"/>
+	<!-- 主体内容 -->
+		<include file="Jobs/contJobsLists"/>
+	<!-- 底部内容 -->
+		<include file="blocks/footer"/>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+	bindClick();
+</script>

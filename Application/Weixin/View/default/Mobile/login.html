@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <include file="blocks/import"/>
+    <title>登录</title>
+</head>
+<body>
+<div class="container-fluid">
+    <!--actionbar-->
+    <div class="row">
+        <include file="blocks/actionbar"/>
+
+    </div>
+    <!--头像-->
+    <div class="row text-center" style="height:200px;padding-top:40px">
+        <img class="headpic-lg" src="__PUBLIC__/default/images/headpic_default.png"/>
+    </div>
+    <!--登录-->
+    <div class="row">
+        <form id="form-login">
+            <div class="login-row row text-left"
+                 style="line-height: 48px;margin-bottom:8px;font-family:Microsoft YaHei">
+                <div class="col-xs-4" style="padding:0;padding-left:4px">
+                    <input type="radio" value="seeker" name="type" checked="checked"/>
+                    <span class="login-type">求职者</span>
+
+                </div>
+                <div class="col-xs-4" style="padding:0">
+                    <input type="radio" value="company" name="type"/>
+                    <span class="login-type">企业机构</span>
+
+                </div>
+                <div class="col-xs-4" style="padding:0">
+                    <input type="radio" value="school" name="type"/>
+                    <span class="login-type">学校机构</span>
+
+                </div>
+            </div>
+            <div class="login-row row">
+                <div class="col-xs-1 text-center" style="padding:0">
+                    <span class="glyphicon glyphicon-user login-ico"></span>
+                </div>
+                <div class="col-xs-11" style="padding:0 4px">
+                    <input class="login-input" type="text" id="username" name="username"
+                           style="border: none"/>
+                </div>
+            </div>
+            <div class="login-row row">
+                <div class="col-xs-1 text-center" style="padding:0">
+                    <span class="glyphicon glyphicon-lock login-ico"></span>
+                </div>
+                <div class="col-xs-11" style="padding:0 4px">
+                    <input class="login-input" type="password" id="password" name="password"
+                           style="border: none"/>
+                </div>
+            </div>
+            <!--忘记密码-->
+            <div class="text-right" style="padding-right:8px;margin-top:12px">
+                <a href="__MODULE__/Mobile/pageFindPwd" style="color:#888">忘记密码</a>
+            </div>
+            <!--登录按钮-->
+
+            <div class="text-center curs-pt" style="margin:4px 0">
+                <img src="__PUBLIC__/default/images/login_login.png" id="dologin" style="width:94%;height:48px"/>
+            </div>
+        </form>
+    </div>
+    <div class="row text-right" style="padding-right:8px">
+            <span>
+                <a href="__CONTROLLER__/reg" class="cl-orange">立即注册</a>
+            </span>
+    </div>
+
+
+    <!--底部-->
+    <div class="row">
+        <include file="blocks/footer"/>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        $('#dologin').click(function () {
+            event.preventDefault();
+            var name1 = $("#username").val();
+            /*document.getElementsById("username").value;*/
+            var pwd1 = $("#password").val();
+            /*document.getElementsById("password").value;*/
+            /*            var name1 = document.getElementsByName("username").value;
+             var pwd1 = document.getElementsByName("password").value;*/
+            if (name1 =='' || pwd1 == '') {
+                alert("用户名，密码不能为空");
+            } else {
+                var params = $('#form-login').serialize();
+                dologin(params);
+            }
+        });
+
+
+        function dologin(param) {
+            $.post('__CONTROLLER__/dologin',param, function (data) {
+                dealReturn(data)
+            });
+        }
+    });
+
+</script>

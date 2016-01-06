@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>投递状态</title>
+    <include file="blocks/import"/>
+</head>
+<body>
+<div class="container">
+    <div class="header row">
+        <include file="header"/>
+    </div>
+    <div class="middle row">
+        <include file="contApplyList"/>
+    </div>
+    <div class="footer row">
+        <include file="footer"/>
+    </div>
+</div>
+</body>
+</html>

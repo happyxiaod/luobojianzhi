@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>我的收藏</title>
+    <include file="blocks/import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="actionbar-back">
+            <div class="col-xs-1 text-left" style="padding-left:8px">
+                <a href="javascript:" onclick="javascript:history.back(-1)">
+                    <span class="glyphicon glyphicon-menu-left"></span>
+                </a>
+            </div>
+            <div class="col-xs-10 text-center actionbar-title">
+                我的收藏
+            </div>
+            <div class="col-xs-1 text-right">
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="gtlyout" style="padding:0; padding-top: 5px;">
+            <volist name="collectlist" id="vo" empty="该类别暂时没有职位信息！">
+                <div class="gtlv-auto">
+                    <input type="hidden" value="{$vo.id}"/>
+
+                    <div class="pull-left" style="max-width: 58%; overflow: hidden; white-space:nowrap;">
+                        <div class="text-normal text-bold">
+
+                            <!--TODO 是否推荐-->
+                            <!--<span style="color:red;font-size:14px;">荐</span>-->
+                            <a href="__MODULE__/Jobs/pageJobDetail?id={$vo.id}"
+                                    style="color:black">
+                                {$vo.title|mb_substr=0,10,'utf-8'}
+                            </a>
+
+
+                        </div>
+                        <div class="gt-cls cl-lightgray" style="font-size: 12px; margin: 5px 0;">
+                            <img src="__PUBLIC__/default/images/area.png" alt="" width="10px"
+                                 style="margin: -3px 3px 0 0;"/>
+                            &nbsp;{$vo.area}
+                        </div>
+                        <div class="gt-cls cl-lightgray" style="font-size: 12px;margin: 5px 0;">
+                            <img src="__PUBLIC__/default/images/date.png" alt="" width="10px"
+                                 style="margin: -2px 3px 0 0;"/>
+                            &nbsp;{$vo.date}
+                        </div>
+                    </div>
+
+                    <!--右半部分-->
+                    <div class="pull-right" style="max-width: 40%; overflow: hidden; white-space:nowrap;">
+                        <div class="text-right" style="margin-bottom: 15px">
+                            <!--TODO 根据状态变化背景图片-->
+                            <php>
+                                if($vo.state==0){
+                                echo('<span class="jobs-state">报名中</span>');
+                                }else if($vo.state==2){
+                                echo('<span class="jobs-state">已过期</span>');
+                                }else{
+                                echo('<span class="jobs-state">已报满</span>');
+                                }
+
+                            </php>
+                        </div>
+
+                        <div class="cl-orange text-normal">
+                            {$vo.price}
+                        </div>
+
+                    </div>
+                </div>
+            </volist>
+        </div>
+    </div>
+    <div class="row">
+        <include file="blocks/footer"/>
+    </div>
+</div>
+</body>
+</html>

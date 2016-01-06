@@ -1,0 +1,286 @@
+<!--公司完善注册-->
+<div class="container">
+    <div class="ablock row">
+        <!--注册提示-->
+        <div class="row" style="width:90%;margin: 0 auto">
+            <div class="reg-title text-center">
+                完善企业资料
+            </div>
+        </div>
+        <!--注册显示内容-->
+        <div class="row reg-content" gt-model="detailReg">
+            <input type="hidden" gt-isparam="userType" value="company"/>
+            <!--<div class="row">-->
+                <!--<div class="col-md-8">-->
+                    <!--<div class="row" style="margin-bottom:22px">-->
+                        <!--<div class="col-md-3 text-right">-->
+                            <!--<span class="label-text">-->
+                                <!--单位名称-->
+                            <!--</span>-->
+                        <!--</div>-->
+                        <!--<div class="col-md-9">-->
+                            <!--<input type="hidden" gt-islabel="单位名称"/>-->
+                            <!--<input class="edit-text" type="text" gt-isparam="companyname"/>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-md-4" style="padding-left: 0;">-->
+                    <!--<img src="__PUBLIC__/default/images/1.png"/>-->
+                <!--</div>-->
+            <!--</div>-->
+<!--            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin-bottom:22px">
+                        <div class="col-md-3 text-right">
+                            <span class="label-text hidden-xs">
+                                营业执照编号
+                            </span>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="hidden" gt-islabel="营业执照编号"/>
+                            <input class="edit-text" type="text" gt-isparam="buslicense"
+                                    placeholder="个人请填写身份证号"/>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin-bottom:22px">
+                        <div class="col-md-3 text-right hidden-xs">
+                            <span class="label-text">
+                                证件上传
+                            </span>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="thumbnail">
+                                        <img class="reg-id-img" src=""/>
+                                        <input type="hidden" gt-islabel="公司logo"/>
+                                        <input type="file" gt-isparam="logo" gt-isvalid="no" style="width:100%"/>
+                                        <div class="caption text-center">
+                                            <strong>
+                                                公司LOGO(选填)
+                                            </strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="thumbnail">
+                                        <img class="reg-id-img" src="" />
+                                        <input type="hidden" gt-islabel="营业执照或身份证照片"/>
+                                        <input type="file" gt-isparam="orgauth" style="width:100%"/>
+                                        <div class="caption text-center">
+                                            <strong>营业执照或身份证</strong>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!--            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin-bottom:22px">
+                        <div class="col-md-3 text-right hidden-xs">
+                            <span class="label-text">
+                                企业类型
+                            </span>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="input-group spinner">
+                                <span  class="spinner-content" gt-isparam="companytype">有限责任公司</span>
+                                    <span class="input-group-addon glyphicon glyphicon-triangle-bottom"
+                                          data-toggle="dropdown">
+                                    </span>
+                                <ul class="dropdown-menu" >
+                                    <li class="spinner-option">
+                                        <span>有限责任公司</span>
+                                    </li>
+                                    <li class="spinner-option">
+                                        <span>股份有限公司</span>
+                                    </li>
+                                    <li class="spinner-option">
+                                        <span>个体工商户</span>
+                                    </li>
+                                    <li class="spinner-option">
+                                        <span>个人</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    &lt;!&ndash;nothing&ndash;&gt;
+                </div>
+            </div>-->
+<!--            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin-bottom:22px">
+                        <div class="col-md-3 text-right hidden-xs">
+                            <span class="label-text">
+                                企业规模
+                            </span>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="hidden" gt-islabel="企业规模"/>
+                            <input class="edit-text" type="text" gt-isparam="companyscale" placeholder="企业规模"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    &lt;!&ndash;nothing&ndash;&gt;
+                </div>
+            </div>-->
+<!--            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin-bottom:22px">
+                        <div class="col-md-3 text-right hidden-xs">
+                            <span class="label-text">
+                                企业简介
+                            </span>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="hidden" gt-islabel="企业简介"/>
+                            <textarea class="edit-multext" rows="5" gt-isparam="intro" placeholder="企业简介"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    &lt;!&ndash;nothing&ndash;&gt;
+                </div>
+            </div>-->
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin-bottom:22px">
+                        <div class="col-md-3 text-right hidden-xs">
+                            <span class="label-text">
+                                联系人
+                            </span>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="hidden" gt-islabel="联系人"/>
+                            <input class="edit-text" type="text" gt-isparam="contacter" placeholder="联系人"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!--nothing-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin-bottom:22px">
+                        <div class="col-md-3 text-right hidden-xs">
+                            <span class="label-text">
+                                联系电话
+                            </span>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="hidden" gt-islabel="联系电话"/>
+                            <input class="edit-text" type="text" gt-isparam="contacterphone" placeholder="联系电话"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!--nothing-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin-bottom:22px">
+                        <div class="col-md-3 text-right hidden-xs">
+                            <span class="label-text">
+                                企业详细地址
+                            </span>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="hidden" gt-islabel="企业详细地址"/>
+                            <input class="edit-text" type="text" gt-isparam="address" placeholder="可在地图中点选"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <!--nothing-->
+                </div>
+            </div>
+            <!--地图选择详细地址-->
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-9">
+                        <div id="bdmap" style="width:100%;height:280px;
+                        border:1px solid #bbb;border-radius: 3px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin-bottom:22px">
+                        <div class="col-md-3">
+                            <!--nothing-->
+                        </div>
+                        <div class="col-md-9">
+                            <input type="checkbox" gt-isparam="agree" value="no"/>
+                            <span class="reg-agree">
+                                我已阅读
+                                <a href="javascript:protocol();">《萝卜兼职协议条款》</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!--nothing-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin:40px auto">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9 text-center">
+                            <input type="button"class="btn btn-active" gt-btn-click="detailReg" value="立即确认"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!--nothing-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=P5AXQi2Q4I1wGcSGdIYZMPOG"></script>
+<!--百度地图相关-->
+<script type="text/javascript">
+    var map = new BMap.Map("bdmap");    // 创建Map实例
+    var point = new BMap.Point(122.09395837,37.52878708);//威海
+    map.centerAndZoom(point,14);
+//    map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+    map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+    var mk = new BMap.Marker(point);
+    map.addOverlay(mk);
+    map.panTo(point);
+    //鼠标点击后定位
+    var geoc = new BMap.Geocoder();
+    map.addEventListener("click", function(e){
+        var pt = e.point;
+        var mk = new BMap.Marker(pt);
+        map.clearOverlays();
+        map.addOverlay(mk);
+        map.panTo(pt);
+
+        geoc.getLocation(pt, function(rs){
+            var addComp = rs.addressComponents;
+            $("[gt-isparam='address']").val(addComp.province+addComp.city+addComp.district+addComp.street
+            +addComp.streetNumber);
+
+        });
+    });
+</script>

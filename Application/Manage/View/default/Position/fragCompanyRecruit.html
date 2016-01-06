@@ -1,0 +1,26 @@
+<div class="col-md-3">
+	<button name="name" class="btn btn-orange form-control mtop2"></button>
+</div>
+<div class="col-md-8">
+	<table class="table text-center mtop1 table-bordered">
+		<thead>
+			<tr>
+				<th class="text-center">职位</th>
+				<th class="text-center">发布时间</th>
+				<th class="text-center">薪资</th>
+				<th class="text-center">招聘人数</th>
+			</tr>
+		</thead>
+		<tbody>
+			<volist name="list" id="vo">
+				<tr>
+					<td>{$vo.level2}</td>
+					<td>{$vo.date}</td>
+					<td>{$vo.price}</td>
+					<td>{$vo.number}</td>
+				</tr>
+			</volist>
+		</tbody>
+	</table>
+	<include file="blocks/pagedivideload"/>
+</div>

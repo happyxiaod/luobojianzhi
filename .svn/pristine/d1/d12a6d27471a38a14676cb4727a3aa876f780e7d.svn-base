@@ -1,0 +1,248 @@
+/*style*/
+.mtop1 {
+    margin-top: 12px;
+}
+
+.mtop2 {
+    margin-top: 24px;
+}
+
+.mleft1 {
+    margin-left: 12px;
+}
+
+.mleft2 {
+    margin-left: 24px;
+}
+
+.btn-orange {
+    background: #FF9A22;
+    color: #fff;
+}
+
+.btn-orange:hover {
+    background: #F28608;
+    color: #fff;
+}
+
+.btn-gray {
+    background: #BFBFBF;
+    color: #000;
+}
+
+.btn-gray:hover {
+    background: #A7A5A5;
+}
+
+.middle {
+    background: #f4f4f4;
+}
+
+.fragbox {
+    margin-top: 10px;
+    margin-left: 15px;
+    background: white;
+    border-top: 3px solid #2f71ca;
+    padding-top: 15px;
+    margin-bottom:40px;
+}
+
+/*login*/
+.login-row {
+    color: #717171;
+    width: 80%;
+    height: 55px;
+    background: #E0E0E0;
+    padding-top: 5px;
+    margin: 15px 0;
+    border-radius: 5px;
+}
+
+.login-icon {
+    font-size: 26px;
+    line-height: 26px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.login-attention {
+    width: 310px;
+    border-radius: 5px;
+    padding: 8px 8px;
+}
+
+.login-input {
+    border: 0px solid #00b7ee;
+    width: 250px;
+    height: 46px;
+    font-size: 22px;
+    background: #E0E0E0;
+}
+
+.login-input:focus {
+    outline: 0px solid #00b7ee;
+    border-radius: 8px;
+}
+
+.login-box {
+    width: 80%;
+    text-align: right;
+    color: #8C8C8C;
+    margin: 10px 0;
+}
+
+.login-btn {
+    width: 80%;
+    height: 50px;
+    border-radius: 4px;
+    padding: 5px 30px;
+    border: none;
+    color: #ffffff;
+    font-size: 19px;
+    background: #ff9a22;
+}
+
+.login-btn-ico {
+    margin-left: -35px;
+    color: white;
+    margin-right: 30px;
+}
+
+.login-title {
+    border-bottom: 2px solid #FF9B24;
+    padding: 0 0 5px 0;
+    font-size: 25px;
+    font-family: "微软雅黑";
+    font-weight: bold;
+}
+
+.login-bottom {
+    padding: 60px 0;
+    color: #8C8C8C;
+    text-align: center;
+    border-top: 2px solid #FF9A22;
+}
+
+/*分页*/
+.pagedivide {
+    margin-top: 20px;
+    list-style-type: none;
+}
+
+.pagedivide > li {
+    display: block;
+    float: left;
+    list-style-type: none;
+    margin: 0 0 10px 5px;
+}
+
+.pagedivide > li > a {
+    border: 1px solid #c5c5c5;
+    color: black;
+    text-decoration: none;
+    padding: 3px 7px;
+}
+
+/*导航*/
+.mainnav {
+    background: #ffffff;
+    color: #2d8cff;
+}
+
+.nav-one {
+    list-style-type: none;
+    padding-left: 55px;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "微软雅黑";
+    margin: 10px 0;
+}
+
+.nav-two {
+    list-style-type: none;
+    padding: 6px 0 6px 55px;
+    width: 100%;
+    overflow: hidden;
+}
+
+/*导航选中后样式*/
+.nav-two-active {
+    background: #b1dcfd;
+    border-left: 5px solid #C6700A;
+    padding-left: 50px;
+}
+
+.nav-two-active a {
+    color: #215984;
+}
+
+.nav-two-active a:hover {
+    color: #215984;
+}
+
+.nav-a {
+    color: #2d8cff;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.nav-a:hover {
+    color: #2f2db0;
+}
+
+/* 资料审核 */
+.audit-thumbnail {
+    border: 2px solid #F39800;
+    background: none;
+}
+
+/*意见反馈对话框*/
+.dialog-box {
+    border: 2px solid #BFBFBF;
+    width: 100%;
+    height: 290px;
+    margin: 25px 0 20px 25px;
+    padding: 50px 30px 30px 30px;
+}
+
+.dialog-box p {
+    border-radius: 5px;
+    width: 270px;
+    height: 80px;
+    border: 2px solid #BFBFBF;
+    margin: 0;
+    padding: 5px;
+}
+
+.dialog-logo {
+    font-size: 12px;
+    margin: 10px 10px;
+}
+
+.dialog-textarea {
+    margin-left: 25px;
+    width: 75%;
+}
+
+.dialog-textarea textarea {
+    width: 100%;
+    border: 2px solid #BFBFBF;
+    resize: none;
+}
+
+.btn-dialog {
+    border: 2px solid #F39800;
+    padding: 0 15px;
+    margin-top: 5px;
+    background: none;
+}
+
+/*用户注册信息详情*/
+.seeker-info-box {
+    margin: 20px 0 0 10px;
+}
+
+.seeker-info-left {
+    font-weight: bolder;
+}
+

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>意见反馈</title>
+	<include file="blocks/import_user"/>
+</head>
+<body>
+<div class="container-fluid">
+    <!-- 头部内容 -->
+        <include file="blocks/header"/>
+    <!-- 主体内容 -->
+        <include file="Feed/contFeedback"/>
+    <!-- 底部内容 -->
+        <include file="blocks/footer"/>
+</div>
+</body>
+</html>
+<script>
+    jQuery(document).ready(function($) {
+        bindClick();
+        //修改左侧导航栏样式使导航栏的橙色样式对应当前页面
+        $("#pageFeedback").removeClass("cur").addClass("cur");
+    });
+</script>

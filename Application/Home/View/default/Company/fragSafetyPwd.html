@@ -1,0 +1,53 @@
+<!--修改密码-->
+<div class="safety-box" gt-model="saveCompanyPwd">
+    <div class="row">
+        <button class="btn btn-active" style="margin-left: 20px;" gt-btn-click="editCompanyPwd">修改密码</button>
+        <button class="btn btn-disable" style="margin-left: 20px;" gt-btn-click="editCompanyPhone">更换手机绑定</button>
+        <button class="btn btn-disable" style="margin-left: 20px;" gt-btn-click="editCompanyEmail">验证邮箱</button>
+        <!--<button class="btn btn-disable" style="margin-left: 20px;" gt-btn-click="editCompanyId">证件上传</button>-->
+    </div>
+    <div class="row" style="margin-top: 20px">
+        <div class="col-md-2 text-right" style="line-height: 40px">
+            原始密码
+        </div>
+        <div class="col-md-9">
+            <input type="hidden" gt-islabel="原始密码"/>
+            <input class="edit-text" gt-isparam="oldPwd" type="password"/>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px">
+        <div class="col-md-2 text-right" style="line-height: 40px">
+            新密码
+        </div>
+        <div class="col-md-9">
+            <input type="hidden" gt-islabel="新密码"/>
+            <input class="edit-text" gt-isparam="newPwd" type="password"/>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px">
+        <input type="hidden" gt-islabel="确认密码"/>
+        <div class="col-md-2 text-right" style="line-height: 40px">
+            确认密码
+        </div>
+        <div class="col-md-9">
+            <input class="edit-text" gt-isparam="affirmPwd" type="password"/>
+        </div>
+    </div>
+    <div class="row pull-right" style="margin: 20px 60px 0 0">
+        <button class="btn btn-active" id="saveCompanyPwd">确定</button>
+    </div>
+</div>
+<script>
+//    修改密码
+    $("#saveCompanyPwd").on('click', '', function (event) {
+        event.preventDefault();
+        data = M("saveCompanyPwd");
+        console.log(data);
+        if (data['newPwd'] == data['affirmPwd']) {
+            delete(data['affirmPwd']);
+            post(CON_PATH + "/savePwd" , data);
+        } else {
+            alert("两次密码不一至");
+        }
+    });
+</script>

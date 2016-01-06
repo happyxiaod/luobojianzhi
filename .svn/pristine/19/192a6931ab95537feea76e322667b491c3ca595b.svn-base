@@ -1,0 +1,624 @@
+<?php
+namespace Home\Controller;
+
+use Think\Controller;
+
+class CompanyController extends BaseController
+{
+    static $user;//当前登录用户session
+    static $db;//对应数据库表
+    static $p;//分页需要属性
+    static $limit;
+
+    /**初始化方法，默认的属性值
+     *
+     */
+    public function _initialize()
+    {
+        parent::_initialize();
+        self::$user = session("user");
+        //如果是用户登录
+        if (self::$user['type'] == "seeker") {
+            self::$db = M('user_seeker');
+        } //公司企业登录
+        elseif (self::$user['type'] == "company") {
+            self::$db = M('user_company');
+        } //学校机构登录
+        elseif (self::$user['type'] == "school") {
+            self::$db = M('user_school');
+        }
+
+
+        $where['id'] = self::$user['id'];
+
+        $re          = self::$db->where($where)->find();
+        if ($re) {
+            //var_dump($re);exit();
+            $this->assign("user", $re);
+        } else {
+
+        }
+
+        //判断账号审核状态
+        if (self::$user['state'] != 1) {
+            if (self::$user['state'] == 2) {
+                //$this->error("您的信息目前正在审核中，请耐心等待！");
+            }
+            if (self::$user['state'] == 0) {
+                $this->error("您的信息未通过审核！");
+            }
+        }
+        self::$p     = I('get.p', I('post.p', 1));
+        self::$limit = I('get.limit', I('post.limit', 10));
+    }
+
+    /**设置分页
+     *
+     * @param $count int 总数
+     * @return void assign
+     */
+    public function setPage($count)
+    {
+        $page = gtPage($count, self::$limit, self::$p);
+        $this->assign("pagelist", $page);
+        $this->assign("curtpage", self::$p);
+    }
+    //企业管理中心
+    public function pageManage(){
+        $this->assign('top_nav',"管理中心");
+        $where['uid'] = self::$user['id'];
+        $map['companyid']=self::$user['id'];
+        //获得当前公司的一天的发布job记录数/报名数/评论数
+        $beginToday=mktime(0,0,0,date('m'),date('d'),date('Y'));
+        $endToday=mktime(0,0,0,date('m'),date('d')+1,date('Y'))-1;
+        $dayjobcount=D("Jobs")->getCountByCompany($where,$beginToday,$endToday);
+        $dayApplycount=D("Jobs")->getApplyCountByCompany($map,$beginToday,$endToday);
+        $dayCommentcount=D("Jobs")->getCommentCountByCompany($map,$beginToday,$endToday);
+         //获得当前公司的本周的发布job记录数/报名数/评论数
+        $beginWeek=mktime(0, 0 , 0,date("m"),date("d")-date("w")+1,date("Y"));
+        $endWeek=mktime(23,59,59,date("m"),date("d")-date("w")+7,date("Y"));
+        $weekjobcount=D("Jobs")->getCountByCompany($where,$beginWeek,$endWeek);
+        $weekApplycount=D("Jobs")->getApplyCountByCompany($map,$beginWeek,$endWeek);
+        $weekCommentcount=D("Jobs")->getCommentCountByCompany($map,$beginWeek,$endWeek);
+        //获得当前公司的上周的发布job记录数/报名数/评论数
+        $lastWeekBegin=mktime(0, 0 , 0,date("m"),date("d")-date("w")+1-7,date("Y"));
+        $lastWeekEnd=mktime(23,59,59,date("m"),date("d")-date("w")+7-7,date("Y"));
+        $lastweekjobcount=D("Jobs")->getCountByCompany($where,$lastWeekBegin,$lastWeekEnd);
+        $lastweekApplycount=D("Jobs")->getApplyCountByCompany($map,$lastWeekBegin,$lastWeekEnd);
+        $lastweekCommentcount=D("Jobs")->getCommentCountByCompany($map,$lastWeekBegin,$lastWeekBegin);
+         //获得当前公司的本月的发布job记录数/报名数/评论数
+        $monthBegin= mktime(0, 0 , 0,date("m"),1,date("Y"));
+        $monthEnd=mktime(23,59,59,date("m"),date("t"),date("Y"));
+        $monthjobcount=D("Jobs")->getCountByCompany($where,$monthBegin,$monthEnd);
+        $monthApplycount=D("Jobs")->getApplyCountByCompany($map,$monthBegin,$monthEnd);
+        $monthCommentcount=D("Jobs")->getCommentCountByCompany($map,$monthBegin,$monthEnd);
+
+        $this->assign('dayjobcount',$dayjobcount);
+        $this->assign('weekjobcount',$weekjobcount);
+        $this->assign('lastweekjobcount',$lastweekjobcount);
+        $this->assign('monthjobcount',$monthjobcount);
+
+        $this->assign('dayApplycount',$dayApplycount);
+        $this->assign('weekApplycount',$weekApplycount);
+        $this->assign('lastweekApplycount',$lastweekApplycount);
+        $this->assign('monthApplycount',$monthApplycount);
+
+        $this->assign('dayCommentcount',$dayCommentcount);
+        $this->assign('weekCommentcount',$weekCommentcount);
+        $this->assign('lastweekCommentcount',$lastweekCommentcount);
+        $this->assign('monthCommentcount',$monthCommentcount);
+        $this->display();
+    }
+
+    //发布列表显示
+    public function pagePost()
+    {
+        self::$db     = M('jobs');
+        $where['uid'] = self::$user['id'];
+        if (self::$user['type'] == 'company') {
+            $where['name'] = self::$user['companyname'];
+        } else {
+            if (self::$user['type'] == 'school') {
+                $where['name'] = self::$user['schoolname'];
+            }
+        }
+        $re = self::$db->where($where)->page(self::$p, self::$limit)->select();
+        foreach ($re as $key => $value) {
+            $jobid=$value['id'];
+            $applynum=M('jobs_apply')->where("jobid=$jobid")->count();
+            $re[$key]['applynum']=$applynum;
+        }
+
+        if ($re) {
+            $this->assign("jobslist", $re);
+        }
+        $count = self::$db->where($where)->count();
+        $this->setPage($count);
+        $this->assign('top_nav',"职位管理");
+        $this->display();
+    }
+
+    //发布职位页面
+    public function pagePostJob()
+    {
+        //获取省份
+        $db = M("province");
+        $re = $db->select();
+        $this->assign("provinceList", $re);
+
+        $db = M('job_level1');
+        $re = $db->select();
+        if ($re) {
+            $this->assign("level1list", $re);
+        }
+        $this->assign('top_nav',"发布职位");
+        $this->display();
+    }
+
+    public function fragLevel2List()
+    {
+        $db           = M('job_level2');
+        $where['fid'] = I("post.id");
+        $re           = $db->where($where)->select();
+        if ($re) {
+            $this->assign("level2list", $re);
+        }
+        $this->display();
+    }
+
+      public function option_fragLevel2List()
+    {
+        $db           = M('job_level2');
+        $where['fid'] = I("post.id");
+        $re           = $db->where($where)->field('fid','name')->select();
+      if ($re) {
+            $this->ajaxReturn($re);
+        }else{
+            $this->ajaxReturn("failed");  
+        }
+        
+    }
+
+       public function getLevel2ListByname()
+    {
+        $db           = M('job_level2');
+        $where['fname'] = I("post.level1");
+        $re           = $db->where($where)->field('fid','name')->select();
+      if ($re) {
+            $this->ajaxReturn($re);
+        }else{
+            $this->ajaxReturn("failed");  
+        }
+        
+    }
+
+    //新增职位信息
+    public function addJob()
+    {
+        $json   = $_POST['params'];
+        $params = json_decode($json, TRUE);
+        //是否已经发布相同的职位
+
+        $level1=$params['level1'];
+        $level2=$params['level2'];
+        $level1name=M('job_level1')->field('name')->find($level1);
+        $level2name=M('job_level2')->field('name')->find($level2);
+        $where['level1'] = $level1name['name'];
+        $where['level2'] = $level2name['name'];
+        $where['title']  = $params['title'];
+        $user            = session("user");
+        $where['name']   = $user['companyname'];
+        $re              = M('jobs')->where($where)->find();
+        if ($re) {
+            $this->error("您已经发布了类似的信息！");
+        }
+        unset($re);
+        //处理区域等相关字段
+        $cityid=$params['city'];
+        $cityname=M('city')->field('name')->find($cityid);
+        $params['city']=$cityname['name'];
+        $params['area'] = $params['province'] . $params['city'] . $params['county'];
+        $params['level1']=$level1name['name'];
+        $params['level2']=$level2name['name'];
+
+        $params['date'] = date("Y-m-d");
+        $params['uid']  = $user['id'];
+        $params['name'] = $user['companyname'];
+        self::$db       = M('jobs');
+        $re             = self::$db->add($params);
+        if ($re) {
+            $this->success("发布成功", "reload");
+        } else {
+            $this->error("发布失败");
+        }
+    }
+
+    //编辑职位页面
+    public function pageEditJob()
+    {
+        //获取省份
+        $db = M("province");
+        $re = $db->select();
+        $this->assign("provinceList", $re);
+
+        $id          = I('get.id');
+        self::$db    = M('jobs');
+        $where['id'] = $id;
+        $re          = self::$db->where($where)->find();
+        unset($where);
+        if ($re) {
+
+            foreach ($re as  $value) {
+                $id1=$re['level1'];
+                $id2=$re['level2'];
+                $cityid=$re['city'];
+                $level1name=M('job_level1')->field('name')->find($id1);
+                $level2name=M('job_level2')->field('name')->find($id2);
+                $cityname=M('city')->field('name')->find($cityid);
+                $re['level1name']=$level1name['name'];
+                $re['level2name']=$level2name['name'];
+                $re['cityname']=$cityname['name'];
+            }
+            $this->assign("job", $re);
+        }
+  
+        $level2nmae = $re['level2'];
+        //查询level1
+        unset($re);
+        $db = M('job_level1');
+        $re = $db->select();
+        if ($re) {
+            $this->assign("level1list", $re);
+        }
+        //通过level2name查询level1的fid，通过fid查询同类的level2
+        unset($db, $re);
+        $db            = M('job_level2');
+        $where['name'] = $level2nmae;
+        $fid           = $db->where($where)->getField("fid");
+        if ($fid) {
+            unset($where);
+            $where['fid'] = $fid;
+            $re           = $db->where($where)->select();
+            if ($re) {
+                $this->assign("level2list", $re);
+            }
+        }
+
+        $this->display();
+    }
+
+    //保存更改后的职位
+    public function saveJob()
+    {
+        $json     = $_POST['params'];
+        $params   = json_decode($json, TRUE);
+        self::$db = M('jobs');
+        //处理地域等相关字段
+        $params['area'] = $params['province'] . $params['city'] . $params['county'];
+        $re             = self::$db->save($params);
+        if ($re) {
+            $this->success("修改成功", "pagePost");
+        } else {
+            $this->error("修改失败");
+        }
+    }
+
+    //删除一个或多个职位
+    public function delJob()
+    {
+        $json     = $_POST['params'];
+        $params   = json_decode($json, TRUE);
+        self::$db = M('jobs');
+        if (is_array($params)) {
+            $where = 'id in(' . implode(',', $params) . ')';
+        } else {
+            $where = 'id=' . $params;
+        }
+        $re = self::$db->where($where)->delete();
+
+        if ($re) {
+            $this->success("删除成功", "reload");
+        } else {
+            $this->error("删除失败");
+        }
+    }
+
+    //删除一个或多个申请
+    public function delApply()
+    {
+        $json     = $_POST['params'];
+        $params   = json_decode($json, TRUE);
+        self::$db = M('jobs_apply');
+        if (is_array($params)) {
+            $where = 'id in(' . implode(',', $params) . ')';
+        } else {
+            $where = 'id=' . $params;
+        }
+        $re = self::$db->where($where)->delete();
+
+        if ($re) {
+            $this->success("删除成功");
+        } else {
+            $this->error("删除失败");
+        }
+    }
+
+    //保存认证信息
+    public function saveProve()
+    {
+        $json        = $_POST['params'];
+        $params      = json_decode($json, TRUE);
+        $data['companyname']=$params['companyname'];
+        $data['buslicense']=$params['buslicense'];
+        $data['contacter']=$params['contacter'];
+        $data['address']=$params['address'];
+        $data['contacterphone']=$params['contacterphone'];
+        $data['intro']=$params['intro'];
+        $data['companytype']=$params['companytype'];
+        $data['companyscale']=$params['companyscale'];
+        $data['updatetime']=date("Y-m-d H:i:s");
+        $data['province']=$params['province'];
+        $data['city']=$params['city'];
+        $data['county']=$params['county'];
+        $data['state']=2;
+        $where['id'] = self::$user['id'];
+        $re          = self::$db->where($where)->save($data);
+        if ($re) {
+            $this->success("保存成功");
+        } else {
+            $this->error("保存失败或者信息没有修改");
+        }
+    }
+
+    //更改密码
+    public function savePwd()
+    {
+        $json              = $_POST['params'];
+        $params            = json_decode($json, TRUE);
+        $where['id']       = self::$user['id'];
+        $where['password'] = $params["oldPwd"];
+        $re                = self::$db->where($where)->setField('password', $params['newPwd']);
+        if ($re) {
+            $this->success("更改成功");
+        } else {
+            $this->error("更改失败！请检查密码是否正确！");
+        }
+    }
+
+    //更改邮箱
+    public function saveEmail()
+    {
+        $json   = $_POST['params'];
+        $params = json_decode($json, TRUE);
+        if (self::$user['type'] == "company") {
+            $where['companyemail'] = $params['oldEmail'];
+            $where['id']           = self::$user['id'];
+            $re                    = self::$db->where($where)->setField('companyemail', $params['newEmail']);
+        } else {
+            if (self::$user['type'] == 'school') {
+                $where['schoolemail'] = $params['oldEmail'];
+                $where['id']          = self::$user['id'];
+                $re                   = self::$db->where($where)->setField('schoolemail', $params['newEmail']);
+            }
+        }
+        if ($re) {
+            $this->success("更改成功");
+        } else {
+            $this->error("更改失败！请检查邮箱是否正确！");
+        }
+    }
+
+    //修改手机
+    public function savePhone()
+    {
+        $json           = $_POST['params'];
+        $params         = json_decode($json, TRUE);
+        $where['id']    = self::$user['id'];
+        $where['phone'] = $params['oldPhone'];
+        $re             = self::$db->where($where)->find();
+
+        if ($params['chaptcha'] != session("captcha") && $params['phone'] == session('captchaPhone')) {
+            $this->error("验证码错误");
+        }
+
+        if ($re) {
+            $data['id']    = self::$user['id'];
+            $data['phone'] = $params['phone'];
+            $re            = self::$db->save($data);
+            if ($re) {
+                $this->success("修改成功");
+            } else {
+                $this->error("修改失败");
+            }
+        } else {
+            $this->error("原号码错误");
+        }
+    }
+
+    public function pageCompanyApply()
+    {   $state=I("get.state",2);
+        self::$db             = M('jobs_apply');
+        $where['companyname'] = self::$user['companyname'];
+        $where['state']=$state;
+        if ($where['companyname'] == "" && $where['companyname'] == NULL) {
+            $where['companyname'] = self::$user['schoolname'];
+        }
+        $applylist =
+            self::$db->where($where)->field("id,uid,state,jobid,createtime")->order("createtime desc")->page(self::$p, self::$limit)
+                     ->select();
+        unset($where);
+
+       foreach ($applylist as $key => $value) {
+           $map['id']=$value['uid'];
+           $where['id'] =$value['jobid'];
+           $applylist[$key]['title']=M('jobs')->where($where)->getField('title');
+           $seeker=M("user_seeker")->field('realname,area,school,phone')->where($map)->find();
+           $applylist[$key]['realname']=$seeker['realname'];
+           $applylist[$key]['area']=$seeker['area'];
+           $applylist[$key]['school']=$seeker['school'];
+           $applylist[$key]['phone']=$seeker['phone'];
+       }
+
+        $this->assign("applylist", $applylist);
+        unset($where);
+        $where['companyname'] = self::$user['companyname'];
+        if ($where['companyname'] == "" && $where['companyname'] == NULL) {
+            $where['companyname'] = self::$user['schoolname'];
+        }
+        $count = M("jobs_apply")->where($where)->field("count(distinct jobid) as count")->find();
+        $count = $count['count'];
+        $this->setPage($count);
+        $this->assign('top_nav',"简历管理");
+        $this->display();
+    }
+
+    public function pageApplyDetails()
+    {
+        $id = I("get.id");
+        if ($id != NULL && $id != "" && $id != FALSE) {
+            session("jobid", $id);
+        } else {
+            $id = session("jobid");
+        }
+        $list =
+            M()->table("jobs_apply as apply, user_seeker as seeker")
+               ->field("seeker.id, seeker.phone, seeker.realname, seeker.school, apply.id as applyid,apply.state, apply.createtime")
+               ->where("apply.jobid = $id AND apply.uid = seeker.id")->order("createtime desc")
+               ->page(self::$p, self::$limit)->select();
+        $this->assign("list", $list);
+        $count =
+            M()->table("jobs_apply as apply, user_seeker as seeker")
+               ->where("apply.jobid = $id AND apply.uid = seeker.id")->field("count(*) as count")->find();
+        $count = $count['count'];
+        $this->setPage($count);
+        $this->display();
+    }
+
+    //确认工作申请
+    public function applyYes()
+    {
+        $where['id'] = I("post.id");
+        $db          = M("jobs_apply");
+        $re          = $db->where($where)->setField("state", "1");
+        $jobid = I("post.jobid");
+        if ($re) {
+            //发送短信
+            $title = M("jobs")->where("id=$jobid")->getField("title");
+            $phone = M("jobs")->where("id=$jobid")->getField("phone");
+            sendAgrMsgToUser(I('post.seekerphone'), self::$user['companyname'], $title, I('post.seekername'), $phone);
+            $this->success("确认成功!", "reload");
+        } else {
+            $this->error("确认失败!");
+        }
+    }
+
+    //拒绝工作申请
+    public function applyNo()
+    {
+        $json        = $_POST['params'];
+        $params      = json_decode($json, TRUE);
+        $where['id'] = $params['id'];
+        $db          = M("jobs_apply");
+        $re          = $db->where($where)->setField("state", "0");
+        if ($re) {
+            $this->success("拒绝成功!", "reload");
+        } else {
+            $this->error("拒绝失败!");
+        }
+    }
+
+    public function pageSafety()
+    {
+        $where['id']   = self::$user['id'];
+        $user          = self::$db->where($where)->find();
+        $user['phone'] = substr_replace($user['phone'], "****", 3, 4);
+        $this->assign("user", $user);
+        $this->assign("top_nav", '安全中心');
+        $this->display();
+    }
+
+    public function fragApplyResume()
+    {
+        $this->display();
+    }
+
+    public function delApplyJob()
+    {   
+        $json     = $_POST['params'];
+        $params   = json_decode($json, TRUE);
+        self::$db = M('jobs_apply');
+        if (is_array($params)) {
+            $where = 'id in(' . implode(',', $params) . ')';
+        } else {
+            $where = 'id=' . $params;
+        }
+        $re = self::$db->where($where)->delete();
+
+        if ($re) {
+            $this->success("删除成功", U('pagePost'));
+        } else {
+            $this->error("删除失败");
+        }
+    }
+
+    public function pageProve()
+    {   
+        $citylist = M('city')->where('pid=1')->select();//默认为山东省
+        $this->assign('citylist',$citylist);
+        $this->assign('top_nav','企业信息');
+        $this->display();
+    }
+
+    public function getCounty(){
+        $db = M('county');
+        $where['name'] = I('post.city');
+        $cid = M('city')->where($where)->getField('id');
+        unset($where);
+        $where['cid'] = $cid;
+        $re = $db->where($where)->field("name")->select();
+        if ($re) {
+            $this->ajaxReturn($re);
+        } else {
+            $this->ajaxReturn("failed");
+        }
+    }
+
+    //查看简历
+    public function pageResume()
+    {
+        $id          = I('get.id');
+        $where['id'] = $id;
+        $db          = M('user_seeker');
+        $re          = $db->where($where)->find();
+        if ($re) {
+            $this->assign("user", $re);
+        }
+        $this->display();
+    }
+
+    //关闭职位
+    public function closeJob()
+    {
+        $where['id']   = I('get.id');
+        $save['state'] = 3;
+        $re            = M('jobs')->where($where)->save($save);
+        if ($re) {
+            $this->success('关闭成功');
+        } else {
+            $this->error('关闭失败');
+        }
+    }
+
+     public function openJob()
+    {
+        $where['id']   = I('get.id');
+        $save['state'] = 0;
+        $re            = M('jobs')->where($where)->save($save);
+        if ($re) {
+            $this->success('开启成功');
+        } else {
+            $this->error('开启失败');
+        }
+    }
+
+}

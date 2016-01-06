@@ -1,0 +1,164 @@
+<style>
+    .jobstate-green{
+        background: url("__PUBLIC__/default/images/jobsstate1.png") no-repeat;
+        background-size:100% 100%;
+    }
+    .jobstate-red{
+        background: url("__PUBLIC__/default/images/jobsstate2.png") no-repeat;
+        background-size:100% 100%;
+    }
+    .jobstate-orange{
+        background: url("__PUBLIC__/default/images/jobsstate3.png") no-repeat;
+        background-size:100% 100%;
+    }
+</style>
+
+<!--轮播图-->
+<div style="height:100px;">
+    <a href="{$scrollLink}" target="_blank">
+        <img class="scroll-img" id="scroll" link="{$scrollLink}" src="__ROOT__/Uploads/{$scrollimg}"/>
+    </a>
+</div>
+
+<div>
+    <div class="wx-jobs-top" id="choseOther">区域
+        <span class="glyphicon glyphicon-menu-down"></span>
+    </div>
+    <div class="wx-jobs-top" id="wxTypesBtn">分类
+        <span class="glyphicon glyphicon-menu-down"></span>
+    </div>
+    <div class="wx-jobs-top" id="choseDate">时间
+        <span class="glyphicon glyphicon-menu-down"></span>
+    </div>
+</div>
+<div class="clearfix"></div>
+<volist name="joblist" id="vo" empty="暂无职位信息！">
+    <div class="gtlv-auto">
+        <input type="hidden" value="{$vo.id}"/>
+        <!--左边-->
+        <div class="wx-circle pull-left text-center" style="width:100px;padding:0;">
+            {$vo.level2}
+        </div>
+
+        <div class="pull-right" style="min-width:83%;max-width:85%;padding:0;">
+            <!--第一行内容-->
+            <div style="width:100%">
+                <div class="col-xs-9" style="overflow: hidden; white-space:nowrap;">
+                    <div style="font-family: Microsoft YaHei;font-size: 16px">
+                        {$vo.title|mb_substr=0,10,'utf-8'}
+                    </div>
+                </div>
+                <!--右半部分-->
+                <div class="col-xs-3" style="padding:0;overflow: hidden; white-space:nowrap;">
+                    <div class="text-right pull-right" style="margin-top:5px;height:20px;width:56px;margin-left:2px;">
+                        <!--TODO 根据状态变化背景图片-->
+                        <php>
+                            if($vo.state==0){
+                            echo('<div class="jobs-state jobstate-green">报名中</div>');
+                            }else if($vo.state==2){
+                            echo('<span class="jobs-state jobstate-orange">已过期</span>');
+                            }else if($vo.state==1){
+                            echo('<span class="jobs-state jobstate-red">已报满</span>');
+                            }
+
+                        </php>
+                    </div>
+                </div>
+            </div>
+            <!--第二行内容-->
+            <div>
+                <div class="col-xs-8" style="overflow: hidden; white-space:nowrap;">
+                    <div class="gt-cls cl-lightgray" style="font-size: 12px;">
+                        <img src="__PUBLIC__/default/images/area.png" alt="" width="10px" style="margin: -3px 3px 0 0;"/>
+                        &nbsp;{$vo.area}
+                    </div>
+                    <div class="gt-cls cl-lightgray" style="font-size: 12px;">
+                        <img src="__PUBLIC__/default/images/date.png" alt="" width="10px" style="margin: -2px 3px 0 0;"/>
+                        &nbsp;{$vo.date}
+                    </div>
+                </div>
+
+                <!--右半部分-->
+                <div class="col-xs-4 text-right" style="padding:0;overflow: hidden; white-space:nowrap;">
+                    <div class="cl-orange text-bold" style="margin-top:10px">
+                        {$vo.price}
+                        <small class="cl-lightgray">{$vo.pricetype}</small>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</volist>
+<div class="clearfix"></div>
+<!--分页-->
+<include file="blocks/pagedivide"/>
+<script>
+
+    var i = 1;
+    var scrolllist;
+    $(document).ready(function () {
+        doScroll();
+        setCircle();
+        $(".gtlv-auto").on('click', '', function (event) {
+            event.preventDefault();
+            var id = $(this).find("input[type='hidden']").val();
+//            location.href = CON_PATH + "/pageJobDetail?id=" + id + "#mp.weixin.qq.com";
+            location.href = CON_PATH + "/pageJobDetail?id=" + id;
+        });
+        $("#wxTypesBtn").on('click', '', function (event) {
+            event.preventDefault();
+            location.href = MOD_PATH + "/Mobile/choseType";
+        });
+        $("#choseArea").on('click', '', function (event) {
+            event.preventDefault();
+            location.href = MOD_PATH + "/Mobile/choseArea";
+        });
+        $("#choseOther").on('click', '', function (event) {
+            event.preventDefault();
+            location.href = MOD_PATH + "/Mobile/choseOther";
+        });
+        $("#choseDate").on('click', '', function (event) {
+            event.preventDefault();
+            location.href = MOD_PATH + "/Mobile/choseDate";
+        });
+    });
+
+    //设置列表最前面那列的圆颜色方法
+    function setCircle() {
+        var colour = ["#E4007F", "#00A0E9", "#F39800", "#996C33"];
+        $(".wx-circle").each(function () {
+            var index = Math.floor(Math.random() * colour.length);
+            back = colour[index];
+            $(this).attr("style", "border:1px solid " + back + ";color:" + back);
+        })
+    }
+    //定时调用切换轮播图方法
+    function doScroll() {
+        jQuery.ajax({
+            url: CON_PATH + "/scrolllist",
+            success: function (data, textStatus, xhr) {
+                scrolllist = data;
+                //如果有一张以上的图片则掉用切换轮播图方法
+                if(scrolllist.length > 1) {
+                    setInterval(scroll, 5000);
+                }
+            }
+        });
+    }
+    //切换轮播图方法
+    function scroll() {
+        var sc = $("#scroll");
+        if(i >= scrolllist.length) {
+            i = 0;
+        }
+        sc.fadeIn("slow",function(){
+            sc.attr("src", "__ROOT__/Uploads/"+scrolllist[i]['value']);
+            sc.parent().attr("href", scrolllist[i]['else']);
+            console.log(i+"=>"+scrolllist[i]['value']);
+            sc.fadeIn("slow",function(){
+                i++;
+            });
+        });
+    }
+</script>

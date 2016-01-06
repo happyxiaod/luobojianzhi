@@ -1,0 +1,222 @@
+<?php if (!defined('THINK_PATH')) exit();?><!--
+Geethin Tech! code by NilTor on 2015/03/02
+Email:admin@geethin.com
+intro:跳转成功后显示页面
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta name="baidu-site-verification" content="ID4hXOITos"/>
+    <meta name="keywords" content="萝卜兼职，大学生兼职平台，靠谱兼职，luobojianzhi">
+    <meta name="description" content="萝卜兼职，做最靠谱的大学生兼职平台">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="https://gtlib.b0.upaiyun.com/bootstrap3.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/Public/default/css/gt.style.css">
+    <link rel="stylesheet" href="/Public/default/css/gt.home.css">
+    <script src="https://gtlib.b0.upaiyun.com/jquery/jquery1.10.2.min.js"></script>
+    <script src="https://gtlib.b0.upaiyun.com/bootstrap3.3/js/bootstrap.min.js"></script>
+    <!--<script src="https://gtlib.b0.upaiyun.com/gtjs/geethin.js"></script>-->
+    <script src="/Public/default/js/geethin.js"></script>
+    <script src="/Public/default/js/gtcheck.js"></script>
+    <script src="/Public/default/js/gt.home.js"></script>
+    <script>
+        var APP_PATH = "/index.php";
+        var MOD_PATH = "/index.php/Api";
+        var CON_PATH = "/index.php/Api/User";
+        var SEL_PATH = "/index.php/Api/User/doReg";
+        var ACT_PATH = "/index.php/Api/User/doReg";
+    </script>
+    <style>
+        .action-msg {
+            font-size: 18px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <!-- 头部内容 -->
+    <div class="header visible-md-block visible-lg-block">
+        <div class="top-line"></div>
+        <div class="container">
+            <div class="row ablock" style="height: 90px">
+                <div class="col-md-6" style="padding-left:5px;padding-top:20px;">
+                    <!--logo-->
+                    <div class="logo pull-left">
+                        <img class="cursor-pointer" src="/Public/default/images/logo.png" height="62px"
+                             gt-btn-click="goindex"/>
+                    </div>
+                    <!--名称及简介-->
+                    <div class="header-intro pull-left">
+                        <!--城市-->
+                        <div class="chose-city">
+                            <span>威海</span>
+                            <span class="change-city" style="color:#808080">切换城市</span>
+                        </div>
+                        <!--名称及介绍-->
+                        <div class="header-webname cursor-pointer" gt-btn-click="goindex">
+                            <div class="header-name pull-left">
+                                萝卜兼职
+                            </div>
+                            <div class="header-website pull-left">
+                                最靠谱的大学生兼职平台 <br/>
+                                www.luobojianzhi.com
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--链接 头部右边部分-->
+                <div class="col-md-6" style="padding:0">
+                    <div class="header-nav pull-right">
+                        <!--登录前-->
+
+                        <?php if($_SESSION['user']['type']== 'seeker'): ?><ul>
+                                <li><a href="">关于我们</a></li>
+                                <div class="nav-dlmt"></div>
+                                <li><a href="">手机端</a></li>
+                                <div class="nav-dlmt"></div>
+                                <li><a href="/index.php/User/User/doLogout">退出</a></li>
+                                <div class="nav-dlmt"></div>
+                                <li><a href="/index.php/Api/User/pageMyCenter"><?php echo ($_SESSION['user']['username']); ?></a></li>
+                            </ul>
+
+                            <?php elseif($_SESSION['user']['type']== 'company'): ?>
+                            <ul>
+                                <li><a href="">关于我们</a></li>
+                                <div class="nav-dlmt"></div>
+                                <li><a href="">手机端</a></li>
+                                <div class="nav-dlmt"></div>
+                                <li><a href="/index.php/User/User/doLogout">退出</a></li>
+                                <div class="nav-dlmt"></div>
+                                <li><a href="/index.php/Api/User/pageMyCenter">企业中心</a></li>
+                            </ul>
+                            <?php elseif($_SESSION['user']['type']== 'school'): ?>
+                            <ul>
+                                <li><a href="">关于我们</a></li>
+                                <div class="nav-dlmt"></div>
+                                <li><a href="">手机端</a></li>
+                                <div class="nav-dlmt"></div>
+                                <li><a href="/index.php/User/User/doLogout">退出</a></li>
+                                <div class="nav-dlmt"></div>
+                                <li><a href="/index.php/Api/User/pageMyCenter">学校中心</a></li>
+                            </ul>
+                            <?php elseif($_SESSION['user']['adminname']== 'admin'): ?>
+                            <ul>
+                                <li><a href="">关于我们</a></li>
+                                <div class="nav-dlmt"></div>
+                                <li><a href="">手机端</a></li>
+                                <div class="nav-dlmt"></div>
+                                <li><a href="/index.php/User/User/doLogout">退出</a></li>
+                                <div class="nav-dlmt"></div>
+                                <li><a href="/index.php/Manage/Index/index">进入后台</a></li>
+                            </ul>
+                            <?php else: ?>
+                            <ul>
+                                <li><a href="">关于我们</a></li>
+                                <div class="nav-dlmt"></div>
+                                <li><a href="">手机端</a></li>
+                                <div class="nav-dlmt"></div>
+                                <li><a href="/index.php/Home/Index/pageReg">注册</a></li>
+                                <div class="nav-dlmt"></div>
+                                <li><a href="/index.php/Home/Index/pageLogin">登录</a></li>
+                            </ul><?php endif; ?>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 主体内容 -->
+    <div class="middle">
+        <div class="container">
+            <div class="row text-center">
+                <img src="/Public/default/images/action.png" alt="" width="120px"
+                        style="margin:10px 0"/>
+
+                <div class="action-msg">
+                    <?php if(isset($message)) {?>
+
+                    <p class="success"><?php echo($message); ?></p>
+                    <?php }else{?>
+
+                    <p class="error"><?php echo($error); ?></p>
+                    <?php }?>
+                </div>
+                <p class="action-jump">
+                    <b id="wait" style="color:#e07a00;font-size:22px"><?php echo($waitSecond); ?></b>
+                    <br/> <br/>
+                    不想等待, <a id="href" href="<?php echo($jumpUrl); ?>">
+                    点此直接跳转</a>
+                </p>
+            </div>
+            <br/><br/><br/>
+        </div>
+    </div>
+    <!-- 底部内容 -->
+    <div class="footer  visible-md-block visible-lg-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 footer-nav">
+                    <div class="footer-nav-title">
+                        关于萝卜
+                    </div>
+                    <div class="footer-nav-a"><a href="#">关于捷城</a></div>
+                    <div class="footer-nav-a"><a href="#">企业动态</a></div>
+                    <div class="footer-nav-a"><a href="#">在线反馈</a></div>
+                </div>
+                <div class="col-md-3 footer-nav">
+                    <div class="footer-nav-title">
+                        帮助中心
+                    </div>
+
+                    <div class="footer-nav-a"><a href="#">常见问题</a></div>
+                    <div class="footer-nav-a"><a href="#">企业服务</a></div>
+                    <div class="footer-nav-a"><a href="#">联系我们</a></div>
+
+                </div>
+                <div class="col-md-3 footer-nav">
+                    <div class="footer-nav-title">
+                        关注我们
+                    </div>
+                    <div class="footer-nav-a"><a href="#">官方微信</a></div>
+                    <div class="footer-nav-a"><a href="http://weibo.com/u/5581502134">新浪微博</a></div>
+                    <div class="footer-nav-a"><a href="#">腾讯微博</a></div>
+
+                </div>
+                <div class="col-md-3 footer-nav" style="height:100px;border-right:none;">
+
+                    <!--二维码-->
+
+                    <img src="/Public/default/images/wxcode.jpg" width="100px;" alt=""/>
+                    <br/>
+                    关注公众号
+                </div>
+            </div>
+            <div class="row text-center" style="margin-top:12px;color:white">
+                威海捷城信息科技有限公司.
+                联系电话:0631-5666168 <br/>
+                鲁ICP备14029544号-4.
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+<script type="text/javascript">
+    (function () {
+        var wait = document.getElementById('wait'), href = document.getElementById('href').href;
+        var interval = setInterval(function () {
+            var time = --wait.innerHTML;
+            if (time <= 0) {
+                location.href = href;
+                clearInterval(interval);
+            }
+        }, 1000);
+    })();
+</script>

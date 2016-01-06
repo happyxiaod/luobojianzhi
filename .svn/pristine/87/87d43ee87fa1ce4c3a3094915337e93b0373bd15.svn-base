@@ -1,0 +1,176 @@
+body {
+    font-family: "Consolas", "Monaco","Courier New", Courier, monospace;
+    background: #efeff0;
+}
+/*else*/
+.gt-cls{
+    clear:both;
+}
+/*padding margin */
+.gt-rowdivide{
+    width:100%;
+    background:#efeff0;
+    height:4px;
+}
+/*layout*/
+.gtlyout {
+    padding: 4px;
+    width: 100%;
+    height: auto;
+    display: inline-block;
+    background: white;
+}
+
+/*background color */
+.bg-lightgray {
+    background: #efeff0;
+}
+.bg-white{
+    background: white;
+}
+/*colors*/
+.cl-orange{
+    color: #e68f3d;
+}
+.cl-lightgray{
+    color:#999;
+}
+/*listview*/
+.gtlv-type-title {
+    width:100%;
+    font-size: 16px;
+    font-weight: bold;
+    height: 42px;
+    line-height: 2.8em;
+    background: white;
+    padding-left: 8px;
+    cursor: pointer;
+}
+.gtlv-type-title a{
+    color: #e68f3d;
+    text-decoration: none;
+}
+.gtlv-single {
+    width:100%;
+    background: white;
+    height: 48px;
+    font-size:18px;
+    line-height: 2.8em;
+    padding-left: 8px;
+    cursor: pointer;
+}
+.gtlv-single a {
+    color: black;
+    text-decoration: none;
+}
+.gtlv-auto{
+    padding: 4px 8px 2px 8px;
+    width: 100%;
+    background: white;
+    border-bottom: 1px solid #efeff0;
+    cursor: pointer;
+    display: inline-block;
+}
+
+/*textview*/
+
+.gttv{
+    width:98%;
+    margin:1px 2px;
+    padding-left:8px;
+    border:1px solid #e7e7e8;
+    height:100%;
+    border-radius:2px;
+
+}
+.text-normal{
+    font-size:18px;
+}
+.text-lg{
+    font-size:20px;
+}
+.text-small{
+    font-size:12px;
+}
+.text-bold{
+    font-weight: bold;
+}
+/*button*/
+.gtbtn{
+    background:#e68f3d ;
+    color:white;
+    cursor: pointer;
+}
+.gtbtn-lg{
+    width:100%;
+    height:48px;
+    font-size:20px;
+}
+/*tab*/
+.gttab{
+    text-align: center;
+    position: fixed;
+    bottom:0;
+    width:100%;
+    height:48px;
+    line-height:3.3em;
+    margin-top:48px;
+}
+/*兼职列表*/
+.wx-jobs-top{
+    width:33.33%;
+    float:left;
+    padding: 10px 0;
+
+    text-align: center;
+    cursor: pointer;
+    background: white;
+    border-bottom: 1px solid #efeff0;
+    border-right: 1px solid #efeff0;
+}
+.wx-circle{
+    border-radius: 50px;
+    width: 42px;
+    height: 42px;
+    line-height: 42px;
+    font-size: 16px;
+    overflow: hidden;
+    margin:10px auto;
+    margin-left:1%;
+
+}
+.color-class01 {
+    background: #00a0e8;
+}
+/* .hot-icon span {
+    width: 38px;
+    height: 38px;
+    border-radius: 1000px;
+    line-height: 35px;
+    display: block;
+    text-align: center;
+    margin-top: 16px;
+    line-height: 38px;
+} */
+
+/*分页相关*/
+.pagedivide{
+    padding-top:20px;
+    list-style-type: none;
+}
+.pagedivide>li{
+    display: block;
+    float: left;
+    list-style-type: none;
+    margin:0 0 1px 4px;
+}
+.pagedivide>li>a{
+    font-size:16px;
+    border: 1px solid #c5c5c5;
+    color: black;
+    text-decoration: none;
+    padding:2px 6px;
+}
+.curs-pt{
+    cursor: pointer;
+}

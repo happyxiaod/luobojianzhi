@@ -1,0 +1,59 @@
+<!--
+Geethin Tech! code by NilTor on 15-04-15
+Email:admin@geethin.com
+intro:兼职者查看申请的职位信息
+-->
+
+<div class="gtlyout" style="padding:0">
+    <volist name="applylist" id="vo" empty="暂无申请的职位！">
+        <div class="gtlv-auto">
+            <div class="">
+                <div class="pull-left">
+                <span class="text-normal">
+                    {$vo.title}
+                </span>
+                </div>
+                <div class="pull-right">
+                <span class="text-normal">
+                    <eq name="vo.state" value="1">
+                        <span class="text-success">已通过</span>
+                    </eq>
+                    <eq name="vo.state" value="0">
+                        <span class="text-danger">被拒绝</span>
+
+                    </eq>
+                    <eq name="vo.state" value="2">
+                        <span class="cl-orange">待处理</span>
+
+                    </eq>
+                </span>
+                </div>
+            </div>
+
+            <div class="gt-cls cl-lightgray">
+                <div class="pull-left">
+                <span>
+                    {$vo.area}
+                </span>
+                </div>
+                <div class="pull-right">
+                <span>
+                    {$vo.createtime|substr=0,11}
+                </span>
+                </div>
+            </div>
+            <input type="hidden" value="{$vo.id}"/>
+        </div>
+    </volist>
+</div>
+<script>
+    $(document).ready(function () {
+        //TODO 点击之后跳转到兼职的详情页
+        $(".gtlv-auto").on('click', '', function (event) {
+            event.preventDefault();
+            var id = $(this).find("input[type='hidden']").val();
+            location.href=MOD_PATH+"/Jobs/pageJobDetail?id="+id+"#mp.weixin.qq.com";
+        });
+
+    });
+</script>

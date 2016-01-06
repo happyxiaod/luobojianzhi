@@ -1,0 +1,69 @@
+    <div class="middle">        
+        <div class="find_pwd">
+            <div class="ablock2 row" style="min-height: 600px; padding: 30px 50px;">
+                <div class="clearfix">
+                    <div class="add_sel">
+                        <span class="label-text">
+                            按省份选择
+                        </span>
+                        <div class="right">
+                            <!--省-->
+                            <div class="input-group spinner">
+                                <span type="text" class="spinner-content" gt-isparam="province">选择省份</span>
+                             <span class="input-group-addon glyphicon glyphicon-triangle-bottom">&#xe81d;</span>
+                                <ul class="dropdown-menu">
+                                    <volist name="provinceList" id="vo">
+                                        <li class="spinner-option select-province">
+                                            <span loadid="{$vo.id}">{$vo.name}</span>
+                                        </li>
+                                    </volist>
+                                </ul>
+                            </div>
+                            <!--市-->
+                            <div class="input-group spinner">
+                                <span type="text" class="spinner-content" 
+                                gt-isparam="city">选择城市</span>
+                                <span class="input-group-addon glyphicon glyphicon-triangle-bottom">&#xe81d;</span>
+                                <ul class="dropdown-menu" id="cityList">
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <div class="pull-left">
+                            <input class="edit-text" type="text" id="keyword" placeholder="请输入城市中文或拼音">
+                        </div>
+                        <div class="pull-left" style="margin-left: 10px;">
+                            <button class="btn btn-active" id="seekCity">搜索</button>
+                        </div>
+                    </div>  
+                </div>
+                    <div class="job_show" id="seekResult"  style="display: none;" ></div>
+                <div class="city clearfix" style="width:100%; margin: 30px auto 0 auto">
+                    <span>常用城市：</span>
+                    <div >
+                     <volist name="oftenCityList" id="vo">
+                    <a class="font-blue" href="__CONTROLLER__/index/index?nowCity={$vo.name}" style="margin: 10px;">{$vo.name}</a>
+                </volist>
+                    </div>
+                </div>
+                
+                <div class="city city_eng" style="width:100%; margin: 20px auto 0 auto">
+                    <span>
+                        按首字母选择城市：
+                    </span>
+                    <div class="city_dal">
+                        <volist name="cityList" id="vo">
+                            <div class="font-block">
+                                <div class="col-md-1">{$key}</div>
+                                    <volist name="vo" id="vo2">
+                                        <a class="font-blue" href="__CONTROLLER__/index/index?nowCity={$vo2.name}" style="margin: 10px;">{$vo2.name}</a>
+                                    </volist>
+                            </div>
+                        </volist>           
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>发布记录</title>
+    <include file="blocks/import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="actionbar-back">
+            <div class="col-xs-1 text-left" style="padding-left:8px">
+                <a href="javascript:" onclick="javascript:history.back(-1)">
+                    <span class="glyphicon glyphicon-menu-left"></span>
+                </a>
+            </div>
+            <div class="col-xs-10 text-center actionbar-title">
+                发布记录
+            </div>
+            <div class="col-xs-1 text-right">
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="gtlyout">
+            <volist name="list" id="vo">
+                <div class="gtlv-auto">
+                    <input type="hidden" value="{$vo.id}"/>
+                    <!--左边-->
+                    <div class="wx-circle pull-left text-center">
+                        {$vo.level2}
+                    </div>
+                    <div class="pull-left jobtitle"
+                         style="max-width: 75%; overflow: hidden; white-space:nowrap;margin-left:10px">
+                        <div class="text-normal text-bold">
+                            {$vo.title|mb_substr=0,10,'utf-8'}
+                        </div>
+                        <div class="gt-cls cl-lightgray" style="font-size: 12px; margin: 5px 0;">
+                            <img src="__PUBLIC__/default/images/area.png" alt="" width="10px"
+                                 style="margin: -3px 3px 0 0;"/>
+                            &nbsp;{$vo.area}
+                        </div>
+                        <div class="gt-cls cl-lightgray" style="font-size: 12px;margin: 5px 0;">
+                            <img src="__PUBLIC__/default/images/date.png" alt="" width="10px"
+                                 style="margin: -2px 3px 0 0;"/>
+                            &nbsp;{$vo.date}
+                        </div>
+                    </div>
+
+                    <!--右半部分-->
+                    <div class="pull-right"
+                         style="max-width: 20%; margin-top: 8px;">
+                        <input type="hidden" value="{$vo.id}"/>
+                        <a href="__MODULE__/Company/editJob?id={$vo.id}" class="text-warning"
+                           style="padding:0 4px;border:1px solid orange;">
+                            编辑</a>
+                        <br/>
+
+                        <div style="height:8px"></div>
+                        <neq name="vo.state" value='3'>
+                            <a href="javascript:" id="closejob" class="text-danger"
+                               style="padding:0 4px;border:1px solid red;">
+                                关闭</a>
+                            <else/>
+                            已关闭
+                        </neq>
+                    </div>
+                </div>
+            </volist>
+        </div>
+        <include file="blocks/pagedivide"/>
+    </div>
+    <div class="row">
+        <include file="blocks/footer"/>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        setCircle();
+        $(".jobtitle").on('click', '', function (event) {
+            var id = $(this).siblings("input[type='hidden']").val();
+//            location.href = CON_PATH + "/pageJobDetail?id=" + id + "#mp.weixin.qq.com";
+            location.href = MOD_PATH + "/Jobs/pageJobDetail?id=" + id;
+        });
+
+        $("#closejob").on('click', '', function (event) {
+            event.preventDefault();
+            var id = $(this).siblings("input[type='hidden']").val();
+            $.post(MOD_PATH + "/Company/closeJob", {'id': id}, function (data) {
+                dealReturn(data);
+            });
+        });
+
+    });
+    //设置列表最前面那列的圆颜色方法
+    function setCircle() {
+        var colour = ["#E4007F", "#00A0E9", "#F39800", "#996C33"];
+        $(".wx-circle").each(function () {
+            var index = Math.floor(Math.random() * colour.length);
+            back = colour[index];
+            $(this).attr("style", "border:1px solid " + back + ";color:" + back);
+        })
+    }
+</script>

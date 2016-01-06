@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>查看详情</title>
+    <include file="blocks/import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <!-- 头部内容 -->
+    <div class="header row">
+        <include file="blocks/header"/>
+    </div>
+    <!-- 主体内容 -->
+    <div class="middle row">
+        <include file="Company/contApplyDetails"/>
+    </div>
+    <!-- 底部内容 -->
+    <div class="footer row">
+        <include file="blocks/footer"/>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    var ids = [];
+    var boxs = $(".list-box").find("input[type='checkbox']");
+    jQuery(document).ready(function ($) {
+        bindClick();
+        choseAllMsg();
+        //修改左侧导航栏样式使导航栏的橙色样式对应当前页面
+        $("#pageCompanyApply").removeClass("nav-normal").addClass("nav-active");
+
+        //点击查看详情事件
+        $(".Applyresume").on('click', '', function (event) {
+            event.preventDefault();
+
+            var id = $(this).siblings("input[type='hidden']").val();
+            window.open(CON_PATH + "/pageResume?id="+id) ;
+        });
+
+        //点击确认事件
+        $(".applyYes").on('click', '', function (event) {
+            event.preventDefault();
+
+            var id = $(this).parent().find("input[name='applyid']").val();
+            var seekername = $(this).parent().find("input[name='realname']").val();
+            var seekerphone = $(this).parent().find("input[name='phone']").val();
+            var jobid = $(this).parent().find("input[name='jobid']").val();
+
+
+            jQuery.ajax({
+                url: '__CONTROLLER__/applyYes',
+                type: 'POST',
+                data: {'id': id,"seekername":seekername,"seekerphone":seekerphone},
+                complete: function (xhr, textStatus) {
+                    //called when complete
+                },
+                success: function (data, textStatus, xhr) {
+                    dealReturn(data);
+                },
+                error: function (xhr, textStatus, errorThrown) {
+
+                }
+            });
+        });
+
+        //点击拒绝事件
+        $(".applyNo").on('click', '', function (event) {
+            event.preventDefault();
+            var data={};
+            data['id'] = $(this).parent().find("input[name='applyid']").val();
+            post(CON_PATH + "/applyNo", data);
+        });
+
+        $(".list-operate-btn").on('click', '', function (event) {
+            event.preventDefault();
+            if (ids.length>0){
+                post("delApply", ids);
+            } else {
+                alert("未选中任何选项!");
+            }
+        });
+    });
+
+    function choseAllMsg() {
+        $("#choseAllMsg").on('click', '', function () {
+            if ($(this).is(":checked")) {
+                boxs.prop("checked", false);
+                ids.splice(0, ids.length);
+                boxs.prop("checked", true);
+                boxs.each(function () {
+                    var id = $(this).siblings("input[type='hidden']").val();
+                    ids.push(id);
+                });
+                console.log(ids);
+            } else {
+                boxs.prop("checked", false);
+                ids.splice(0, ids.length);
+            }
+        });
+        boxs.on('click', function (event) {
+            var id = $(this).siblings("input[type='hidden']").val();
+            if ($(this).is(":checked")) {
+                ids.push(id);
+                console.log(ids);
+            }else{
+                $("#choseAllMsg").prop("checked",false);
+                for (i=0; i<=ids.length; i++) {
+                    if (ids[i] == id) {
+                        ids.splice(i, 1);
+                    }
+                }
+                console.log(ids);
+            }
+        });
+    }
+</script>

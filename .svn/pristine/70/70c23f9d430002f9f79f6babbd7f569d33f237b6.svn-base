@@ -1,0 +1,54 @@
+<div id="person">
+        <div class="per_b clearfix">
+           <include file="blocks/mainnav"/>
+            <div class="per_r_dal">
+                <h4 class="normal">
+                    <a href="javascript:void(0);"></a>
+                    <a href="javascript:void(0);"></a>
+                    <a href="javascript:void(0);"></a>
+                    <a href="javascript:void(0);"></a>
+                    <div class="search_sq">
+                        <input type="text" value="" class="BC_input_focus" vali="custom[^([\u4E00-\u9FA5A-Za-z\s]{2,30})$]" maxlength="30">
+                        <input type="button" class="New_btn" value="搜索">
+                    </div>
+                </h4>
+                <div>
+                    <div class="per_work per_work_cur">
+                        <ul class="list_hot">
+                         <volist name="collectlist" id="vo">
+                            <li>
+                                <span class="color-class01">{$vo.level1}</span>
+                                <div class="job_show">
+                                    <a href="__MODULE__/Jobs/pageJobsDetails?id={$vo.id}" class="col-md-4 list-p-blue">{$vo.title}</a>
+                                    <span>区域：{$vo.area}</span>
+                                    <span>发布时间：{$vo.date}</span>
+                                    <span>浏览次数：{$vo.view}</span>
+                                </div>
+                              <td>
+                                <input type="hidden" value="{$vo.id}" name="sid"/>
+                                <a href="" id="collect" jobid="{$vo.id}" class="del font-blue">删除</a></td>
+                                <div class="hot-money"> 
+                                    <span>{$vo.price}</span>
+                                </div>
+                            </li>
+                        </volist>
+                        </ul>
+                    </div>  
+                </div>
+                    
+            </div>
+        </div>
+        <!-- 个人中心end -->
+    </div>
+        <script>
+        jQuery(document).ready(function($){
+            bindClick();
+            $("#collect").on('click','',function(event){
+                event.preventDefault();
+                var jobid  = $(this).parent().find("input[name='sid']").val();
+               $.post("__CONTROLLER__/delcollect",{jobid:jobid},function(){
+                    window.location.reload(true);
+                  });
+            });
+        });
+    </script>

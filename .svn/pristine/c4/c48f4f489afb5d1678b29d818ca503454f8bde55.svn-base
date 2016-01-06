@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>我的简历</title>
+    <include file="blocks/import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="actionbar-back">
+            <div class="col-xs-1 text-left" style="padding-left:8px">
+                <a href="javascript:" onclick="javascript:history.back(-1)">
+                    <span class="glyphicon glyphicon-menu-left"></span>
+                </a>
+            </div>
+            <div class="col-xs-10 text-center actionbar-title">
+                我的简历
+            </div>
+            <div class="col-xs-1 text-right">
+
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 8px">
+        <form action="" method="post" id="form-resume">
+            <div class="gtlyout" style="padding:16px 4px">
+                <div class="col-xs-2 text-right" style="padding:0;margin-top: 10px;">
+                    头像:
+                </div>
+                <div class="col-xs-7">
+                    <img class="head-resume" src="{$user.headpic}"/>
+                </div>
+                <div class="col-xs-3" style="margin-top: 10px">
+                    <a href="__MODULE__/Mobile/uploadhead">
+                    <span class="cl-orange">
+                        修改
+                    </span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="gtlyout" style="line-height: 36px">
+                <div class="col-xs-3 text-right" style="padding:0">
+                    姓名:
+                </div>
+                <div class="col-xs-9">
+                    <input class="form-control gttv" type="text" name="realname" value="{$user.realname}"
+                            placeholder="请补全姓名"/>
+
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-xs-3 text-right" style="padding:0">
+                    性别:
+                </div>
+                <div class="col-xs-9">
+                    <input type="radio" name="sex" value="男"
+                    <?php if($user['sex']!="女")
+                    { echo("checked='checked'");}?>
+                    />&nbsp;男
+                    &nbsp;
+                    <input type="radio" name="sex" value="女"
+                    <?php if($user['sex']=="女")
+                    { echo("checked='checked'");}?>
+                    />&nbsp;女
+                </div>
+            </div>
+
+            <div class="gtlyout" style="line-height: 36px;">
+                <div class="col-xs-3 text-right" style="padding:0">
+                    城市:
+                </div>
+                <div class="col-xs-4" style="padding-right:0">
+                    <select class="form-control" name="province" id="province"
+                            style="border-radius: 1px">
+                        <option value="">选择省</option>
+
+                        <volist name="province" id="vo">
+                            <!--TODO 判定选中-->
+                            <option value="{$vo.id}"
+                                <php>
+                                    if($user['province']==$vo['name']){
+                                        echo('selected="selected"');
+                                    }
+                                </php>
+                                    >{$vo.name}</option>
+                        </volist>
+                    </select>
+                </div>
+                <div class="col-xs-4" style="padding-right:0">
+                    <select class="form-control" name="city" id="city"
+                            style="border-radius: 1px">
+
+                    </select>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-xs-3 text-right" style="padding:0">
+                    学校:
+                </div>
+                <div class="col-xs-9">
+                    <select class="form-control" name="school" id="school"
+                            style="border-radius: 1px">
+                        <option value="">选择学校</option>
+                    </select>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-xs-3 text-right" style="padding:0">
+                    年级:
+                </div>
+                <div class="col-xs-9">
+                    <select class="form-control" name="schoolyear" id="schoolyear"
+                            style="border-radius: 1px">
+                            <foreach name="year_arr" item="year">
+                            <if condition="$year eq $user['schoolyear']">
+                            <option value="{$year}"selected>{$year}</option>
+                            <else />
+                            <option value="{$year}">{$year}</option>
+                            </if>
+                            </foreach>
+                    </select>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-xs-3 text-right" style="padding:0">
+                    手机:
+                </div>
+                <div class="col-xs-9">
+                    <!--<input class="form-control gttv" type="text"/>-->
+                    {$user.phone}
+
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="col-xs-3 text-right" style="padding:0">
+                    QQ:
+                </div>
+                <div class="col-xs-9">
+                    <input class="form-control gttv" type="text" name="qq" value="{$user.qq}"/>
+                </div>
+
+            </div>
+
+            <div class="gtlyout" style="line-height: 36px;">
+                <div class="col-xs-3 text-right" style="padding:0">
+                    理想职位:
+                </div>
+                <div class="col-xs-9">
+                    <input class="form-control gttv" type="text"
+                            value="{$user.aimposition}" name="aimposition"/>
+                </div>
+                <div class="clearfix">
+                </div>
+                <!--证件上传-->
+                <div class="col-xs-3 text-right" style="padding:0">
+                    证件上传:
+                </div>
+                <div class="col-xs-9 text-right">
+                    <a href="__MODULE__/Seeker/uploadCredentials">
+                        <span class="cl-orange">
+                            点击上传
+                        </span>
+                    </a>
+                </div>
+
+                <div class="clearfix">
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="col-xs-3 text-right" style="padding:0">
+                    <span class="cl-orange">自我介绍:</span>
+                </div>
+                <div class="col-xs-9"></div>
+                <div class="clearfix"></div>
+                <div class="col-xs-12" style="padding:0 8px">
+                    <textarea class="form-control" name="intro">{$user.intro}</textarea>
+                </div>
+            </div>
+            <div class="gt-rowdivide"></div>
+            <div class="text-center">
+                <button class="btn btn-warning form-control btn-lg input-lg"
+                        style="width:96%" id="updateresume">确定</button>
+                <!--<img src="__PUBLIC__/default/images/apply1.png" width="98%" height="48px"/>-->
+            </div>
+
+        </form>
+
+    </div>
+    <div class="row">
+        <include file="blocks/footer"/>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        initData();
+        updateCity($("#province").val(),true);
+
+        $("#province").change(function() {
+            var pid=$(this).val();
+            updateCity(pid,true);
+        });
+
+        $("#city").change(function() {
+            var cityname=$(this).val();
+            updateSchool(cityname);
+        });
+
+
+        $("#updateresume").on('click', '', function (event) {
+            event.preventDefault();
+            var params = $("#form-resume").serialize();
+            $.post(MOD_PATH+'/Seeker/doUpdateResume',params,function(data) {
+                dealReturn(data);
+            });
+        });
+    });
+
+    //初始化数据
+    function initData(){
+        var schoolyear = "{$user.schoolyear}";
+        $("#schoolyear").find("option").each(function () {
+            if($(this).val()==schoolyear) {
+                $(this).attr("selected");
+            }
+        });
+
+    }
+    //更新城市
+    function updateCity(pid,isSchool) {
+        $.post(MOD_PATH+'/Setting/getCitys',{"pid":pid},function(data){
+            var str = "";
+            for (i = 0;  i < data.length;i++) {
+                if(data[i]['name']=="{$user.city}") {
+                    str+='<option value="'+data[i]['name']+'" selected="selected">'+data[i]['name']+'</option>';
+                }else{
+                    str+='<option value="'+data[i]['name']+'">'+data[i]['name']+'</option>';
+
+                }
+            }
+            $("#city").html(str);
+            if(isSchool) {
+                updateSchool($("#city").val());
+            }
+
+        })
+    }
+
+    //更新学校
+    function updateSchool(cityname) {
+        $.post(MOD_PATH+'/Setting/getSchools',{"cityname":cityname},function(data){
+
+            var str = "";
+            for (i = 0;  i < data.length;i++) {
+                if(data[i]['school']=="{$user.school}") {
+                    str+='<option value="'+data[i]['school']+'" selected="selected">'+data[i]['school']+'</option>';
+                }else{
+                    str+='<option value="'+data[i]['school']+'">'+data[i]['school']+'</option>';
+                }
+            }
+            $("#school").html(str);
+            console.log(data);
+        })
+    }
+
+</script>

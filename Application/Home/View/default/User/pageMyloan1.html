@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>我的借款</title>
+	<include file="blocks/import_user2"/>
+
+</head>
+<body>
+    <!-- 头部内容 -->
+        <include file="blocks/header"/>
+    <!-- 主体内容 -->
+        <include file="User/contMyloan1"/>
+    <!-- 底部内容 -->
+        <include file="blocks/footer"/>
+</body>
+</html>
+<script>
+	jQuery(document).ready(function($) {
+		bindClick();
+        //修改左侧导航栏样式使导航栏的橙色样式对应当前页面
+        $("#pageMyloan").removeClass("cur").addClass("cur");
+        $(".lend_txt textarea").val("请认真填写您要借贷分期的用途，便于您的申请尽快通过");
+    $(".lend_txt textarea").click(function(event) {
+        $(this).val("");
+    });
+    //借款
+    $(".lend_money li").click(function(event) {
+        var info=$(this);
+        selectInfo(info);
+    });
+
+    //分期
+    $(".stages li").click(function(event) {
+        var info=$(this);
+        selectInfo(info);
+    });
+    //资金用途
+     $(".lend_way li").click(function(event) {
+        var info=$(this);
+        selectInfo(info);
+    });
+	});
+       function selectInfo(info){      
+        if(info.attr("class")!=undefined&&info.attr("class")!=""){
+            if(info.attr("class").indexOf("cur")>-1){
+                info.removeClass('cur');
+            }
+        }
+        else{
+            info.addClass('cur').siblings().removeClass('cur');
+        }   
+    }
+</script>

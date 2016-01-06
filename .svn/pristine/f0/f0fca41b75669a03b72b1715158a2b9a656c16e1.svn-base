@@ -1,0 +1,24 @@
+<div class="col-md-3">
+	<button name="name" class="btn btn-orange form-control mtop2 "></button>
+</div>
+<div class="col-md-8">
+	<table class="table text-center mtop1 table-bordered table-striped">
+		<thead>
+			<tr>
+				<th class="text-center">企业名称</th>
+				<th class="text-center">职位</th>
+				<th class="text-center">投递时间</th>
+			</tr>
+		</thead>
+		<tbody>
+			<volist name="list" id="vo">
+				<tr>
+					<td>{$vo.name}</td>
+					<td>{$vo.level2}</td>
+					<td>{$vo.createtime}</td>
+				</tr>
+			</volist>
+		</tbody>
+	</table>
+	<include file="blocks/pagedivideload"/>
+</div>

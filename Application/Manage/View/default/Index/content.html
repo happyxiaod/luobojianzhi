@@ -1,0 +1,150 @@
+<div class="row">
+    <!-- 左边主要导航 -->
+    <include file="blocks/mainnavdefault"/>
+    <!-- 内容 -->
+    <div class="content col-md-10">
+        <!-- 导航菜单内容显示 -->
+        <div class="row" style="background:#f4f4f4;height:36px;line-height:36px;border-bottom:1px solid #ddd">
+
+        <!-- TODO 换成当前的导航菜单内容-->
+			<span class="mleft2">
+
+			</span>
+        </div>
+        <!-- 右边具体内容 -->
+        <div class="row fragbox">
+            <div class="text-center">
+                <h2 style="color:#8D96D1;margin-top: 20px">
+                    欢 迎 进 入 后 台 管 理 系 统
+                </h2>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-info">
+                    <div class="panel-heading">会员统计</div>
+                    <ul>
+                        <li>会员总数:{$Think.session.info.membertotal}</li>
+                        <li>待审会员:{$Think.session.info.nocheckmember}</li>
+                        <li>认证会员:{$Think.session.info.checkedmember}</li>
+                        <li>今日新增会员：{$Think.session.info.newmember}</li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-info">
+                    <div class="panel-heading">企业统计</div>
+                    <ul>
+                        <li>
+                            企业总数：{$Think.session.info.companytotal}
+                        </li>
+                        <li>待审企业：{$Think.session.info.nocheckcompany}</li>
+                        <li>认证企业：{$Think.session.info.checkedcompany}</li>
+                        <li>今日新增企业:{$Think.session.info.newcompany}</li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-info">
+                    <div class="panel-heading">兼职统计</div>
+                    <ul>
+                        <li>
+                            职位类别个数:{$Think.session.info.levelnumber}
+                        </li>
+                        <li>
+                            已发职位总数:{$Think.session.info.jobstotal}
+                        </li>
+                        <li>被申请职位数:{$Think.session.info.applyjobs}</li>
+                        <li>今日新增职位数:{$Think.session.info.newjobs}</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+                <div class="panel panel-info">
+                    <div class="panel-heading">其他统计</div>
+                    <ul>
+                        <li>
+                            共有院校:{$Think.session.info.schools}
+                        </li>
+                        <li>已发出申请数:{$Think.session.info.applynumber}</li>
+                        <li>已接受申请数:{$Think.session.info.acceptapplynumber}</li>
+                        产生交易额
+                        等等
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+         <!--测试图表-->
+
+            <h2 style="color:#8D96D1;margin-top: 20px">
+                    会员统计
+            </h2>
+<!-- ECharts单文件引入 -->
+    <!-- <script src="http://echarts.baidu.com/build/dist/echarts.js"></script> -->
+    <script src="__PUBLIC__/Echarts/echarts.js"></script>
+    <script type="text/javascript">
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: '__PUBLIC__/Echarts'
+            }
+        });
+        
+        // 使用
+        require(
+            [
+                'echarts',
+                'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+            ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表
+                var myChart = ec.init(document.getElementById('main')); 
+                
+                var option = {
+                    tooltip: {
+                        show: true
+                    },
+                    legend: {
+                        data:['注册量']
+                    },
+                    xAxis : [
+                        {
+                            type : 'category',
+                            data : ["会员总数","待审会员","认证会员","今日新增"]
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value'
+                        }
+                    ],
+                    series : [
+                        {
+                            "name":"销量",
+                            "type":"bar",
+                            "data":[{$Think.session.info.membertotal},{$Think.session.info.nocheckmember},{$Think.session.info.checkedmember},{$Think.session.info.newmember}]
+                        }
+                    ]
+                };
+        
+                // 为echarts对象加载数据 
+                myChart.setOption(option); 
+            }
+        );
+    </script>
+                   
+            
+
+    <!--测试图表-->
+<div id="main" style="width:600px;height:400px"></div>
+            
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+
+    });
+</script>

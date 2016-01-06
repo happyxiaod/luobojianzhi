@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>1231</title>
+
+    <style>
+        .whole{
+            margin: 0 auto;
+            width:500px;
+            text-align: center;
+            border:1px solid gray;
+            color:red;
+        }
+        input{
+            width:200px;
+            height:25px;
+            margin:3px 0;
+            border-radius: 4px;
+            border: 1px solid gray;
+        }
+        h1{
+            color:#000000;
+        }
+        .h2{
+            color:blue;
+
+        }
+
+        #content{
+            font-size:34px;
+        }
+
+    </style>
+
+</head>
+<body>
+<div class="whole" style="border:1px solid red;">
+    123
+
+    <h1>请登录</h1>
+
+    <h2 class="h2">h2</h2>
+
+    <span id="content">content</span>
+
+
+    <br/>
+    <input type="text"/><br/>
+    <input type="password"/><br/>
+    <input type="submit" value="登录"/><br/>
+</div>
+
+
+
+</body>
+</html>

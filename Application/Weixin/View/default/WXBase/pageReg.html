@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>萝卜兼职-注册</title>
+    <include file="blocks/import"/>
+</head>
+<body>
+<div class="container">
+    <!--选择注册类型-->
+    <div class="reg-type row">
+        <div class="btn-reg pull-left">
+            <input type="hidden" value="user"/>
+            用户
+        </div>
+        <div class="btn-reg pull-right">
+            <input type="hidden" value="company"/>
+
+            企业
+        </div>
+    </div>
+    <!--注册字段-->
+    <div class="reg-form row">
+        <!--用户注册表单-->
+        <form class="form" action="reg" method="post">
+            <div class="reg-input-group">
+                <input type="hidden" name="type" value=""/>
+                <input type="text" placeholder="手机号" class="reg-input"/>
+                <input type="password" placeholder="密码" class="reg-input"/>
+                <input type="text" placeholder="验证码" class="reg-input"/>
+                <input type="button" value="点击获取验证码" class="reg-input" style="border: none;background: #e2e2e2"/>
+            </div>
+
+            <div class="btn-normal mtop1">
+                注册
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        $(".btn-reg").on('click', '', function (event) {
+            event.preventDefault();
+            var type = $(this).find("input[type='hidden']").val();
+            console.log(type);
+            $("input[name='type']").val(type);
+            $(this).css({
+                background:"#ff9a22",
+                color:"white"
+            });
+            $(this).siblings().css({
+                background:"",
+                color:""
+            });
+        });
+    });
+
+</script>

@@ -1,0 +1,124 @@
+body{
+    margin:0;
+    padding: 0;
+
+}
+/*style*/
+.mtop1{
+    margin-top:12px;
+}
+.mtop2{
+    margin-top:24px;
+}
+.mleft1{
+    margin-left:12px;
+}
+.mleft2{
+    margin-left:24px;
+}
+.nav {
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    height: 42px;
+    line-height: 40px;
+    margin-bottom: 6px;
+}
+
+.nav a {
+    text-decoration: none;
+}
+
+.nav-active {
+    background: #ff9a22;
+    border: 1px solid #ff9a22;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+.nav-active a {
+    color: white;
+}
+
+.nav-normal {
+    background: #ffffff;
+    border: 1px solid #bfbfbf;
+}
+
+.nav-normal a {
+    color: black;
+}
+/*按钮相关的样式*/
+.btn {
+    height: 40px;
+    border-radius: 4px;
+    padding: 10px 30px;
+    color: white;
+    font-size: 16px;
+    line-height: 16px;
+
+}
+.btn-nopad {
+    padding: 10px 5px;
+}
+
+.btn-active {
+    background: #ff9a22;
+}
+.btn-disable {
+    background: #aaaaaa;
+}
+/*显示文本 label*/
+.label-text{
+    color: #515151;
+    font-size: 16px;
+    line-height: 40px;
+    height:40px;
+}
+/*编辑文本input text*/
+:not(input).edit-text {
+    border: 1px solid #aaa;
+    height: 40px;
+    width: 100%;
+    padding-left: 5px;
+    background-color: transparent;
+    line-height: 40px;
+}
+input.edit-text {
+    border: 1px solid #aaa;
+    height: 40px;
+    width: 100%;
+    padding-left: 5px;
+    background-color: transparent;
+    line-height: normal;
+}
+.noborder{
+    border:none !important;
+}
+
+/*多行文本*/
+.edit-multext {
+    border: 1px solid #aaa;
+    width: 100%;
+    padding-left: 5px;
+    background-color: transparent;
+}
+.border-gray{
+    border: 2px solid #E3E3E3;
+}
+
+/*checkbox radio与文字组合使用的控件*/
+.input-chose input{
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    width:12px;
+    height:12px;
+}
+.input-chose input[type='radio']{
+    width:10px;
+    height:10px;
+}
+.input-chose span{
+    vertical-align: middle;
+}

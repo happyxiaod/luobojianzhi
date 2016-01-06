@@ -1,0 +1,167 @@
+<div class="row">
+    <!-- 左边主要导航 -->
+    <include file="blocks/mainnav"/>
+    <!-- 内容 -->
+    <div class="content col-md-10">
+        <!-- 导航菜单内容显示 -->
+        <div  style="background:#f4f4f4;height:36px;line-height:36px;border-bottom:1px solid #ddd">
+            <div class="col-md-3">
+                <a href="__CONTROLLER__/exportExcel?params=all" class="btn btn-sm btn-primary">导出数据</a><span>(默认导出当前日期5000条数据)</span>
+            </div>
+            <div class="col-md-1">
+                <select name="month" class="form-control">
+                    <option value="01">1</option>
+                    <option value="02">2</option>
+                    <option value="03">3</option>
+                    <option value="04">4</option>
+                    <option value="05">5</option>
+                    <option value="06">6</option>
+                    <option value="07">7</option>
+                    <option value="08">8</option>
+                    <option value="09">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select> 
+            </div>
+            <button class=" btn btn-primary" id="exportMonth">导出表</button><span>(导出相应月份的数据)</span>
+        </div>
+        <!-- 右边具体内容 -->
+        <div class="row fragbox">
+            <div class="col-md-11">
+                <!--选择城市-->
+                <div class="col-md-6 form-inline">
+                    筛选：
+                    <select name="city" class="form-control">
+                        <option value="">选择城市</option>
+                        <volist name="citylist" id="vo">
+                            <option value="{$vo.name}">{$vo.name}</option>
+                        </volist>
+                    </select>
+                    <!--选择学校-->
+                    <select name="school" class="form-control">
+                        <option value="">选择学校</option>
+                    </select>
+                    <button class="form-control btn btn-primary" id="sort">确定条件</button>
+                </div>
+                <div class="col-md-5 pull-right text-right">
+                    <div class="input-group">
+                        <input type="search" class="form-control" placeholder="姓名或手机号">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="button" id="search">搜索</button>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="clear-fix"></div>
+            <div class="col-md-11">
+                <table class="table text-center mtop1 table-bordered">
+                    <thead style="background:#718fc2">
+                    <tr>
+                        <th class="text-center">姓名</th>
+                        <!--<th class="text-center">所在地</th>-->
+                        <th class="text-center">手机</th>
+                        <!--<th class="text-center">Email</th>-->
+                        <th class="text-center">所在大学</th>
+                        <th class="text-center">注册时间</th>
+                        <th class="text-center">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="userSeekerList" id="vo">
+                        <tr>
+                            <!--<td>{$vo.username}
+                                <span class="text-primary">
+                                    ({$vo.realname})
+                                </span>
+
+                            </td>-->
+                            <td>{$vo.realname}
+                                <!--如果是没有审核的-->
+                                <eq name="vo['state']" value="2">
+                                    <small>
+                                        <span class="text-danger">未审</span>
+                                    </small>
+
+                                </eq>
+                            </td>
+                            <td>{$vo.phone}</td>
+                            <td>{$vo.school}</td>
+                            <td>{$vo.createtime}</td>
+                            <td>
+
+
+                                <input type="hidden" value="{$vo.id}" name="id"/>
+                                <a href="__MODULE__/Audit/pageSeekerInfo?id={$vo.id}" target="_blank" class="label label-primary">
+                                    查看详情
+                                </a>
+                            </td>
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>
+                <include file="blocks/pagedivide"/>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        //选择城市
+        $("select[name='city']").change(function () {
+            var city = $(this).val();
+
+            $.post(CON_PATH + '/getSchools', {city: city}, function (data) {
+                var str = "";
+                if (data != 'error') {
+                    for (var i = 0; i < data.length; i++) {
+                        str += '<option value="' + data[i]['school'] + '">' + data[i]['school'] + '</option>';
+                    }
+                    $("select[name='school']").html(str);
+
+                } else {
+                    alert("该城市下暂无学校");
+                }
+
+            });
+        });
+
+        $("#sort").on('click', '', function (event) {
+            event.preventDefault();
+            sort($("select[name='school']").val());
+
+        });
+
+
+        //点击搜索
+        $("#search").on('click', '', function (event) {
+            event.preventDefault();
+            var param = $("input[type='search']").val();
+            if (param!="") {
+                location.href="__CONTROLLER__/pageSeeker?params="+param;
+            }else{
+                alert("没有输入有效的搜索内容");
+            }
+        });
+
+         //点击导出相应月份的表数据
+        $("#exportMonth").on('click', '', function (event) {
+            event.preventDefault();
+            var month = $("select[name='month']").val();
+            if (month!="") {
+                location.href="__CONTROLLER__/exportExcel?params=all&month="+month;
+            }else{
+                alert("请选择月份");
+            }
+        });
+
+    });
+
+    function sort(school) {
+        $.get(CON_PATH + '/setSchool', {school: school}, function (data) {
+            location.reload();
+        });
+    }
+
+</script>

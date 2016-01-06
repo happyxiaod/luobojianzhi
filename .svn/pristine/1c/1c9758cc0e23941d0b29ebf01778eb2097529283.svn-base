@@ -1,0 +1,110 @@
+<div class="row ">
+    <!-- 左边主要导航 -->
+    <include file="blocks/mainnav"/>
+    <!-- 内容 -->
+    <div class="content col-md-10">
+        <!-- 导航菜单内容显示 -->
+        <div class="row" style="background:#f4f4f4;height:36px;line-height:36px;border-bottom:1px solid #ddd">
+
+			<span class="mleft2">
+				地区管理 > 添加
+			</span>
+        </div>
+        <div class="fragbox">
+            <div style="margin-top:10px">
+                <div class="pull-left">
+                    <a href="__CONTROLLER__/pageRegionProvince" class="btn btn-primary">省</a>
+                    <a href="__CONTROLLER__/pageRegionCity" class="btn btn-primary">市</a>
+                    <a href="__CONTROLLER__/pageRegionCounty" class="btn btn-primary">区（县）</a>
+                    <a href="__CONTROLLER__/pageRegionAdd" class="btn btn-success">添加</a>
+                </div>
+            </div>
+            <!-- 右边具体内容 -->
+            <div class="row middle-content fragbox" style="margin-top: 70px;">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            添加省
+                        </div>
+                        <div class="panel-body form-inline" gt-model="addProvince">
+                            <div>
+                                <span gt-islabel="名称全拼"></span>
+                                <input class="form-control" type="text" gt-isparam="spell"  placeholder="名称全拼" style="margin-bottom: 10px;"/>
+                            </div>
+                            <div>
+                                <span gt-islabel="省名称"></span>
+                                <input class="form-control" type="text" gt-isparam="name" placeholder="省名称"/>
+                                <button class="btn btn-active" name="addProvince">添加</button>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            添加市
+                        </div>
+                        <div class="panel-body form-inline" gt-model="addCity">
+                            <div>
+                                <span gt-islabel="所属省份"></span>
+                                <select class="form-control" gt-isparam="pid" style="margin-bottom: 10px;">
+                                    <option value="请选择">请选择</option>
+                                    <volist name="provinceList" id="vo">
+                                        <option value="{$vo.id}">{$vo.name}</option>
+                                    </volist>
+                                </select>
+                            </div>
+
+                            <div>
+                                <span gt-islabel="名称全拼"></span>
+                                <input class="form-control" type="text" gt-isparam="spell" placeholder="名称全拼" style="margin-bottom: 10px;"/>
+                            </div>
+
+                            <div>
+                                <span gt-islabel="市名称"></span>
+                                <input class="form-control" type="text" gt-isparam="name" placeholder="市名称"/>
+                                <button class="btn btn-active" name="addCity">添加</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            添加区（县）
+                        </div>
+                        <div class="panel-body form-inline" gt-model="addCounty">
+                            <div class="pull-left">
+                                <span gt-islabel="所属省份"></span>
+                                <select class="form-control" gt-isparam="pid" style="margin-bottom: 10px;" id="choseprovince">
+                                    <option value="请选择">请选择</option>
+                                    <volist name="provinceList" id="vo">
+                                        <option value="{$vo.id}">{$vo.name}</option>
+                                    </volist>
+                                </select>
+                            </div>
+                            <div class="pull-left">
+                                <span gt-islabel="所属市"></span>
+                                <select class="form-control" id="cityBox" gt-isparam="cid" style="margin-bottom: 10px;">
+                                    <option value="请选择">请选择</option>
+                                </select>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div>
+                                <span gt-islabel="名称全拼"></span>
+                                <input class="form-control" type="text" gt-isparam="spell"  placeholder="名称全拼" style="margin-bottom: 10px;"/>
+
+                            </div>
+                            <div>
+                                <span gt-islabel="区(县)名称"></span>
+                                <input class="form-control" type="text" gt-isparam="name"  placeholder="区(县)名称"/>
+                                <button class="btn btn-active" name="addCounty">添加</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

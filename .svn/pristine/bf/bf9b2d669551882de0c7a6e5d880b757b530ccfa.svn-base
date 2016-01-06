@@ -1,0 +1,42 @@
+.login-user-jg{width:100%;height:40px;padding:0 3%;background-color: #fff;margin:10px 0;box-sizing:border-box;line-height:40px;}
+.login-user-jg div{width:300px;margin:0 auto;}
+.login-user-jg input[type=radio]{margin-right: 2px;vertical-align: text-bottom;margin-left:2px;border:1px solid #ccc;}
+.login-user-jg label {margin-right:10px;font-size:16px;}
+
+section{width:100%;height:auto;background-color: #fff;padding:3%;box-sizing:border-box;}
+.label_text{width:20%;text-align:right;float:left;line-height:42px;}
+.label_text img{width:90%;border-radius:1000px;}
+.right{width:70%;float:left;margin-left:4%;margin-bottom:10px;}
+.right input{width:100%;height:40px;box-sizing:border-box;border:1px solid #ccc;padding:0 5px;}
+.right input.price{width:40%;float:left;}
+.right s{line-height:42px;float:left;margin:0 5px;}
+.right .spinner_price{width:30%;}
+.right .spinner1{margin-top:0;}
+.right input.input_reg{width:55%;}
+.right img{height:40px;float:right;max-width:42%;}
+.header img{float:left;}
+.right .btn_reg{height:40px;float:right;width:40%;background-color: #eb7312;border-radius:5px;border:0;padding:0;color:#fff;cursor:pointer;line-height:40px;text-align:center;-webkit-appearance:none;}
+.right textarea{width:100%;height:200px;padding:5px;box-sizing:border-box;border:1px solid #ccc;-webkit-appearance:none;}
+section .tk{margin-left:24%;}
+section .tk input{width:15px;height:15px;margin-right:5px;border:1px solid #ccc;vertical-align: middle;}
+section .tk a{color:#337ab7;}
+section .tk a:hover{color:#337ab7;}
+
+.find_pwd{border-top:1px solid #efeff0;}
+
+.header{height:80px;line-height:80px;margin-bottom:5px;background-color: #fff;border-top:1px solid #ccc;padding:0 3%;}
+.header .label_text{line-height:80px;}
+.header img{height:60px;padding:10px 0;}
+.header a{display:inline-block;float:right;}
+.resume{border-top:0;}
+.right input[type="radio"]{width:auto;margin-right:3px;vertical-align:middle;}
+.right label{margin-right:15px;line-height:40px;}
+
+.resume .spinner1{margin-top:0;}
+.resume .right{line-height:42px;}
+.resume p{line-height:20px;padding:10px;}
+
+.papers a{width:28%;height:50px;display:inline-block;margin-right:10px;border:1px solid #ccc;text-align:center;line-height:18px;padding-top:10px;}
+.papers a:last-child{margin-right:0;}
+.papers img{width:28%;max-width:100%;height:60px;padding-top:0;float:left;margin-right:10px;display:inline-block;}
+.papers img:last-child{margin-right:0;}

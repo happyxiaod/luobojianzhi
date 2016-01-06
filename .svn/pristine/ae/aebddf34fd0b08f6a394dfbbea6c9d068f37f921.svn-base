@@ -1,0 +1,46 @@
+<div class="gtlyout bg-lightgray">
+    <if condition="$sign eq null">
+        <form action="__CONTROLLER__/doBind" method="post">
+            <input type="hidden" name="openid" value="{$openid}"/>
+            <label class="">请输入您的账号进行绑定！</label>
+            <select name="type" class="form-control input-lg">
+                <option value="seeker">求职者</option>
+                <option value="company">企业方</option>
+            </select>
+            <div class="gt-rowdivide"></div>
+            <input class="form-control input-lg" type="text" name="username"
+                   placeholder="手机号" gt-check="phone"/>
+
+            <div class="gt-rowdivide"></div>
+
+            <input class="form-control input-lg" type="password" name="password"
+                   placeholder="密码"/>
+
+            <div class="gt-rowdivide"></div>
+            <input class="form-control btn btn-primary input-lg btn-lg"
+                   type="submit" value="绑定"/>
+            <div class="gt-rowdivide "></div>
+            <a href="__ROOT__/index.php/Home/Index/pageReg" class="input-lg form-control btn btn-warning btn-lg" >
+                没有账号？点此注册
+            </a>
+        </form>
+
+        <else/>
+        <h3>{$sign}</h3>
+    </if>
+
+</div>
+
+<script>
+    bindCheck();
+    $("form").submit(function(){
+        var username = $("input[name='username']").val();
+        var password = $("input[name='password']").val();
+        if(username==""||password=="") {
+            alert("手机号和密码不能为空");
+            return false;
+        }
+        return true;
+
+    });
+</script>

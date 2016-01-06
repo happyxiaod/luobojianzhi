@@ -1,0 +1,19 @@
+<table class="table text-center mtop1 table-hover">
+	<thead>
+		<tr>
+			<th class="text-center">企业名称</th>
+			<th class="text-center">所在地区</th>
+			<th class="text-center">手机</th>
+		</tr>
+	</thead>
+	<tbody>
+		<volist name="list" id="vo">
+			<tr gt-block-click="feedback-dialog">
+				<td>{$vo.companyname}</td>
+				<td>{$vo.area}</td>
+				<td>{$vo.phone}</td>
+			</tr>
+		</volist>
+	</tbody>
+</table>
+<include file="blocks/pagedivideload"/>

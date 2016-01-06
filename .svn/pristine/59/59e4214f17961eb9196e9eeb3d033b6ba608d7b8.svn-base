@@ -1,0 +1,23 @@
+<!--联系我们-->
+<div id="person">
+        <div class="per_b clearfix">
+            <include file="newArtNav"/>
+            <div class="per_r_dal">
+                <h4 class="font-orange">联系我们</h4>
+                
+                <div class="art-content">
+                    联系电话：400-886-3334
+
+                    <br/>
+                     联系地址：山东省威海市火炬高新技术开发区火炬路169-1号
+                    <br/>
+                    客服QQ（用户）：3237348839
+                    <br/>
+                    客服QQ（企业）：3251791608
+                    <br/>
+                    萝卜兼职群：298797352
+
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,439 @@
+<div id="index-job-nav">
+        <!-- 主页分类导航start -->
+        <div class="left">
+            <ul>
+                <volist name="level1list" id="vo">
+                <li>
+                    <h4><a href="__MODULE__/Jobs/pageJobsLists?l1={$vo.name}">
+                    {$vo.name}
+                </a></h4>
+                    <div class="index-job-content">
+                        
+                    <volist name="level2list" id="vo2">
+                    <ul>
+                        <li>
+                        <eq name="vo.id" value="$vo2.fid">
+                            <a href="__MODULE__/Jobs/pageJobsLists?l2={$vo2.name}">{$vo2.name}</a>
+                        </eq>
+                        </li>
+                    </ul>
+                    </volist>
+                        
+                    </div>
+                    <a href="__MODULE__/Jobs/pageJobsLists"><div class="box_sj_show"></div></a>
+                </li>
+                </volist>
+                <li>
+                    <h4><a href="__MODULE__/Jobs/pageJobsLists">其它</a></h4>
+                    <div class="index-job-content">
+                        <ul>
+                            <li><a href="__MODULE__/Jobs/pageJobsLists">...</a></li>
+                        </ul>
+                    </div>
+                </li
+            </ul>
+        </div>
+        <!-- 主页分类导航end -->
+
+        <!-- 分类导航右侧start -->
+        <div class="right">
+            <div class="index-job-t" >
+                <div class="index-job-t-l" id="scrollBox" >
+                    <a href="{$scrollLink}" target="_blank">
+                        <img class="index-scroll-img" id="scroll" link="{$scrollLink}" src="__ROOT__/Uploads/{$scrollimg}"/>
+                    </a>
+                    <!-- <div id="buttons">
+                    <span index="1" class="on"></span>
+                    <span index="2"></span>
+                    <span index="3"></span>
+                    <span index="4"></span>
+                    <span index="5"></span>
+                    </div> -->
+                <a href="javascript:;" id="prev" class="arrow">&lt;</a>
+                <a href="javascript:;" id="next" class="arrow">&gt;</a>
+                </div>
+                
+
+                <div class="index-job-t-r" gt-model="userLogin">
+                   <?php if($_SESSION['user']){?>
+                   <div class="login-index-after">
+                    <img src="/Public/new/images/appsetting3.png" alt="头像">
+                    <if condition="$Think.session.user.username neq ''">
+                    <span style=" height:20px; line-height:20px; text-align:center; display:block;">{$Think.session.user.username}</span>
+                    <elseif condition="$Think.session.user.realname neq ''"/>
+                    <span style=" height:20px; line-height:20px; text-align:center; display:block;">{$Think.session.user.realname}</span>
+                    <else />
+                    <span style=" height:20px; line-height:20px; text-align:center; display:block;">{$Think.session.user.phone}</span>
+                    </if>
+                    <div class="login">
+                    <!-- <input type="button" gt-btn-click="login" id="loginBtn" value="切换账号"> -->
+                    <a href="__ROOT__/index.php/User/user/dologout">切换账号</a>
+                    </div>
+                    </div>
+                   <?php }else{ ?>
+                    <div class="login-user-jg">
+                        <input type="radio" name="type" id="login-radio01" value="seeker" gt-isparam="type" checked /><label for="login-radio01">求职者</label>
+                        <input type="radio" name="type" id="login-radio02" gt-isparam="type" value="company" /><label for="login-radio02">企业或机构</label>
+                        <input type="radio" name="type" id="login-radio03" gt-isparam="type"value="school" /><label for="login-radio03">学校机构</label>
+                    </div>
+                    <div class="index-login">
+                        <div class="user">
+                             <input type="hidden" gt-islabel="用户名"/>
+                            <input type="text" gt-isparam="username" id="usernameInput" placeholder="用户名或手机号" vali="custom[^([\u4E00-\u9FA5A-Za-z\s]{2,30})$]" maxlength="30" onkeydown="if(event.keyCode==13)loginBtn.click()"/>
+                        </div>
+                        <div class="password">
+                             <input type="hidden" gt-islabel="密码"/>
+                            <input type="password" gt-isparam="password" id="passwordInput" placeholder="密码" vali="custom[^([\u4E00-\u9FA5A-Za-z\s]{2,30})$]" maxlength="30" onkeydown="if(event.keyCode==13)loginBtn.click()"/>
+                        </div>
+                        <div class="jl_login clearfix">
+                            <label for="login_mem">记住密码</label><input type="checkbox" name="" id="login_mem" />
+                        </div>
+                        <div class="login">
+                            <input type="button" gt-btn-click="login" id="loginBtn" value="登录" />
+                            <!-- <a href="javascript:" gt-btn-click="login" id="loginBtn" style="width: 100%;">登录</a> -->
+                        </div>
+                        <div class="login-other">
+                            <a href="__CONTROLLER__/pageFindPwd">忘记密码</a>
+                            <a href="__CONTROLLER__/pageReg">立即注册</a>
+                        </div>
+                    </div>
+                    <?php }?>
+                </div>
+            </div>
+            <div class="index-job-b">
+                <ul>
+                    <li>
+                        <div class="sub-l">
+                            <img src="__PUBLIC__/new/images/index-top01.jpg" alt="" />
+                        </div>                      
+                        <div>
+                            <h3>标志设计</h3>
+                            <p>十万专业Logo设计师，为您的企业量身</p>
+                            <div>
+                                <a href="">立即体验</a>
+                                <i>
+                                    <em></em>
+                                    <span></span>
+                                </i>    
+                            </div>
+                            
+                        </div>
+                    </li>
+                    <li>
+                        <div class="sub-l">
+                            <img src="__PUBLIC__/new/images/index-top02.jpg" alt="" />
+                        </div>                  
+                        <div>
+                            <h3>法律服务</h3>
+                            <p>十万专业Logo设计师，为您的企业量身</p>
+                            <div>
+                                <a href="">立即体验</a>
+                                <i>
+                                    <em></em>
+                                    <span></span>
+                                </i>    
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="sub-l">
+                            <img src="__PUBLIC__/new/images/index-top03.jpg" alt="" />
+                        </div>                  
+                        <div>
+                            <h3>网站制作</h3>
+                            <p>十万专业Logo设计师，为您的企业量身</p>
+                            <div>
+                                <a href="">立即体验</a>
+                                <i>
+                                    <em></em>
+                                    <span></span>
+                                </i>    
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="sub-l">
+                            <img src="__PUBLIC__/new/images/index-top04.jpg" alt="" />
+                        </div>                  
+                        <div>
+                            <h3>VI设计</h3>
+                            <p>十万专业Logo设计师，为您的企业量身</p>
+                            <div>
+                                <a href="">立即体验</a>
+                                <i>
+                                    <em></em>
+                                    <span></span>
+                                </i>    
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 分类导航右侧end -->
+    </div>
+    <!-- 主页end -->
+
+    <!-- 主页main start -->
+    <div id="main" class="clearfix">
+        <div class="f_left">
+            <div class="top">
+                <h3>热门兼职</h3>
+                <div class="more">
+                    <a href="__MODULE__/Jobs/pageJobsLists?host=host">更多</a>
+                    
+                    <i>
+                        <em></em>
+                        <span></span>
+                    </i>    
+                </div>
+            </div>
+            <ul>
+            <volist name="hotJobs" id="vo">
+                <li>
+                    <span class="color-class{$vo.colorId}">{$vo.level2}</span>
+                    <div class="job-hot">
+                         <a href="__MODULE__/Jobs/pageJobsDetails?id={$vo.id}" title="{$vo.title}" target="_blank">{$vo.subtitle}</a>
+                        <span>{$vo.city}{$vo.county}</span>
+                        <span>{$vo.date}</span>
+                    </div>
+                    <div class="hot-icon">
+                        <i></i>
+                    </div>
+                    <div class="hot-money"> 
+                        <span>{$vo.price} {$vo.pricetype}</span>
+                        <span>浏览量: {$vo.view|default="0"}</span>
+                    </div>
+                </li>
+            </volist>
+            </ul>
+        </div>
+
+        <div class="f_right">
+            <div class="top">
+                <h3>最新兼职</h3>
+                <div class="more">
+                    <a href="__MODULE__/Jobs/pageJobsLists">更多</a>
+                    <i>
+                        <em></em>
+                        <span></span>
+                    </i>    
+                </div>
+            </div>
+            <ul>
+                <volist name="lateJobs" id="vo">
+                <li>
+                    <span class="color-class{$vo.colorId}">{$vo.level2}</span>
+                    <div class="job-hot">
+                         <a href="__MODULE__/Jobs/pageJobsDetails?id={$vo.id}" title="{$vo.title}" target="_blank">{$vo.subtitle}</a>
+                        <span>{$vo.city}{$vo.county}</span>
+                        <span>{$vo.date}</span>
+                    </div>
+                    <div class="new-icon">
+                        <i></i>
+                    </div>
+                    <div class="hot-money"> 
+                        <span>{$vo.price} {$vo.pricetype}</span>
+                        <span>浏览量: {$vo.view|default="0"}</span>
+                    </div>
+                </li>
+               </volist> 
+            </ul>
+        </div>
+
+        <div class="f_left">
+           <!--  <div class="top">
+               <h3>热门实习</h3>
+               <div class="more">
+                   <a href="__MODULE__/Jobs/pageJobsLists">更多</a>
+                   <i>
+                       <em></em>
+                       <span></span>
+                   </i>    
+               </div>
+           </div>
+           <ul>
+               <li>
+                   <span class="color-class9">开发</span>
+                   <div class="job-hot">
+                       <a href="">美团直销地面销售人员</a>
+                       <span>区域：高新区</span>
+                       <span>2015.10.30</span>
+                   </div>
+                   <div class="hot-icon">
+                       <i></i><i></i>
+                   </div>
+                   <div class="hot-money"> 
+                       <span>15元/小时</span>
+                       <span>浏览次数：1234</span>
+                   </div>
+               </li>
+               <li>
+                   <span class="color-class8">传单</span>
+                   <div class="job-hot">
+                       <a href="">美团直销地面销售人员</a>
+                       <span>区域：高新区</span>
+                       <span>2015.10.30</span>
+                   </div>
+                   <div class="hot-icon">
+                       <i></i><i></i>
+                   </div>
+                   <div class="hot-money"> 
+                       <span>15元/小时</span>
+                       <span>浏览次数：1234</span>
+                   </div>
+               </li>
+               <li>
+                   <span class="color-class3">服务员</span>
+                   <div class="job-hot">
+                       <a href="">美团直销地面销售人员</a>
+                       <span>区域：高新区</span>
+                       <span>2015.10.30</span>
+                   </div>
+                   <div class="hot-icon">
+                       <i></i><i></i>
+                   </div>
+                   <div class="hot-money"> 
+                       <span>15元/小时</span>
+                       <span>浏览次数：1234</span>
+                   </div>
+               </li>
+               <li>
+                   <span class="color-class4">礼仪</span>
+                   <div class="job-hot">
+                       <a href="">美团直销地面销售人员</a>
+                       <span>区域：高新区</span>
+                       <span>2015.10.30</span>
+                   </div>
+                   <div class="hot-icon">
+                       <i></i><i></i>
+                   </div>
+                   <div class="hot-money"> 
+                       <span>15元/小时</span>
+                       <span>浏览次数：1234</span>
+                   </div>
+               </li>
+           </ul> -->
+        </div>
+        <div class="f_right">
+            <!-- <div class="top">
+                <h3>最新实习</h3>
+                <div class="more">
+                    <a href="__MODULE__/Jobs/pageJobsLists">更多</a>
+                    <i>
+                        <em></em>
+                        <span></span>
+                    </i>    
+                </div>
+            </div>
+            <ul>
+                <li>
+                    <span class="color-class1">开发</span>
+                    <div class="job-hot">
+                        <a href="">美团直销地面销售人员</a>
+                        <span>区域：高新区</span>
+                        <span>2015.10.30</span>
+                    </div>
+                    <div class="hot-money"> 
+                        <span>15元/小时</span>
+                        <span>浏览次数：1234</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="color-class2">传单</span>
+                    <div class="job-hot">
+                        <a href="">美团直销地面销售人员</a>
+                        <span>区域：高新区</span>
+                        <span>2015.10.30</span>
+                    </div>
+                    <div class="hot-money"> 
+                        <span>15元/小时</span>
+                        <span>浏览次数：1234</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="color-class3">服务员</span>
+                    <div class="job-hot">
+                        <a href="">美团直销地面销售人员</a>
+                        <span>区域：高新区</span>
+                        <span>2015.10.30</span>
+                    </div>
+                    <div class="hot-money"> 
+                        <span>15元/小时</span>
+                        <span>浏览次数：1234</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="color-class4">礼仪</span>
+                    <div class="job-hot">
+                        <a href="">美团直销地面销售人员</a>
+                        <span>区域：高新区</span>
+                        <span>2015.10.30</span>
+                    </div>
+                    <div class="hot-money"> 
+                        <span>15元/小时</span>
+                        <span>浏览次数：1234</span>
+                    </div>
+                </li>
+            </ul> -->
+        </div>
+    </div>
+    <!-- 主页main end -->
+   <!--  <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone"></a><a href="#" class="bds_tsina" data-cmd="tsina"></a><a href="#" class="bds_tqq" data-cmd="tqq"></a><a href="#" class="bds_renren" data-cmd="renren"></a><a href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+   <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+   
+   优质企业start
+   <div id="company" class="clearfix">
+       <h3>优质企业</h3>
+       <ul>
+           <li>
+               <a href="">
+                   <img src="__PUBLIC__/new/images/company-demo.jpg" alt="" />
+                   <span>阿里巴巴</span>
+               </a>
+           </li>
+           <li>
+               <a href="">
+                   <img src="__PUBLIC__/new/images/company-demo.jpg" alt="" />
+                   <span>阿里巴巴</span>
+               </a>
+           </li>
+           <li>
+               <a href="">
+                   <img src="__PUBLIC__/new/images/company-demo.jpg" alt="" />
+                   <span>阿里巴巴</span>
+               </a>
+           </li>
+           <li>
+               <a href="">
+                   <img src="__PUBLIC__/new/images/company-demo.jpg" alt="" />
+                   <span>阿里巴巴</span>
+               </a>
+           </li>
+           <li>
+               <a href="">
+                   <img src="__PUBLIC__/new/images/company-demo.jpg" alt="" />
+                   <span>阿里巴巴</span>
+               </a>
+           </li>
+           <li>
+               <a href="">
+                   <img src="__PUBLIC__/new/images/company-demo.jpg" alt="" />
+                   <span>阿里巴巴</span>
+               </a>
+           </li>
+           <li>
+               <a href="">
+                   <img src="__PUBLIC__/new/images/company-demo.jpg" alt="" />
+                   <span>阿里巴巴</span>
+               </a>
+           </li>
+           <li>
+               <a href="">
+                   <img src="__PUBLIC__/new/images/company-demo.jpg" alt="" />
+                   <span>阿里巴巴</span>
+               </a>
+           </li>
+       </ul>
+   </div> -->
+    <!-- 优质企业end -->

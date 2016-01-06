@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>个人资料审核</title>
+	<include file="blocks/import"/>	
+</head>
+<body>
+	<div class="container-fluid">
+		<!-- 头部内容 -->
+		<div class="header">
+			<include file="blocks/header"/>
+		</div>
+		<!-- 主体内容 -->
+		<div class="middle row">
+			<include file="Audit/contSeeker"/>
+		</div>
+		<!-- 底部内容 -->
+		<div class="footer">
+			<include file="blocks/footer"/>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+jQuery(document).ready(function($) {
+		
+		var value='';
+		var boxs = $("input[name='check']");
+		$("#selectPassAudit").click(function(){
+			var ids=[];
+			for (var i=0;i<boxs.length;i++ ){
+		     if(boxs[i].checked){ //判断复选框是否选中
+		     	ids.push(boxs[i].value);
+		  	}
+		  }
+		  if (ids.length>0){
+                post("passByIds", ids);
+                window.location.reload();
+            } else {
+                alert("未选中任何选项!");
+            }
+	});
+		
+
+		$("#selectRefuseAudit").click(function(){
+			var ids=[];
+			for (var i=0;i<boxs.length;i++ ){
+		     if(boxs[i].checked){ //判断复选框是否选中
+		     	ids.push(boxs[i].value);
+		  	}
+		  }
+		  if (ids.length>0){
+                post("notpassSeekerById", ids);
+                window.location.reload();
+            } else {
+                alert("未选中任何选项!");
+            }
+	});
+
+		bindClick();
+		$("#navAuditSeeker").addClass("nav-two-active"); //更改导航样式
+
+		$("#selectedBox").click(function(){
+			if($(this).is(":checked")){
+		      $("input[name='check']").prop("checked","checked");
+		    }else{
+		      $("input[name='check']").removeAttr("checked","checked");
+		    }
+		});
+	             
+});
+     		 
+</script>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>萝卜兼职，最靠谱的大学生兼职平台</title>
+    <include file="blocks/import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <!-- 头部内容 -->
+        <include file="blocks/header"/>
+    <!-- 主体内容 -->
+        <include file="Index/contSwopCity"/>
+    <!-- 底部内容 -->
+        <include file="blocks/footer"/>
+</div>
+</body>
+</html>
+<script>
+    jQuery(document).ready(function() {
+        bindClick();
+
+        //获取城市列表
+        $(".select-province").on('click', '', function (event) {
+            event.preventDefault();
+
+            var province = $(this).find("span").attr("loadid");
+
+            province = $.trim(province);
+
+            $.post(CON_PATH + "/getCityByProvince", {province: province}, function (data) {
+                if (data != "failed") {
+                    var str = "";
+                    $.each(data, function (key, value) {
+                        str += "<li class='spinner-option select-city'><a href='"+ CON_PATH +"/index/index?nowCity=" + value['name'] + "'>" + value['name'];
+                        str += "</a></li>";
+                    });
+                    $("#cityList").html(str);
+                } else {
+                    $("#cityList").html("");
+                    dealReturn("获取城市列表失败");
+                }
+            });
+        });
+
+        //地区选择
+        $(".dropdown-menu").delegate('.spinner-option','click', function (event) {
+            var value = $(this).find("span").html();
+            value = $.trim(value);
+            console.log(value);
+            $(this).parent().siblings(".spinner-content").html(value);
+        });
+
+        //搜索城市
+        $("#seekCity").on('click', '', function (event) {
+            event.preventDefault();
+            keyword = $("#keyword").val();
+           // alert(keyword);
+            keyword = $.trim(keyword);
+            if(keyword == null || keyword == "") {
+                alert("请输入关键词!");
+                return;
+            }
+            jQuery.ajax({
+                url: CON_PATH + '/seekCity',
+                type: 'POST',
+                data: {'keyword': keyword},
+                complete: function (xhr, textStatus) {
+                    //called when complete
+                },
+                success: function (data, textStatus, xhr) {
+                    if(data != "failed") {
+                        var str = "";
+                        $.each(data, function (key, value) {
+                            str += "<a href='"+ CON_PATH +"/index/index?nowCity=" + value['name'] + "' style='margin: 10px;'>" + value['name'];
+                            str += "</a>";
+                        });
+                        $("#seekResult").attr("style", "display:block;width:100%; margin: 30px auto 0 auto").html(str);
+                    } else {
+                        alert("找不到该城市，换个关键词试试");
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    
+                }
+            });
+        });
+    });
+</script>

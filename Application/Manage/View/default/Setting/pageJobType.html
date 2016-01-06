@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>兼职分类管理</title>
+    <include file="blocks/import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <!-- 头部内容 -->
+    <div class="header">
+        <include file="blocks/header"/>
+    </div>
+    <!-- 主体内容 -->
+    <div class="middle row">
+        <include file="Setting/contJobType"/>
+    </div>
+    <!-- 底部内容 -->
+    <div class="footer">
+        <include file="blocks/footer"/>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    jQuery(document).ready(function($) {
+        bindClick();
+        $("#navSettingJobType").addClass("nav-two-active"); //更改导航样式
+        $("[gt-btn-click]").on('click', '', function (event) {
+            event.preventDefault();
+            var value = $(this).attr("gt-btn-click");
+            switch (value) {
+                case "fraglevel1":
+                    loadPage($(".middle-content"), "fragAddLevel1");
+                    break;
+                case "fraglevel2":
+                    loadPage($(".middle-content"), "fragAddLevel2");
+                    break;
+                case "dellevel2":
+                    var id = $(this).siblings("input[type='hidden']").val();
+                    post("dellevel2", id);
+                    break;
+
+            }
+        });
+    });
+</script>

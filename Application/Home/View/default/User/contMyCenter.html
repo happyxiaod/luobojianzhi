@@ -1,0 +1,135 @@
+<div id="person">
+        <!-- 个人中心start -->
+
+        <div class="per_b clearfix">
+            <include file="blocks/mainnav"/>
+            <div class="per_r_dal">
+                <h4 class="font-orange">简历信息</h4>
+                <div class="per_cont" gt-model="userInfo">
+                    <div>
+                    <input type="hidden" value="{$user.id}" gt-isparam="id"/>
+                        <span class="label_text">姓名</span>
+                        <input type="hidden" gt-islabel="姓名"/>
+                        <input  type="text" value="{$user.realname}" gt-isparam="realname" />
+                    </div>
+                    <label id="realnamewrong"></label>
+                    <div>
+                        <span class="label_text">性别</span>
+                        <input type="hidden" gt-islabel="性别" id="sex" value="{$user.sex}"/>
+                        <input type="radio" name="sex" gt-isparam="sex" value="男"><label for="boy">男</label>
+                        <input type="radio" name="sex" gt-isparam="sex" value="女"><label for="girl">女</label>
+                    </div>
+                    <div>
+                        <span class="label_text">所在地</span>
+                        <div class="input-group spinner">
+                            <span type="text" class="spinner-content" gt-isparam="province">{$user.province}</span>
+                            <span class="input-group-addon glyphicon glyphicon-triangle-bottom demo-icon" >
+                                &#xe81d;
+                            </span>
+                            <ul class="dropdown-menu">
+                                <volist name="provinceList" id="vo">
+                                    <li class="spinner-option select-province">
+                                        <span loadid="{$vo.id}">{$vo.name}</span>
+                                    </li>
+                                </volist>
+                            </ul>
+                        </div>
+                        <div class="input-group spinner">
+                            <span type="text" class="spinner-content" gt-isparam="city">{$user.city}</span>
+                            <span class="input-group-addon glyphicon glyphicon-triangle-bottom demo-icon" >
+                                &#xe81d;
+                            </span>
+                            <ul class="dropdown-menu" id="cityList">
+                            </ul>
+                        </div>
+                        <div class="input-group spinner">
+                            <span type="text" class="spinner-content" gt-isparam="county">{$user.county}</span>
+                            <span class="input-group-addon glyphicon glyphicon-triangle-bottom demo-icon" >
+                                 &#xe81d;
+                            </span>
+                            <ul class="dropdown-menu" id="countyList">
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="label_text">所在学校</span>
+                        <div class="input-group spinner">
+                            <span type="text" class="spinner-content" gt-isparam="school">{$user.school}</span>
+                            <span class="input-group-addon glyphicon glyphicon-triangle-bottom demo-icon" >
+                                 &#xe81d;
+                            </span>
+                            <ul class="dropdown-menu" id="schoollist">
+                                <volist name="schoolList" id="vo">
+                                    <li class="spinner-option select-school">
+                                        <span loadid="{$vo.id}">{$vo.name}</span>
+                                    </li>
+                                </volist>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="label_text">入学年份</span>
+                        <input type="hidden" gt-islabel="入学年份"/>
+                        <div class="input-group spinner">
+                            <span type="text" class="spinner-content">选择入学时间</span>
+                            <span type="text" class="spinner-content" gt-isparam="schoolyear">{$user.schoolyear}</span>
+                            <span class="input-group-addon glyphicon glyphicon-triangle-bottom demo-icon">
+                                 &#xe81d;
+                            </span>
+                            <ul class="dropdown-menu">
+                                <li>2007年</li>
+                                <li>2008年</li>
+                                <li>2009年</li>
+                                <li>2010年</li>
+                                <li>2011年</li>
+                                <li>2012年</li>
+                                <li>2013年</li>
+                                <li>2014年</li>
+                                <li>2015年</li>
+                                <li>其他</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="label_text">手机号码</span>
+                        <input type="hidden" gt-islabel="手机号"/>
+                        <input  type="text" gt-isparam="phone" gt-check="phone" placeholder="手机号" value="{$user.phone}">
+                    </div>
+                   <label  id="phoneWrong"></label>
+                    <div>
+                        <span class="label_text">QQ号码</span>
+                        <input  type="text" gt-isparam="qq"placeholder="QQ号" value="{$user.qq}">
+                    </div>
+                     <label  id="qqWrong"></label>
+                    <div style="overflow:hidden;height:auto;">
+                        <span class="label_text">证件上传</span>
+                        <div class="person_r">
+                            <div class="papers">正面</div>
+                            <img class="reg-id-img" src="__ROOT__/Uploads/{$user.idobverse}" alt="" />
+                            <input type="hidden" gt-islabel="证件正面照"/>
+                            <input type="file" gt-isparam="idobverse"/>         
+                        </div>
+                        <div class="person_r">
+                            <div class="papers">背面</div>
+                            <img class="reg-id-img" src="__ROOT__/Uploads/{$user.idreverse}" alt="" />
+                            <input type="hidden" gt-islabel="证件背面照"/>
+                            <input type="file" gt-isparam="idreverse"/>           
+                        </div>
+                        <span class="font-orange tip-msg">身份证或学生证</span>
+                    </div>
+                    <!-- <label for="" class="wrong">请上传图片</label>
+                                         -->                    <div style="overflow:hidden;height:auto;">
+                        <span class="label_text">自我评价</span>
+                        <input type="hidden" gt-islabel="自我评价"/>
+                        <textarea name="" id="" cols="30" rows="10" gt-isparam="intro" vali="custom[^([\u4E00-\u9FA5A-Za-z\s]{2,200})$]" maxlength="200">{$user.intro}</textarea>
+                    </div>
+                    <div class="company_tk">
+                        <input type="checkbox" name="" id="" />我已阅读<a href="" class="font-blue">《萝卜兼职协议条款》</a>
+                    </div>
+                    <input type="button" value="立即确认" class="btn_save" gt-btn-click="editMyCenter"/>
+                </div>
+            </div>
+        </div>
+        <!-- 个人中心end -->
+    </div>
+

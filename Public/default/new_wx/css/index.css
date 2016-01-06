@@ -1,0 +1,36 @@
+.swipe {overflow: hidden;/* visibility: hidden; */position: relative;width: 100%;}
+.swipe img{width: 100%;}
+.swipe-wrap {overflow: hidden;position: relative;}
+.swipe-wrap > div {float:left;width:100%;position: relative;}
+.xiaoyuandian{width: 72px;height:10px;position: absolute;bottom:0;right: 10px;left:50%;margin-left:-30px;}
+.xiaoyuandian ul{list-style: none;}
+.xiaoyuandian ul li{float: left;width:8px;height:8px;background:#fff;margin:0 5px;border-radius:8px;}
+.xiaoyuandian ul li.cur{background:#eb7312;}
+
+.index_class li{float:left;width:33.33%;background-color: #fff;height:45px;line-height:45px;text-align:center;font-size:14px;border-right:1px solid #efeff0;border-bottom:1px solid #efeff0;box-sizing:border-box;}
+.index_class li:last-child{border-right:0;}
+.index_class li a{display:block;}
+.index_class li span{color:#333;}
+.collect li{border-top:1px solid #efeff0;}
+
+.job_list li{width:100%;margin-bottom:5px;background-color: #fff;height:70px;padding:0 3%;box-sizing:border-box;}
+.job_list li:last-child{margin-bottom:0;}
+.job_list li a{display:block;width:100%;height:100%;}
+.job_list li .hot-icon{width:15%;float:left;}
+.job_list li .hot-money{width:20%;float:right;}
+.job_list li .hot-job{width:61%;float:left;margin-left:2%;}
+.hot-icon span{width:38px;height:38px;border-radius:1000px;line-height:35px;display:block;text-align:center;margin-top:16px;line-height:38px;}
+.hot-job h4{font-weight:normal;margin-top:3px;font-size:16px;}
+.hot-job h4 b{color:#f00;margin-left:15px;font-size:14px;}
+.hot-job .add span{font-size:12px;color: #666;}
+.hot-job .add .demo-icon{font-size:16px;width:10px;margin-right:15px;color:#337cc0;font-weight:bold;}
+.hot-job .time .demo-icon{font-size:14px;color: #999;font-weight:lighter;}
+.hot-money .box2_1{width:50px;height:18px;background-color:#36a869;position: relative;color:#fff;line-height:18px;text-align:center;margin-top:10px;font-size:12px;float:right;}
+.hot-money .box2_1_red{background-color:#e5004f;}
+.hot-money .box2_1_orange{background-color:#eb7312;}
+.hot-money .box2_1 .arrow{width:0;height:0;border-width:9px;border-color:transparent  #36a869 transparent transparent;border-style: dashed solid dashed dashed;position: absolute;top:0px;left:-18px;}
+.hot-money .box2_1_red .arrow{border-color:transparent #e5004f transparent transparent;}
+.hot-money .box2_1_orange .arrow{border-color:transparent #eb7312 transparent transparent;}
+.hot-money span{font-size:14px;color: #666;margin-top:12px;display:block;float:right;}
+.hot-money>div{overflow:hidden;}
+.hot-money span b{color: #eb7312;font-size:16px;font-weight:bold;font-weight:bold;margin-right:5px;}

@@ -1,0 +1,770 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: NilTor
+ * Date: 2015/7/3
+ * Time: 14:26
+ */
+
+namespace Weixin\Controller;
+
+use Think\Controller;
+
+
+class MobileController extends Controller
+{
+    static $p;//分页需要属性
+    static $limit;
+
+    public function _initialize()
+    {
+        self::$p     = I('get.p', I('post.p', 1));
+        self::$limit = I('get.limit', I('post.limit', 10));
+    }
+
+    public function index()
+    {
+        $this->display('Jobs/pageJobs');
+    }
+
+    public function reg()
+    {
+        //查询省
+        $province=M('province')->select();
+        $this->assign('provinces', $province);
+        $this->display();
+    }
+
+      public function weal()
+    {   
+         //查询省
+        $province=M('province')->select();
+        $this->assign('provinces', $province);
+        $this->display();
+    }
+
+    //图形验证码--算数验证码
+     public function checkWxCode2(){
+        if ($_POST['input_res']==$_SESSION['res']) {
+            echo "1";
+        }else{
+            echo "0";
+        }
+
+     }
+
+     public function doWeal(){
+       if (IS_POST) {
+            $data['phone'] = I('phone');
+            $data['birthday'] = I('birthday');
+            $data['realname'] = I('realname');
+            $pro_id = I('province');//数据库改变
+            $province=M('province')->field("name")->where("id=$pro_id")->find();
+            $data['province']=$province['name'];
+            $c_id = I('city');
+            $city=M('city')->field("name")->where("id=$c_id")->find();
+            $data['city'] = $city['name'];
+            $data['county'] = I('county');
+            $data['address'] = I('address');
+            $data['zipcode'] = I('zipcode');
+            $data['createtime'] = date("Y-m-d H:i:s");
+            $data['state'] = 2;
+          $wealModel=D('Weal');
+          if ($wealModel->create($data)) {
+              $wealModel->add($data);
+              $this->success('提交成功');
+          }else{
+            $this->error($wealModel->getError());
+          }
+       }
+
+     }
+
+     //用thinkphp自带的验证
+     public function checkWxCode(){
+        $captcha = I('input_res');
+        $phone   = I('phone');
+
+        if ($this->limitVisit()) {
+           if (empty($phone)){
+            $this->error("没有获取手机号");
+                }else{
+                $verify = new \Think\Verify();
+                if ($verify->check($captcha)){
+                    if($this->limitPhoneNUm()){
+                        $this->getCaptcha_ok();
+                    }
+                }else{
+                   $this->error("图形验证码错误短信发送不成功"); 
+                }
+            }
+        }else{
+            $this->error("短息已在一分钟内发出，请耐心等待"); 
+        }
+     }
+     //限制同一手机号的请求次数
+     public function limitPhoneNUm(){
+        $start_time=strtotime(date('Y-m-d',time()));
+        $end_time=$start_time+864399;
+        $captcha = I('input_res');
+        $phone   = I('phone');
+        //$phone   = 18669723768;
+        $db=M('limitphone');
+        $where['phone_num']=$phone;
+        $where['addtime']=array('between',"$start_time,$end_time");
+        $re = $db->where($where)->field()->select();
+        if (!empty($re)&&count($re)>3) {
+            $this->error("已超过验证码发送设备限制"); 
+            return false;
+        }else{
+        $data['phone_num']=$phone;
+        $data['addtime']=time();
+        $db->add($data);
+        return true;
+        }
+     }
+
+     //获取区县列表
+    public function getCountyByCity() {
+        $db = M('county');
+        $where['cid'] = I('post.city');
+        $re = $db->where($where)->field("name")->select();
+        if ($re) {
+            $this->ajaxReturn($re);
+        } else {
+            $this->ajaxReturn("failed");
+        }
+    }
+
+     //限制同一ip访问
+     public function limitVisit(){
+        $ip = get_client_ip();
+        if(!isset($_COOKIE['ip']) && !isset($_COOKIE['count'])) {
+                setcookie('ip',$ip,time()+60);
+                setcookie('count',1,time()+60);
+                return true;                           
+        } elseif ($_COOKIE['count'] == 1){
+                setcookie('count',2,time()+60); 
+                return true;           
+        }elseif ($_COOKIE['ip'] == $ip && $_COOKIE['count'] > 2) {
+            return false;
+        }
+     }
+
+    //获取学校列表
+    public function getSchoolByCity()
+    {
+        $where['city'] = array ('LIKE', "%" . I('post.city') . "%");
+        $db = M('schools');
+        $re = $db->where($where)->field("school")->select();
+        if ($re) {
+            $this->ajaxReturn($re);
+        } else {
+            $this->ajaxReturn("failed");
+        }
+    }
+
+    //获取城市列表
+    public function getCityByProvince() {
+        $db = M('city');
+        $where['pid'] = I('post.province');
+        $re = $db->where($where)->field("name,id")->select();
+        if ($re) {
+            $this->ajaxReturn($re);
+        } else {
+            $this->ajaxReturn("failed");
+        }
+    }
+
+    public function agreement()
+    {
+        $this->display();
+    }
+
+    public function doReg()
+    {
+        $params = I('post.');
+
+        if(empty($params['phone'])||empty($params['password'])||empty($params['phonecaptcha'])){
+            $this->error("请填写完整信息！");
+        }
+        if ($params['type'] == 'seeker') {
+            if (empty($params['school'])) {
+                $this->error("请选择地区及学校");
+            }
+        }else{
+            unset($params['school']);
+        }
+        if ($params['password'] != $params['repassword']) {
+            $this->error("两次密码输入不一致");
+        } else {
+            unset($params['repassword']);
+        }
+        if (empty($params['agree'])) {
+            $this->error("请先同意萝卜兼职协议条款");
+        } else {
+            unset($params['agree']);
+        }
+
+        $db      = M();
+        $captcha = $params['phonecaptcha'];
+        //验证码是否正确
+        if ($captcha == session('captcha') && $params['phone'] == session('captchaPhone')) {
+            //          正确后，跳转
+            //session('captcha',null); //清空验证码
+            switch ($params['type']) {
+                case "seeker":
+                    $db = M('user_seeker');
+                    break;
+                case "company":
+                    $db = M('user_company');
+
+                    break;
+                case "school":
+                    $db = M('user_school');
+                    break;
+            }
+            //判断用户名及手机是否存在
+            $where['phone'] = $params['phone'];
+            $re             = $db->where($where)->find();
+            if ($re) {
+                $this->error("该用户名或手机号已注册");
+            } else {
+                //TODO 其他注册字段
+
+                unset($params['type']);
+                $add['createtime'] = date("Y-m-d H:i:s");
+                $add['username']       =$params['username'];
+                $add['phone']       =$params['phone'];
+                $add['password']   = md5($params['password']);
+                $add['state']      = 2;
+                if($re=$db->create()){
+                    $re=$db->add($add);
+                }
+                if ($re) {
+                    $this->success('注册成功', U('Mobile/login'));
+                } else {
+                    $this->error($db->getLastSql());
+                }
+            }
+
+        } else {
+            $this->error("手机验证码错误");
+        }
+    }
+
+    public function login()
+    {
+
+        $user = session('user');
+        if (empty($user)) {
+            $this->display();
+        } else {
+            if ($user['type'] == 'seeker') {
+                $this->redirect('Seeker/seekerCenter');
+            } else {
+                $this->redirect('Company/companyCenter');
+            }
+        }
+
+    }
+
+    public function doLogin()
+    {
+        $params = I('post.');
+        $db     = M();
+        $type   = $params['type'];
+        switch ($type) {
+            case 'seeker':
+                $db      = M('user_seeker');
+                $jumpurl = U('Seeker/seekerCenter');
+                break;
+            case 'company':
+                $db      = M('user_company');
+                $jumpurl = U('Company/companyCenter');
+
+                break;
+            case 'school':
+                $db      = M('user_school');
+                $jumpurl = U('Company/companyCenter');
+
+                break;
+            default:
+                $this->error("登录身份错误！");
+        }
+        $where['username'] = $params['username'];
+        $where['password'] = md5($params['password']);
+
+        $where1['phone']    = $params['username'];
+        $where1['password'] = md5($params['password']);
+
+        $re1 = $db->where($where)->find();
+        $re2 = $db->where($where1)->find();
+
+        if ($re1 || $re2) {
+            if ($re1) {
+                $user = $re1;
+            } else {
+                $user = $re2;
+            }
+            $user['type'] = $type;//身份类型
+            if (empty($user['headpic'])) {
+                $user['headpic'] = __ROOT__ . '/Public/default/images/headpic_default.png';
+            }
+
+            session('user', $user);
+            $this->success('登录成功', $jumpurl);
+        } else {
+            $this->error("用户名或密码错误,请重新登录");
+
+        }
+    }
+
+    public function myCenter()
+    {
+        $user = session('user');
+        if (empty($user['type'])) {
+            $this->redirect('Mobile/login');
+        }
+        if ($user['type'] == 'seeker') {
+            $this->redirect('Seeker/seekerCenter');
+        } else {
+            $this->redirect('Company/companyCenter');
+        }
+    }
+
+
+    public function download()
+    {
+        $this->display();
+    }
+
+ 
+
+    public function about()
+    {   
+        $this->display();
+    }
+
+    public function logout()
+    {
+        session('user', NULL);
+        $this->redirect('Jobs/pageJobs');
+    }
+
+    public function choseType()
+    {
+        $db       = M('job_level1');
+        $level1   = $db->select();
+        $db       = M('job_level2');
+        $level2   = $db->select();
+        $typelist = array ();
+        foreach ($level2 as $key => $value) {
+            $where['level2'] = $value["name"];
+            $db1             = M("jobs");
+            $number          = $db1->where($where)->count();
+            $value['number'] = $number;
+            $typelist[]      = $value;
+        }
+
+        $this->assign("firsttypes", $level1);
+        $this->assign("secondtypes", $typelist);
+        $this->display();
+    }
+
+    //选择地区页面
+    public function choseArea()
+    {
+        $db       = M('province');
+        $level1   = $db->select();
+        $db       = M('city');
+        $level2   = $db->select();
+        $typelist = array ();
+        foreach ($level2 as $key => $value) {
+            $where['city']   = $value["name"];
+            $where['state']  = array ('neq', 3);
+            $db1             = M("jobs");
+            $number          = $db1->where($where)->count();
+            $value['number'] = $number;
+            $typelist[]      = $value;
+        }
+
+        $this->assign("firsttypes", $level1);
+        $this->assign("secondtypes", $typelist);
+        $this->display();
+    }
+
+    //选择县及其他
+    public function choseOther()
+    {
+        $city          = session('city');
+        $where['name'] = $city;
+        $cid           = M('city')->where($where)->getField('id');
+        $data          = M('county')->where("cid=$cid")->select();
+        $this->assign('countys', $data);
+        $this->display();
+    }
+
+     public function choseDate()
+    {   
+        //$month=array();
+        $city          = session('city');
+               $startTime=date("Y-m-d");
+               $endTime=date("Y-m-d");
+
+               $endThree=date("Y-m-d");
+               $startThree= date("y-m-d",mktime(0, 0 , 0,date("m"),date("d"),date("Y"))-86400*3);
+
+               $startWeek=date("Y-m-d",mktime(0, 0 , 0,date("m"),date("d")-date("w")+1,date("Y")));
+               $endWeek =date("Y-m-d",mktime(23,59,59,date("m"),date("d")-date("w")+7,date("Y")));
+
+               $startMonth = date("Y-m-d",mktime(0, 0 , 0,date("m"),1,date("Y")));
+               $endMonth=date("Y-m-d",mktime(23,59,59,date("m"),date("t"),date("Y")));
+ 
+        $day['jobs.date'] = array ('BETWEEN',array($startTime,$endTime));
+        $day['city']=$city;
+        $three['jobs.date'] = array ('BETWEEN',array($startThree,$endThree));
+        $three['city']=$city;
+        $week['jobs.date'] = array ('BETWEEN',array($startWeek,$endWeek));
+        $week['city']=$city;
+        $month['jobs.date'] = array ('BETWEEN',array($startMonth,$endMonth));
+        $month['city']=$city;
+        $daycount =M('jobs')->where("city=$city")->where($day)->count();
+        $threecount =M('jobs')->where("city=$city")->where($three)->count();
+        $weekcount =M('jobs')->where("city=$city")->where($week)->count();
+        $monthcount =M('jobs')->where($month)->count();
+        $this->assign('daycount',$daycount);
+        $this->assign('weekcount',$weekcount);
+        $this->assign('threecount',$threecount);
+        $this->assign('monthcount',$monthcount);
+        $this->display();
+    }
+
+    //地图显示
+    public function map()
+    {
+        $address = I('get.address');
+        $this->assign('address', $address);
+        $this->display();
+    }
+
+ 
+	
+	//获取验证码 0-9 6位
+    public function getCaptcha_ok()
+    {
+        $phone  = I('phone');
+        $str    = "0123456789";
+        $result = "";
+        
+        for ($i = 0; $i < 6; $i++) {
+            $num[$i] = rand(0, 9);
+            $result .= $str[$num[$i]];
+        }
+        session("captcha", $result);
+        session("captchaPhone", $phone);
+        //　调用第三方接口完成短信的发送
+       sendCaptcha($phone, $result, '');
+        $this->success("已发送验证码");
+    }
+
+    //上传头像页面
+    public function uploadhead()
+    {
+        $user = session('user');
+        $this->assign('headpicurl', $user['headpic']);
+        $this->display();
+    }
+
+    //上传头像方法
+    public function doUploadHead()
+    {
+        $img = I('post.img');
+        // 获取图片
+        list($type, $data) = explode(',', $img);
+
+        // 判断类型
+        if (strstr($type, 'image/jpeg') !== '') {
+            $ext = '.jpg';
+        } elseif (strstr($type, 'image/gif') !== '') {
+            $ext = '.gif';
+        } elseif (strstr($type, 'image/png') !== '') {
+            $ext = '.png';
+        }
+        // 生成的文件名
+        $photo = time() . $ext;
+        // 生成文件
+        $re = file_put_contents(APP_PATH . '../Uploads/headpic/' . $photo, base64_decode($data), TRUE);
+
+        if ($re) {
+            //存入数据库中
+            $db   = M();
+            $url  = "";
+            $user = session('user');
+            switch ($user['type']) {
+                case "seeker":
+                    $db  = M('user_seeker');
+                    $url = U('Seeker/seekerCenter');
+                    break;
+                case "company":
+                    $db  = M('user_company');
+                    $url = U('Company/companyCenter');
+                    break;
+                case "school":
+                    $db  = M('user_school');
+                    $url = U('Company/companyCenter');
+
+                    break;
+            }
+            $where['id']     = $user['id'];
+            $save['headpic'] = __ROOT__ . "/Uploads/headpic/" . $photo;
+            $re              = $db->where($where)->save($save);
+            if ($re) {
+                //更新一下session中headpic
+                $user['headpic'] = $save['headpic'];
+                session('user', $user);
+                $this->success("头像保存成功！", $url);
+            } else {
+                $this->error("图片信息保存失败");
+            }
+        } else {
+            $this->error("图片上传失败");
+        }
+    }
+
+    //上传证件方法
+    public function doUploadCredential()
+    {
+        $img = I('post.img');
+        // 获取图片
+        list($type, $data) = explode(',', $img);
+
+        // 判断类型
+        if (strstr($type, 'image/jpeg') !== '') {
+            $ext = '.jpg';
+        } elseif (strstr($type, 'image/gif') !== '') {
+            $ext = '.gif';
+        } elseif (strstr($type, 'image/png') !== '') {
+            $ext = '.png';
+        }
+        // 生成的文件名
+        $photo = time() . $ext;
+        // 生成文件
+        $re = file_put_contents(APP_PATH . '../Uploads/ids/' . $photo, base64_decode($data), TRUE);
+
+        if ($re) {
+            //存入数据库中
+            $db   = M();
+            $url  = "";
+            $user = session('user');
+            switch ($user['type']) {
+                case "seeker":
+                    $db  = M('user_seeker');
+                    $url = U('Seeker/seekerCenter');
+                    break;
+                case "company":
+                    $db  = M('user_company');
+                    $url = U('Company/companyCenter');
+                    break;
+                case "school":
+                    $db  = M('user_school');
+                    $url = U('Company/companyCenter');
+
+                    break;
+            }
+            $where['id']       = $user['id'];
+            $save['idobverse'] = $photo;
+            $re                = $db->where($where)->save($save);
+            if ($re) {
+                //更新一下session中headpic
+                $user['idobverse'] = $save['idobverse'];
+                session('user', $user);
+                $this->success("证件保存成功！", $url);
+
+            } else {
+                $this->error("证件信息保存失败");
+            }
+
+        } else {
+            $this->error("证件上传失败");
+        }
+    }
+
+
+     public function uploadFile()
+    {
+        $upload           = new \Think\Upload();// 实例化上传类
+        $upload->maxSize  = 2097152;
+        $upload->exts     = array ('jpg', 'gif', 'png', 'jpeg');
+        $upload->rootPath = './Uploads/';
+        $upload->savePath = 'ids/'; // 设置附件上传（子）目录
+        // 上传文件
+        $info = $upload->upload();
+        if (!$info) {// 上传错误提示错误信息
+             $this->error($upload->getError());
+        } else {// 上传成功
+            //将字段名存储到session中
+            $imgurls = session("imgurls");
+            foreach ($info as $key => $value) {
+                $imgurls[$value['key']] = $value['savepath'] . $value['savename'];
+                break;
+            }
+
+            switch ($_SESSION['user']['type']) {
+                case 'user':
+                $db=M('user_seeker');
+                $id=$_SESSION['user']['id'];
+                $db->where("id=$id")->save($data);
+                    break;
+                case 'company':
+                $db=M('user_company');
+                $id=$_SESSION['user']['id'];
+                $db->where("id=$id")->save($imgurls);
+                    break;
+                case 'school':
+                $db=M('user_school');
+                $id=$_SESSION['user']['id'];
+                $db->where("id=$id")->save($imgurls);
+                    break;
+            }
+            session("imgurls", $imgurls);
+            $this->success("上传成功");
+        }
+    }
+
+    public function pageFindPwd()
+    {
+        $this->display();
+    }
+
+    public function pageFindPwd2()
+    {
+        $this->assign("id", I('get.id'));
+        $this->assign("type", I('get.type'));
+        $this->display();
+    }
+
+    //验证手机号及验证码
+    public function checkPhone()
+    {
+        $params = I('post.');
+        if ($params['phonecaptcha'] != session("captcha") && $params['phone'] == session('captchaPhone')) {
+            $this->error("验证码错误");
+        }
+        //判断手机号是否存在，用户类型
+        $where['phone'] = $params['phone'];
+        $type           = "";
+        $id             = "";
+        $re             = M("user_seeker")->where($where)->find();
+        if ($re) {
+            $type = "seeker";
+            $id   = $re['id'];
+        } else {
+            $re1 = M("user_company")->where($where)->find();
+            if ($re1) {
+                $type = "company";
+                $id   = $re['id'];
+
+            } else {
+                $this->error("该手机号不存在");
+            }
+        }
+        $this->success("验证成功", U("Mobile/pageFindPwd2", "id=$id&type=$type"));
+
+    }
+
+    //设置新密码
+    public function setPassword()
+    {
+        $type = I('get.type');
+        $db   = M();
+        switch ($type) {
+            case "seeker":
+                $db = M("user_seeker");
+                break;
+            case "company":
+                $db = M("user_company");
+                break;
+        }
+        $id = I('get.id');
+        if ($id != NULL && $id != "") {
+            $where['id']      = $id;
+            $save['password'] = md5(I('post.password'));
+            $re               = $db->where($where)->save($save);
+            if ($re) {
+                $this->success("修改成功，返回登录页", U("Mobile/login"));
+            } else {
+                $this->error("修改失败，请联系管理员", "reload");
+            }
+        }
+    }
+
+    //图形验证码--算数
+    public function getValidate(){
+
+      session_start();
+      $w=80;
+      $h=25;
+      $img = imagecreate($w,$h);
+      $gray = imagecolorallocate($img,255,255,255);
+      $black = imagecolorallocate($img,rand(0,200),rand(0,200),rand(0,200));
+      $red = imagecolorallocate($img, 255, 0, 0);
+      $white = imagecolorallocate($img, 255, 255, 255);
+      $green = imagecolorallocate($img, 0, 255, 0);
+      $blue = imagecolorallocate($img, 0, 0, 255);
+      imagefilledrectangle($img, 0, 0, $w, $h, $black);
+      for($i = 0;$i < 80;$i++){
+        imagesetpixel($img, rand(0,$w), rand(0,$h), $gray);
+      }
+
+      $num1 = rand(1,99);
+      $num2 = rand(1,99);
+      $res=0;
+      $code=rand(0,1);
+       switch ($code) {
+        case 0:
+          $res=$num1+$num2;
+          $symbol="+";
+          break;
+        case 1:
+          $res=$num1-$num2;
+          $symbol="-";
+          break;
+        default:
+          # code...
+          break;
+        }
+
+      imagestring($img, 5, 5, rand(1,10), $num1, $red);
+      imagestring($img,5,30,rand(1,10),$symbol, $white);
+      imagestring($img,5,45,rand(1,10),$num2, $green);
+      imagestring($img,5,65,rand(1,10),"=", $blue);
+      imagestring($img,5,80,rand(1,10),"?", $red);
+      
+      $_SESSION['res']=$res;
+    
+      header("content-type:image/png");
+      imagepng($img);
+      imagedestroy($img);
+    
+    }
+    //图形验证码--thinkphp自带
+    public function getThinkCode(){
+
+         $config =   array(
+        'useImgBg'  =>  false,           // 使用背景图片 
+        'fontSize'  =>  12,              // 验证码字体大小(px)
+        'useCurve'  =>  false,            // 是否画混淆曲线
+        'useNoise'  =>  true,            // 是否添加杂点  
+        'imageH'    =>  30,               // 验证码图片高度
+        'imageW'    =>  90,               // 验证码图片宽度
+        'length'    =>  4,               // 验证码位数
+        'fontttf'   =>  '',              // 验证码字体，不设置随机获取
+        'bg'        =>  array(243, 251, 254),  // 背景颜色
+        'reset'     =>  true,           // 验证成功后是否重置
+        );
+        // 使用tp自带的验证码类
+        $Verify = new \Think\Verify($config);
+        $Verify->entry();
+    }
+}

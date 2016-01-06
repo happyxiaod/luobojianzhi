@@ -1,0 +1,105 @@
+<!--简历管理-->
+<style>
+ .apply{
+  line-height:30px;
+  height:30px;
+  width:50px;
+  color:#ffffff;
+cursor: pointer;
+  font-size:16px;
+  font-weight:bold;
+  font-family:Arial;
+  border:0px solid #dcdcdc;
+  -webkit-border-top-left-radius:3px;
+  -moz-border-radius-topleft:3px;
+  border-top-left-radius:3px;
+  -webkit-border-top-right-radius:3px;
+  -moz-border-radius-topright:3px;
+  border-top-right-radius:3px;
+  -webkit-border-bottom-left-radius:3px;
+  -moz-border-radius-bottomleft:3px;
+  border-bottom-left-radius:3px;
+  -webkit-border-bottom-right-radius:3px;
+  -moz-border-radius-bottomright:3px;
+  border-bottom-right-radius:3px;
+  -moz-box-shadow: inset 0px 0px 0px 0px #ffffff;
+  -webkit-box-shadow: inset 0px 0px 0px 0px #ffffff;
+  box-shadow: inset 0px 0px 0px 0px #ffffff;
+  text-align:center;
+  display:inline-block;
+  text-decoration:none;
+}
+.applyYes:hover{
+  background-color:#1c9439;
+}
+.applyYes{
+  background-color:#3ba354;
+}
+
+.applyNo:hover{
+  background-color:#fb2b16;
+}
+.applyNo{
+  background-color:#fd1901;
+}
+</style>
+<div id="person">
+        <!-- 个人中心start -->
+        <div class="per_t">
+            <include file="blocks/per_t"/>
+        </div> 
+        <div class="per_b clearfix">
+            <include file="blocks/mainnav"/>
+            
+            <div class="per_r_dal">
+                <h4 class="normal">
+                    <a href="#" class="cur">所有简历</a>
+                    <a href="?state=2">待处理</a>
+                    <a href="?state=1">已通过</a>
+                    <a href="?state=0">已拒绝</a>
+                </h4>
+                <div>
+                    <div class="per_work per_work_cur">
+                        <table class="manage">
+                            <tr>
+                                <th width="150">职位名称</th>
+                                <th width="120">申请人</th>
+                                <th width="220">学校</th>
+                                <th width="120">申请时间</th>
+                                <th width="120">个人简历</th>
+                                <th>操作</th>
+                            </tr>
+                        <volist name="applylist" id="vo">
+                            <tr>
+                                <td>{$vo.title}</td>
+                                <td>{$vo.realname}</td>
+                                <td>{$vo.school}</td>
+                                <td>{$vo.createtime}</td>
+                                <td><a href="__MODULE__/User/viewResume?id={$vo.uid}" style="background:url();padding:5px;color: #fff;background-color: #ed7612;">查看简历</a>
+                                <input type="hidden" value="{$vo.id}" name="id"/>
+                                <input type="hidden" value="{$vo.applyid}" name="applyid"/>
+                                <input type="hidden" value="{$vo.phone}" name="phone"/>
+                                <input type="hidden" value="{$vo.realname}" name="realname"/>
+                                </td>
+                            <if condition="$vo.state eq 2">
+                            <td>
+                                <span class="apply applyYes"  style="margin-right: 10px;">确认</span>
+                                <span class="apply applyNo"  style="margin-right: 10px; ">拒绝</span>
+                            </td>
+                                <elseif condition="$vo.state eq 1"/>
+                            <td><span style="color: green">已确认</span></td>
+                                <elseif condition="$vo.state eq 0"/>
+                            <td><span style="color: red">已拒绝</span></td>
+                                </if>
+                            </tr>
+                        </volist>
+                        </table>
+                        <!--分页-->
+                            <include file="blocks/pagedivide"/> 
+                    </div>
+                </div>                  
+            </div>
+
+        </div>
+        <!-- 个人中心end -->
+    </div>

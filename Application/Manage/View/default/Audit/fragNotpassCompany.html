@@ -1,0 +1,28 @@
+<table class="table text-center mtop1">
+	<thead>
+	<tr>
+		<th class="text-center">企业名称</th>
+		<th class="text-center">手机号</th>
+		<th class="text-center">提交时间</th>
+		<th class="text-center">审核</th>
+		<th class="text-center">查看</th>
+	</tr>
+	</thead>
+	<tbody>
+	<volist name="userCompanyList" id="vo">
+		<tr>
+			<td>{$vo.username}</td>
+			<td>{$vo.phone}</td>
+			<td>{$vo.createtime}</td>
+			<td>
+				<input type="hidden" value="{$vo.id}" name="id"/>
+				<button class="btn btn-success btn-sm" gt-btn-click="audit-company-pass">通过</button>
+			</td>
+			<td>
+				<a href="__CONTROLLER__/pageCompanyInfo?id={$vo.id}" target="_blank" class="btn btn-primary btn-sm">查看详情</a>
+			</td>
+		</tr>
+	</volist>
+	</tbody>
+</table>
+<include file="blocks/pagedivideload"/>

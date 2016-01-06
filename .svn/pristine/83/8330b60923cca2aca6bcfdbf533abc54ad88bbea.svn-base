@@ -1,0 +1,20 @@
+<table class="table text-center mtop1 table-hover table-bordered">
+	<thead>
+		<tr>
+			<th class="text-center">校园机构名称</th>
+			<th class="text-center">所在地区</th>
+			<th class="text-center">手机</th>
+		</tr>
+	</thead>
+	<tbody>
+		<volist name="list" id="vo">
+			<tr gt-block-click="frag-school-recruit">
+				<input type="hidden" value="{$vo.id}" name="id"/>
+				<td name="name">{$vo.schoolname}</td>
+				<td>{$vo.area}</td>
+				<td>{$vo.phone}</td>
+			</tr>
+		</volist>
+	</tbody>
+</table>
+<include file="blocks/pagedivideload"/>

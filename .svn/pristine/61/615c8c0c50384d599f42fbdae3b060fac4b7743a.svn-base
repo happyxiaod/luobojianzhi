@@ -1,0 +1,58 @@
+
+<if condition="$Think.session.user.adminname eq 'luobo'">
+<div class="row" style="background: #c3e7ff;">
+    <div class="row" style="margin-top:36px;margin-bottom:16px;padding-left:30px;padding-right:30px">
+        <!--头部-->
+        <div class="col-md-10" style="font-family: 'Microsoft YaHei'">
+            <span style="color:#335fb7;font-size:20px">萝卜兼职后台管理系统</span>
+            <img src="__PUBLIC__/default/images/admin_user.png" width="16px"
+                 style="margin-left:30px;">
+            <span style="font-size: 15px;">欢迎您！{$Think.session.user.adminname}</span>
+            <img src="__PUBLIC__/default/images/admin_time.png" width="17px"
+                 style="margin-left:30px">
+            <span style="font-size: 15px;">{$Think.session.datetime}</span>
+
+
+        </div>
+        <div class="col-md-2 text-right">
+            <a href="__ROOT__/index.php/User/User/doLogout">
+                <img src="__PUBLIC__/default/images/admin_logout.png" width="22px">
+            </a>
+        </div>
+    </div>
+
+    <!--导航-->
+    <div class="row" id="daohang">
+        <ul id="nav">
+            <li>
+                <a href="__MODULE__/Index/index"><span class="glyphicon glyphicon-home"></span>
+                    首页</a>
+            </li>
+            <li><a href="__MODULE__/Member/pageSeeker">
+                <span class="glyphicon glyphicon-user"></span>
+                会员管理</a></li>
+
+            <li><a href="__MODULE__/Audit/pageSeeker">
+                <span class="glyphicon glyphicon-list"></span>
+                资料审核</a></li>
+
+            <li><a href="__MODULE__/Position/pageSeeker">
+                <span class="glyphicon glyphicon-list-alt"></span>
+
+                职位信息</a></li>
+            <li><a href="__MODULE__/Setting/pageScroll">
+                <span class="glyphicon glyphicon-cog"></span>
+
+                网站设置</a></li>
+            <li><a href="__MODULE__/Feedback/pageFeedback">
+                <span class="glyphicon glyphicon-comment"></span>
+
+                意见反馈</a></li>
+            <li><a href="__MODULE__/Weixin/weal">
+                <span class="glyphicon glyphicon-comment"></span>
+
+                微信活动</a></li>
+        </ul>
+    </div>
+</div>
+</if>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>萝卜兼职，最靠谱的大学生兼职平台</title>
+	<include file="blocks/import"/>
+<style type="text/css">
+	h3 {
+    font-size: 18px;
+    color: #333;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-weight: normal;
+}
+#buttons { position: absolute; height: 10px; width: 100px; z-index: 5; bottom: 10px; left: 45%;}
+#buttons span { cursor: pointer; float: left; width: 10px; height: 10px; border-radius: 50%; background: #333; margin-right: 5px;}
+#buttons .on {  background: orangered;}
+.arrow { cursor: pointer;  display: none;line-height: 39px; text-align: center; font-size: 20px; font-weight: bold; width: 40px; height: 40px;  position: absolute; z-index: 2; background-color: RGBA(0,0,0,.1); color: #fff;}
+.arrow:hover { background-color: RGBA(0,0,0,.4);}
+#scrollBox:hover .arrow { display: block;}
+#prev { left: 20px; top: 100px;}
+#next { right: 20px;top: 100px;}
+.login-index-after{
+    margin-top: 30px;
+
+}
+.login-index-after img{
+    margin:0 auto;
+    padding-bottom: 15px;
+}	
+.login a {
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    margin:0 auto;
+    text-align: center;
+    background-color: #009e96;
+    display: block;
+    font-size: 16px;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+
+}	
+</style>
+</head>
+<body>
+	<!-- 头部内容 -->
+		<include file="blocks/header"/>
+	<!-- 主体内容 -->
+		<include file="Index/contIndex"/>
+	<!-- 底部内容 -->
+		<include file="blocks/footer"/>
+</body>
+</html>
+<script>
+	var i = 1;
+	var scrolllist;
+	jQuery(document).ready(function() {
+//        isMobile();
+		bindClick();
+		doScroll();
+
+		//判断有没有职位
+		val = $("#infoList").html();
+		val = $.trim(val);
+		if(val == "" || val == null) {
+			$("#infoList").html("<div style='text-align: center;'>该地区暂时没有职位信息</div>");
+		}
+	});
+
+	//定时调用切换轮播图方法
+	function doScroll() {
+		jQuery.ajax({
+			url: CON_PATH + "/scrolllist",
+			success: function (data, textStatus, xhr) {
+				scrolllist = data;
+				//如果有一张以上的图片则掉用切换轮播图方法
+				if(scrolllist.length > 1) {
+					setInterval(scroll, 8000);
+				}
+			}
+		});
+	}
+	//切换轮播图方法
+	function scroll() {
+        var sc = $("#scroll");
+        if(i >= scrolllist.length) {
+            i = 0;
+        }
+        sc.fadeOut("slow",function(){
+            sc.attr("src", "__ROOT__/Uploads/"+scrolllist[i]['value']);
+			sc.parent().attr("href", scrolllist[i]['else']);
+            sc.fadeIn("slow",function(){
+                i++;
+            });
+        });
+	}
+
+	function scrollNext() {
+        var sc = $("#scroll");
+        if(i >= 4) {
+            i = 0;
+        }
+        sc.fadeOut("slow",function(){
+            sc.attr("src", "__ROOT__/Uploads/"+scrolllist[i]['value']);
+			sc.parent().attr("href", scrolllist[i]['else']);
+             sc.fadeIn("slow",function(){
+                i++;
+            });
+
+        });
+	}
+
+	function scrollPrev() {
+        var sc = $("#scroll");
+        if(i < 0) {
+            i = 3
+        }
+        sc.fadeOut("slow",function(){
+            sc.attr("src", "__ROOT__/Uploads/"+scrolllist[i]['value']);
+			sc.parent().attr("href", scrolllist[i]['else']);
+             sc.fadeIn("slow",function(){
+                i--;
+            });
+
+        });
+	}
+	$('#prev').on('click',function(){
+		scrollPrev();
+	})
+
+	$('#next').on('click',function(){
+		scrollNext();
+	})
+
+    //判断是否使用手机访问
+    function isMobile() {
+        var sUserAgent = navigator.userAgent.toLowerCase();
+        var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+        var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+        var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+        var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+        var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+        var bIsAndroid = sUserAgent.match(/android/i) == "android";
+        var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+        var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+        if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+            location.href=APP_PATH+"/Weixin/Jobs/pageJobs"
+        }else{
+
+        }
+    }
+   $(document).ready(function() {
+        //在账号密码输入框按回车，就触发登陆按钮的click事件
+        $("#usernameInput, #passwordInput").keydown(function(e) {
+            if(e.keyCode==13){
+                $("#loginBtn").click();
+            }
+        });
+    });
+
+</script>

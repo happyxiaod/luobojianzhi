@@ -1,0 +1,301 @@
+<!--求职者完善注册-->
+<div class="container">
+    <div class="ablock row">
+        <!--注册提示-->
+        <div class="row" style="width:90%;margin: 0 auto">
+            <div class="reg-title text-center">
+                完善个人信息
+            </div>
+        </div>
+        <!--注册显示内容-->
+        <div class="row reg-content" gt-model="detailReg">
+            <input type="hidden" gt-isparam="userType" value="user"/>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin-bottom:22px">
+                        <div class="col-md-3 text-right hidden-xs">
+                            <span class="label-text">
+                                姓名
+                            </span>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="hidden" gt-islabel="姓名"/>
+                            <input class="edit-text" type="text" gt-isparam="realname" placeholder="姓名"/>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <!--nothing-->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin-bottom:22px">
+                        <div class="col-md-3 text-right hidden-xs">
+                            <span class="label-text">
+                                性别
+                            </span>
+                        </div>
+                        <div class="col-md-9" style="height: 40px; line-height: 40px;">
+                            <input type="hidden" gt-islabel="性别"/>
+                            &nbsp;&nbsp;<input type="radio" name="sex" gt-isparam="sex" value="男">&nbsp;男&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="sex" gt-isparam="sex" value="女">&nbsp;女
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <!--nothing-->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin-bottom:22px">
+                        <div class="col-md-3 text-right hidden-xs">
+                            <span class="label-text">
+                                学历
+                            </span>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="input-group spinner">
+                                <span class="spinner-content" gt-isparam="education">选择学历</span>
+                                    <span class="input-group-addon glyphicon glyphicon-triangle-bottom"
+                                          data-toggle="dropdown">
+                                    </span>
+                                <ul class="dropdown-menu">
+                                    <li class="spinner-option">
+                                        <span>研究生</span>
+                                    </li>
+                                    <li class="spinner-option">
+                                        <span>本科</span>
+                                    </li>
+                                    <li class="spinner-option">
+                                        <span>专科</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!--nothing-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin-bottom:22px">
+                        <div class="col-md-3 text-right hidden-xs">
+                            <span class="label-text">
+                                入学年份
+                            </span>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="input-group spinner">
+                                <span class="spinner-content" gt-isparam="schoolyear">选择年份</span>
+                                    <span class="input-group-addon glyphicon glyphicon-triangle-bottom"
+                                          data-toggle="dropdown">
+                                    </span>
+                                <ul class="dropdown-menu">
+                                    <li class="spinner-option">
+                                        <span>2007</span>
+                                    </li>
+                                    <li class="spinner-option">
+                                        <span>2008</span>
+                                    </li>
+                                    <li class="spinner-option">
+                                        <span>2009</span>
+                                    </li>
+                                    <li class="spinner-option">
+                                        <span>2010</span>
+                                    </li>
+                                    <li class="spinner-option">
+                                        <span>2011</span>
+                                    </li>
+                                    <li class="spinner-option">
+                                        <span>2012</span>
+                                    </li>
+                                    <li class="spinner-option">
+                                        <span>2013</span>
+                                    </li>
+                                    <li class="spinner-option">
+                                        <span>2014</span>
+                                    </li>
+                                    <li class="spinner-option">
+                                        <span>2015</span>
+                                    </li>
+                                    <li class="spinner-option">
+                                        <span>其他</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!--nothing-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin-bottom:22px">
+                        <div class="col-md-3 text-right hidden-xs">
+                            <span class="label-text">
+                                所在地
+                            </span>
+                        </div>
+                        <div class="col-md-9">
+                            <!--省-->
+                            <div class="input-group spinner">
+                                <span type="text" class="spinner-content" gt-isparam="province">选择省份</span>
+                                    <span class="input-group-addon glyphicon glyphicon-triangle-bottom"
+                                          data-toggle="dropdown">
+                                    </span>
+                                <ul class="dropdown-menu">
+                                    <volist name="provinceList" id="vo">
+                                        <li class="spinner-option select-province">
+                                            <span loadid="{$vo.id}">{$vo.name}</span>
+                                        </li>
+                                    </volist>
+                                </ul>
+                            </div>
+                            <!--市-->
+                            <div class="input-group spinner">
+                                <span type="text" class="spinner-content" gt-isparam="city">选择城市</span>
+                                    <span class="input-group-addon glyphicon glyphicon-triangle-bottom"
+                                          data-toggle="dropdown">
+                                    </span>
+                                <ul class="dropdown-menu" id="cityList">
+                                </ul>
+                            </div>
+                            <!--学校-->
+                            <div class="input-group spinner">
+                                <span type="text" class="spinner-content" gt-isparam="school">选择学校</span>
+                                    <span class="input-group-addon glyphicon glyphicon-triangle-bottom"
+                                          data-toggle="dropdown">
+                                    </span>
+                                <ul class="dropdown-menu" id="schoollist">
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!--nothing-->
+                </div>
+            </div>
+            <!--            <div class="row">
+                            <div class="col-md-8">
+                                <div class="row" style="margin-bottom:22px">
+                                    <div class="col-md-3 text-right">
+                                        <span class="label-text">
+                                            所在学校
+                                        </span>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input type="hidden" gt-islabel="所在学校"/>
+                                        <input class="edit-text" type="text" gt-isparam="school"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                &lt;!&ndash;nothing&ndash;&gt;
+                            </div>
+                        </div>-->
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin-bottom:22px">
+                        <div class="col-md-3 text-right hidden-xs">
+                            <span class="label-text">
+                                个人邮箱
+                            </span>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="hidden" gt-islabel="个人邮箱"/>
+                            <input class="edit-text" type="text" gt-isparam="email" gt-check="email" placeholder="邮箱"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!--nothing-->
+                </div>
+            </div>
+            <!--            <div class="row">
+                            <div class="col-md-8">
+                                <div class="row" style="margin-bottom:22px">
+                                    <div class="col-md-3 text-right">
+                                        <span class="label-text">
+                                            证件上传
+                                        </span>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="thumbnail">
+                                                    <img class="reg-id-img" src=""/>
+                                                    <input type="hidden" gt-islabel="证件正面照"/>
+                                                    <input type="file" gt-isparam="idobverse" style="width:100%"/>
+                                                    <div class="caption text-center">
+                                                        身份证或学生证正面照片
+                                                        <span style="color:#b14d49"><2M</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="thumbnail">
+                                                    <img class="reg-id-img"/>
+                                                    <input type="hidden" gt-islabel="证件背面照"/>
+                                                    <input type="file" gt-isparam="idreverse" style="width:100%"/>
+                                                    <div class="caption text-center">
+                                                        身份证或学生证反面照片
+                                                        <span style="color:#b14d49"><2M</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                &lt;!&ndash;nothing&ndash;&gt;
+                            </div>
+                        </div>-->
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin-bottom:22px">
+                        <div class="col-md-3">
+                            <!--nothing-->
+                        </div>
+                        <div class="col-md-9">
+                            <input type="checkbox" gt-isparam="agree" value="no"/>
+                            <span class="reg-agree">
+                                我已阅读并同意
+                                <a href="javascript:protocol();">《萝卜兼职协议条款》</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!--nothing-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin:40px auto">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9 text-center">
+                            <button class="btn btn-active" gt-btn-click="detailReg">
+                                立即确认
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!--nothing-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

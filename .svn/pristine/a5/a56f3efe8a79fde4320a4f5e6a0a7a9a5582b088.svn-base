@@ -1,0 +1,11 @@
+<!--更改安全保护-->
+<div class = "container">
+    <div class="ablock row" style="padding-top:45px; padding-bottom:100px">
+        <div class="col-md-2">
+            <include file="blocks/mainnav"/>
+        </div>
+        <div class="col-md-10" id="safety-frag" style="padding-right:45px; padding-left:45px;">
+            <include file="User/fragSafetyPhone"/>
+        </div>
+    </div>
+</div>

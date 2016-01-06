@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>完善个人信息</title>
+    <include file="blocks/import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <!-- 头部内容 -->
+    <div class="header row visible-md-block visible-lg-block">
+
+        <include file="blocks/header"/>
+    </div>
+    <!-- 主体内容 -->
+    <div class="middle row">
+        <include file="Index/contDetailUser"/>
+    </div>
+    <!-- 底部内容 -->
+    <div class="footer row visible-md-block visible-lg-block">
+
+        <include file="blocks/footer"/>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    jQuery(document).ready(function ($) {
+        bindClick();
+        bindCheck();
+        bindSpinner();
+        //是否选择同意条款
+        $("input[gt-isparam='agree']").on('click', '', function (event) {
+            if ($(this).is(":checked")) {
+                $(this).val("yes");
+            } else {
+                $(this).val("no");
+            }
+        });
+
+        //获取城市列表
+        $(".select-province").on('click', '', function (event) {
+            event.preventDefault();
+
+            var province = $(this).find("span").attr("loadid");
+
+            province = $.trim(province);
+
+            $.post(CON_PATH + "/getCityByProvince", {province: province}, function (data) {
+                if (data != "failed") {
+                    var str = "";
+                    $.each(data, function (key, value) {
+                        str += "<li class='spinner-option select-city'><span>" + value['name'];
+                        str += "</span></li>";
+                    });
+                    $("#cityList").html(str);
+                } else {
+                    $("#cityList").html("");
+                    dealReturn("获取城市列表失败");
+                }
+            });
+        });
+
+        //获取学校列表
+        $("body").on('click', '.select-city', function (event) {
+            event.preventDefault();
+
+            var city = $(this).find("span").html();
+
+            city = $.trim(city);
+            city = city.replace("市", "");
+            
+            $.post(CON_PATH + "/getSchoolByCity", {city: city}, function (data) {
+                console.log(data);
+                if (data != "failed") {
+                    var str = "";
+                    $.each(data, function (key, value) {
+                        str += "<li class='spinner-option'><span>" + value['school'];
+                        str += "</span></li>";
+                    });
+                    $("#schoollist").html(str);
+                } else {
+                    $("#schoollist").html("");
+                    dealReturn("获取学校列表失败");
+                }
+            });
+        });
+
+        //选择城市分类事件
+        $(".selectcity").on('click', '', function (event) {
+
+//            TODO 此处使用js生成，后期该数据从后台读取
+            var city = $(this).find("span").html();
+            var cityWH = new Array("高区","经区","环翠","荣成","乳山","其他");
+            var cityYT = new Array("芝罘","莱山","龙口","其他");
+            var cityQD = new Array("市南","黄岛","崂山","城阳","四方","其他");
+
+            city = $.trim(city);
+            switch (city){
+                case "威海":
+                    var str = "";
+                    for (var i=0;i<cityWH.length;i++) {
+                        str+="<li class='spinner-option'>"+"<span>"+cityWH[i]+"</span>";
+                    }
+                    $("#districtlist").html(str);
+                    break;
+                case "烟台":
+                    var str = "";
+                    for (var i=0;i<cityYT.length;i++) {
+                        str+="<li class='spinner-option'>"+"<span>"+cityYT[i]+"</span>";
+                    }
+                    $("#districtlist").html(str);
+                    break;
+                case "青岛":
+                    var str = "";
+                    for (var i=0;i<cityQD.length;i++) {
+                        str+="<li class='spinner-option'>"+"<span>"+cityQD[i]+"</span>";
+                    }
+                    $("#districtlist").html(str);
+                    break;
+            }
+        });
+
+        $("input[type='file']").on("change", function () {
+            var files = !!this.files ? this.files : [];
+            if (!files.length || !window.FileReader) return;
+            var name = $(this).attr("gt-isparam");
+            // 判断是否为图片类型
+            if (/^image/.test(files[0].type)) {
+                var img = $(this).siblings(".reg-id-img");
+                var reader = new FileReader();
+                reader.readAsDataURL(files[0]);
+                reader.onloadend = function () {
+                    img.attr("src", this.result);
+                }
+                //ajax提交图片
+                postfile(APP_PATH + '/User/User/uploadFile', files[0], name);
+            } else {
+                alert("请选择图片进行上传");
+            }
+        });
+    });
+
+</script>

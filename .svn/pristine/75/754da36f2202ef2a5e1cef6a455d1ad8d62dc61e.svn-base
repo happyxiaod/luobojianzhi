@@ -1,0 +1,25 @@
+<div class="row ">
+	<!-- 左边主要导航 -->
+	<include file="blocks/mainnav"/>
+	<!-- 内容 -->
+	<div class="content col-md-10">
+		<!-- 导航菜单内容显示 -->
+		<div class="row" style="background:#f4f4f4;height:36px;line-height:36px;border-bottom:1px solid #ddd">
+
+		<!-- TODO 换成当前的导航菜单内容-->
+			<span class="mleft2">
+				点击表格查看详情
+			</span>
+		</div>
+		<!-- 右边具体内容 -->
+		<div class="row middle row-content fragbox">
+			<div class="col-md-2">
+				<button gt-btn-click="frag-seeker-deliver-list" class="btn btn-orange form-control mtop2 load-right-data">投递记录</button>
+				<button gt-btn-click="frag-seeker-succeed-list" class="btn btn-gray form-control mtop1 load-right-data">成功记录</button>
+			</div>
+			<div class="col-md-8 load-table-page">
+
+			</div>
+		</div>
+	</div>
+</div>

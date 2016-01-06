@@ -1,0 +1,76 @@
+  <include file="blocks/header_login"/>
+ <div class="middle">
+            <div class="find_pwd">
+                <div class="ablock2">
+                    <div class="row" style="width:84%;margin: 0 auto">
+                        <div class="reg-title text-center">
+                            免费注册
+                        </div>
+                    </div>
+                        <div class="reg-content" gt-model="userReg">
+                             <div class="reg-type input-chose">
+                                <input type="radio" value="seeker" name="type"  gt-isparam="type">
+                                <span>求职者</span>
+                                <input type="radio" value="company" name="type" gt-isparam="type" >
+                                <span>企业或机构</span>
+                                <input type="radio" value="school" name="type" gt-isparam="type" checked="checked">
+                                <span>学校机构</span>
+                            </div>
+
+                            <div class="reg-other">
+                                <span class="label-text">
+                                    手机号
+                                </span>
+                                <div class="right">
+                                    <input type="hidden" gt-islabel="手机号"/>
+                                    <input class="edit-text" gt-isparam="phone" gt-check="phone" placeholder="手机号">
+                                </div>
+                            </div> 
+                            <label  id="phoneWrong"></label>
+                            <div class="reg-other">
+                                <span class="label-text">
+                                    图形验证
+                                </span>
+                                <div class="right">
+                                     <input class="edit-text" id="input_res" type="text" name="res"  placeholder="请输入计算结果"/>
+                                </div>
+                                 <img src="__CONTROLLER__/getValidate"  border="1" onclick= this.src="__CONTROLLER__/getValidate/"+Math.random() style="cursor: pointer;" title="看不清？点击更换另一个验证码。">
+                            </div>
+                            <div class="reg-other">
+                                <span class="label-text">
+                                    验证码
+                                </span>
+                                <div class="right">
+                                    <input type="hidden" gt-islabel="验证码"/>
+                                    <input class="edit-text" type="text" gt-isparam="phonecaptcha" placeholder="验证码"/>
+                                </div>
+                                 <button class="btn-captcha" gt-btn-click="getphonecaptcha">获取手机验证码</button>
+                            </div>
+                            <div class="reg-other">
+                                <span class="label-text">
+                                    密码
+                                </span>
+                                <div class="right">
+                                    <input type="hidden" gt-islabel="密码"/>
+                                    <input class="edit-text" type="password" gt-isparam="password" placeholder="密码"/>
+                                </div>
+                            </div>
+                            <div class="reg-other">
+                                <span class="label-text">
+                                    确认密码
+                                </span>
+                                <div class="right">
+                                    <input type="hidden" gt-islabel="确认密码"/>
+                                    <input class="edit-text" type="password" gt-isparam="repassword" placeholder="确认密码"/>
+                                </div>
+                            </div>
+                            <label  id="passwordWrong"></label>
+                            <div class="reg-other">
+                                <input type="checkbox" gt-isparam="agree" value="no"/>我已阅读<a href="" class="font-blue">《萝卜兼职协议条款》</a>
+                            </div>
+                            <button class="btn btn_reg" gt-btn-click="userReg" >立即注册</button>
+                        </div>
+                </div>
+        </div>
+</div>
+                        <!-- 企业机构end -->                   

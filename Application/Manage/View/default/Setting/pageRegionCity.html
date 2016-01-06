@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>地区管理</title>
+    <include file="blocks/import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <!-- 头部内容 -->
+    <div class="header">
+        <include file="blocks/header"/>
+    </div>
+    <!-- 主体内容 -->
+    <div class="middle row">
+        <include file="Setting/contRegionCity"/>
+    </div>
+    <!-- 底部内容 -->
+    <div class="footer">
+        <include file="blocks/footer"/>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    jQuery(document).ready(function($) {
+        bindClick();
+        $("#navSettingRegion").addClass("nav-two-active"); //更改导航样式
+
+        //设置为常用城市按钮绑定
+        $(".setOftenCity").on('click', '', function (event) {
+            event.preventDefault();
+            setOftenCity($(this));
+        });
+
+        //取消常用城市按钮绑定
+        $(".cancelOftenCity").on('click', '', function (event) {
+            event.preventDefault();
+            cancelOftenCity($(this));
+        });
+
+        //删除点击事件
+        $(".delCity").on('click', '', function (event) {
+            event.preventDefault();
+            delCity($(this));
+        });
+    });
+
+    //设置为常用城市
+    function setOftenCity(btn) {
+        id = btn.siblings("input[name='id']").val();
+        jQuery.ajax({
+            url: CON_PATH + "/setOftenCity",
+            type: 'POST',
+            data: {'id': id},
+            complete: function (xhr, textStatus) {
+                //called when complete
+            },
+            success: function (data, textStatus, xhr) {
+                alert(data);
+                location.reload(true);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                
+            }
+        });
+    }
+
+    //取消常用城市
+    function cancelOftenCity(btn) {
+        id = btn.siblings("input[name='id']").val();
+        jQuery.ajax({
+            url: CON_PATH + "/cancelOftenCity",
+            type: 'POST',
+            data: {'id': id},
+            complete: function (xhr, textStatus) {
+                //called when complete
+            },
+            success: function (data, textStatus, xhr) {
+                alert(data);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+
+            }
+        });
+    }
+
+    //删除市
+    function delCity(btn) {
+        id = btn.siblings("input[name='id']").val();
+        jQuery.ajax({
+            url: CON_PATH + '/delCity',
+            type: 'POST',
+            dataType: '',
+            data: {'id': id},
+            complete: function (xhr, textStatus) {
+                //called when complete
+            },
+            success: function (data, textStatus, xhr) {
+                alert(data);
+                location.reload();
+            },
+            error: function (xhr, textStatus, errorThrown) {
+
+            }
+        });
+    }
+</script>

@@ -1,0 +1,69 @@
+<div class="row ">
+    <!-- 左边主要导航 -->
+    <include file="blocks/mainnav"/>
+    <!-- 内容 -->
+    <div class="content col-md-10">
+        <!-- 导航菜单内容显示 -->
+        <div class="row" style="background:#f4f4f4;height:36px;line-height:36px;border-bottom:1px solid #ddd">
+
+        <!-- TODO 换成当前的导航菜单内容-->
+			<span class="mleft2">
+				查看微信福利用户信息
+			</span>
+        </div>
+        <!-- 右边具体内容 -->
+        <div class="row fragbox">
+            <div class="seeker-info-box">
+                
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-2 text-right seeker-info-left">
+                        真实姓名：
+                    </div>
+                    <div class="col-md-10">
+                        {$info.realname}
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-2 text-right seeker-info-left">
+                        生日：
+                    </div>
+                    <div class="col-md-10">
+                        {$info.birthday}
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-2 text-right seeker-info-left">
+                        手机号：
+                    </div>
+                    <div class="col-md-10">
+                        {$info.phone}
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-2 text-right seeker-info-left">
+                        所在地：
+                    </div>
+                    <div class="col-md-10">
+                        {$info.address}
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-2 text-right seeker-info-left">
+                        邮箱：
+                    </div>
+                    <div class="col-md-10">
+                        {$info.email}
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-2 text-right seeker-info-left">
+                        提交时间：
+                    </div>
+                    <div class="col-md-10">
+                        {$info.createtime}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

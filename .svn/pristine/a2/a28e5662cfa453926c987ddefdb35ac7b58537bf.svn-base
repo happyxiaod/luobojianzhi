@@ -1,0 +1,207 @@
+.mtop1 {
+    margin-top: 12px;
+}
+
+/*注册 */
+.reg-type {
+    padding: 5px 10px;
+    margin-top: 5px;
+}
+
+.btn-reg {
+    height: 36px;
+    line-height: 36px;
+    background: #e2e2e2;
+    color: #888;
+    border-radius: 3px;
+    width: 48%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-reg:hover {
+    background: #ff9a22;
+}
+
+.reg-form {
+    padding: 5px 10px;
+
+}
+
+.reg-input-group {
+    border: 2px solid #e2e2e2;
+    border-radius: 3px;
+    height: auto;
+
+}
+
+.reg-input {
+    margin: 0;
+    height: 48px;
+    padding: 3px 10px;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #e2e2e2;
+
+}
+
+.btn-normal {
+    text-align: center;
+    width: 100%;
+    height: 48px;
+    line-height: 48px;
+    font-size: 18px;
+    background: #ff9a22;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn-normal:hover {
+    background: #e07a00;
+}
+
+/*绑定*/
+.wx-input {
+    margin: 3px 0;
+    height: 48px;
+    padding: 3px 10px;
+    width: 100%;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+}
+
+/*登录*/
+.actionbar-back {
+    height: 40px;
+    color: orange;
+    box-shadow: 0 0 1px 1px #ddd;
+    background: white;
+    line-height: 40px;
+}
+
+.actionbar-back a {
+    font-size: 16px;
+    text-decoration: none;
+    color: orange;
+}
+
+.actionbar-title {
+    font-size: 20px;
+}
+
+.headpic-lg {
+    border: 1px solid orange;
+    border-radius: 100px;
+    height: 120px;
+    max-width: 120px;
+}
+
+.headpic-alp {
+    margin: 0 auto;
+    background: rgba(228, 228, 228, 90);
+    border-radius: 100px;
+    padding: 5px;
+    height: 130px;
+    width: 130px;
+}
+
+.login-row {
+    margin: 0 8px;
+    height: 48px;
+    border: 1px solid #e4e4e4;
+    background: white;
+    border-radius: 5px;
+    line-height: 40px;
+
+}
+
+.login-type {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.login-ico {
+    color: #aaa;
+    font-size: 20px;
+    line-height: 40px;
+}
+
+.login-input {
+    width: 100%;
+    height: 46px;
+    padding: 0 4px;
+    font-size: 16px;
+
+}
+
+/*footer*/
+.footer {
+    background: #e7e6e5;
+    border-top: 1px solid #cbcbcb;
+    border-bottom: 1px solid #cbcbcb;
+    padding: 10px 0;
+}
+
+.footer-nav a {
+    color: #e68f3d;
+    margin: 0 3px;
+}
+
+/*pageJobs*/
+.jobs-state {
+    color: white;
+    padding-right: 5px;
+    font-size: 12px;
+}
+.scroll-img{
+    width:100%;
+    height:100px;
+}
+
+/*uploadhead*/
+.head-upload {
+    width: 80px;
+    height: 80px;
+    border-radius: 50px;
+}
+
+
+
+.head-resume {
+    width: 40px;
+    height: 40px;
+    border-radius: 30px;
+}
+
+.footer-btn {
+    padding: 3px 6px;
+    border: 1px solid #e68f3d;
+    background: white;
+    color: #e68f3d;
+    font-weight: bold;
+}
+
+.credentail-upload{
+    width:100%;
+    min-height:120px;
+    border:1px solid #bbb;
+    border-radius: 3px;
+
+}
+
+.code
+    {
+            background:url(code_bg.jpg);
+            font-family:"微软雅黑";
+             color:#fe971e;
+             font-size:20px;
+             border:1px;
+             letter-spacing:3px;
+             font-weight:bolder;                        
+             cursor:pointer;
+             width:150px;
+             height:60px;
+             line-height:60px;     
+
+    }

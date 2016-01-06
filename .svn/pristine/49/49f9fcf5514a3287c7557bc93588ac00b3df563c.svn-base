@@ -1,0 +1,87 @@
+<!--回复消息-->
+<div class = "container">
+    <div class="ablock row" style="padding-top:45px;">
+        <div class="col-md-2">
+            <include file="blocks/mainnav"/>
+        </div>
+        <div class="col-md-10">
+            <div class="list-box" style="padding: 45px">
+                <div class="row" style="margin-top:20px">
+                    <div class="pull-left" style="margin: 10px">
+                        <img src="__PUBLIC__/default/images/logo.png" alt="" width="30px"/>
+                        捷诚科技
+                    </div>
+                    <div class="pull-left msg-box">
+                        <div>
+                            <textarea disabled="disabled" cols="50" rows="3"></textarea>
+                        </div>
+                        <div class="pull-right">
+                            <button class="msg-btn">回复</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:20px">
+                    <div class="pull-right" style="margin: 10px">
+                        <img src="__PUBLIC__/default/images/logo.png" alt="" width="30px"/>
+                        豆豆
+                    </div>
+                    <div class="pull-right msg-box">
+                        <div>
+                            <textarea disabled="disabled" cols="50" rows="3"></textarea>
+                        </div>
+                        <div class="pull-right">
+                            <button class="msg-btn">确定</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:20px">
+                    <div class="pull-left" style="margin: 10px">
+                        <img src="__PUBLIC__/default/images/logo.png" alt="" width="30px"/>
+                        捷诚科技
+                    </div>
+                    <div class="pull-left msg-box">
+                        <div>
+                            <textarea disabled="disabled" cols="50" rows="3"></textarea>
+                        </div>
+                        <div class="pull-right">
+                            <button class="msg-btn">回复</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:20px">
+                    <div class="pull-right" style="margin: 10px">
+                        <img src="__PUBLIC__/default/images/logo.png" alt="" width="30px"/>
+                        豆豆
+                    </div>
+                    <div class="pull-right msg-box">
+                        <div>
+                            <textarea disabled="disabled" cols="50" rows="3"></textarea>
+                        </div>
+                        <div class="pull-right">
+                            <button class="msg-btn">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="float:right; margin-right: 50px;">
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        上一页
+                    </a>
+                </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        下一页
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

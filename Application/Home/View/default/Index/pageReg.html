@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>注册</title>
+	<include file="blocks/import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <!-- 主体内容 -->
+        <include file="$tplname"/>
+    <!-- 底部内容 -->
+        <include file="blocks/footer"/>
+</div>
+</body>
+</html>
+<script>
+    jQuery(document).ready(function() {
+        bindClick();
+        bindCheck();
+
+
+ $("input[gt-isparam='repassword']").blur(function(){
+    p1= $("input[gt-isparam='password']").val();
+    p2= $("input[gt-isparam='repassword']").val();
+    checkNotPassword(p1,p2);
+ });
+//        选择登录类型
+        $("input[type='radio']").delegate('','click', function (event) {
+            event.preventDefault();
+            var value = $(this).val();
+            switch (value) {
+                case "seeker":
+                    location.href = "__ACTION__?type=seeker";
+                    break;
+                case "school":
+                    location.href = "__ACTION__?type=school";
+                    break;
+                case "company":
+                    location.href = "__ACTION__?type=company";
+                    break;
+            }
+        });
+        //是否选择同意条款
+        $("input[gt-isparam='agree']").on('click', '', function (event) {
+            if($(this).is(":checked")) {
+                $(this).val("yes");
+            } else {
+                $(this).val("no");
+            }
+        });
+
+        //获取城市列表
+        $(".select-province").on('click', '', function (event) {
+            event.preventDefault();
+
+            var province = $(this).find("span").attr("loadid");
+
+            province = $.trim(province);
+
+            $.post(CON_PATH + "/getCityByProvince", {province: province}, function (data) {
+                if (data != "failed") {
+                    var str = "";
+                    $.each(data, function (key, value) {
+                        str += "<li class='spinner-option select-city'><span>" + value['name'];
+                        str += "</span></li>";
+                    });
+                    $("#cityList").html(str);
+                } else {
+                    $("#cityList").html("");
+                    dealReturn("暂无城市信息");
+                }
+            });
+        });
+
+        //获取学校列表
+        $("body").on('click', '.select-city', function (event) {
+            event.preventDefault();
+
+            var city = $(this).find("span").html();
+
+            city = $.trim(city);
+            city = city.replace("市", "");
+
+            $.post(CON_PATH + "/getSchoolByCity", {city: city}, function (data) {
+                //console.log(data);
+                if (data != "failed") {
+                    var str = "";
+                    $.each(data, function (key, value) {
+                        str += "<li class='spinner-option'><span>" + value['school'];
+                        str += "</span></li>";
+                    });
+                    $("#schoollist").html(str);
+                } else {
+                    $("#schoollist").html("");
+                    dealReturn("该城市暂无学校信息");
+                }
+            });
+        });
+        //地区选择
+        $(".dropdown-menu").delegate('.spinner-option','click', function (event) {
+            var value = $(this).find("span").html();
+            value = $.trim(value);
+            console.log(value);
+            $(this).parent().siblings(".spinner-content").html(value);
+        });
+
+    });
+
+
+</script>

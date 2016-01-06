@@ -1,0 +1,47 @@
+<div class="row ">
+    <!-- 左边主要导航 -->
+    <include file="blocks/mainnav"/>
+    <!-- 内容 -->
+    <div class="content col-md-10">
+        <!-- 导航菜单内容显示 -->
+        <div class="row" style="background:#f4f4f4;height:36px;line-height:36px;border-bottom:1px solid #ddd">
+            <!-- TODO 换成当前的导航菜单内容-->
+			<span class="mleft2">
+				管理首页的轮播图
+			</span>
+        </div>
+        <div class="fragbox">
+            <div style="margin-top:10px">
+                <button class="btn btn-nopad" gt-btn-click="fragAddScroll">添加轮播图</button>
+            </div>
+            <!-- 右边具体内容 -->
+            <div class="row">
+                <div class="col-md-10">
+                    <table class="table text-center mtop1">
+                        <thead>
+                        <tr>
+                            <th class="text-center">顺序</th>
+                            <th class="text-center">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <volist name="scrolllist" id="vo">
+                            <tr>
+                                <td>{$vo.key}</td>
+                                <td>
+                                    <input type="hidden" value="{$vo.id}" name="id"/>
+                                    <button class="btn btn-success btn-sm" popup-src="__ROOT__/Uploads/{$vo.value}" gt-btn-click="audit-thumbnail">查看缩略图</button>
+                                    <button class="btn btn-danger btn-sm" gt-btn-click="delScroll">删除</button>
+                                </td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                    <include file="blocks/pagedivide"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<include file="blocks/popupImg"/>

@@ -1,0 +1,8 @@
+<div class="gtlyout cl-lightgray">
+    <form action="feedBack" method="post">
+        <label>你的建议是对我们最大的支持：</label>
+        <textarea name="content" class="form-control" rows="5"></textarea>
+        <div class="gt-rowdivide"></div>
+        <input type="submit" class="btn btn-primary form-control input-lg btn-lg" value="提交反馈"/>
+    </form>
+</div>

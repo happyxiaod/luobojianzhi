@@ -1,0 +1,116 @@
+<div class="row ">
+    <!-- 左边主要导航 -->
+    <include file="blocks/mainnav"/>
+    <!-- 内容 -->
+    <div class="content col-md-10">
+        <!-- 导航菜单内容显示 -->
+        <div class="row" style="background:#f4f4f4;height:36px;line-height:36px;border-bottom:1px solid #ddd">
+
+        <!-- TODO 换成当前的导航菜单内容-->
+			<span class="mleft2">
+				一级导航内容 > 二级导航内容
+			</span>
+        </div>
+        <!-- 右边具体内容 -->
+        <div class="row fragbox">
+            <div class="seeker-info-box">
+                <div class="row">
+                    <div class="col-md-3 text-right seeker-info-left">
+                        用户名：
+                    </div>
+                    <div class="col-md-9">
+                        {$info.username}
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-3 text-right seeker-info-left">
+                        单位名称：
+                    </div>
+                    <div class="col-md-9">
+                        {$info.schoolname}
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-3 text-right seeker-info-left">
+                        联系人：
+                    </div>
+                    <div class="col-md-9">
+                        {$info.contacter}
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-3 text-right seeker-info-left">
+                        所在地：
+                    </div>
+                    <div class="col-md-9">
+                        {$info.area}
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-3 text-right seeker-info-left">
+                        学校详细地址：
+                    </div>
+                    <div class="col-md-9">
+                        {$info.address}
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-3 text-right seeker-info-left">
+                        注册手机号：
+                    </div>
+                    <div class="col-md-9">
+                        {$info.phone}
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-3 text-right seeker-info-left">
+                        联系电话：
+                    </div>
+                    <div class="col-md-9">
+                        {$info.contacterphone}
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-3 text-right seeker-info-left">
+                        单位邮箱：
+                    </div>
+                    <div class="col-md-9">
+                        {$info.schoolemail}
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-3 text-right seeker-info-left">
+                        提交时间：
+                    </div>
+                    <div class="col-md-9">
+                        {$info.createtime}
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-3 text-right seeker-info-left">
+                        机构简介：
+                    </div>
+                    <div class="col-md-9">
+                        {$info.intro}
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-3 text-right seeker-info-left">
+                        负责人身份证：
+                    </div>
+                    <div class="col-md-9">
+                        <img src="__ROOT__/Uploads/{$info.idobverse}" alt="暂无负责人身份证" style="max-width: 100%"/>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-3 text-right seeker-info-left">
+                        机构证明材料：
+                    </div>
+                    <div class="col-md-9">
+                        <img src="__ROOT__/Uploads/{$info.orgauth}" alt="暂无机构证明材料" style="max-width: 100%"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

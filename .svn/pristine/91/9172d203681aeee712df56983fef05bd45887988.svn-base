@@ -1,0 +1,321 @@
+<script>
+
+var maxstrlen=100;
+
+function Q(s){return document.getElementById(s);}
+
+function checkWord(c){
+
+len=maxstrlen;
+
+var str = c.value;
+
+myLen=getStrleng(str);
+
+var wck=Q("wordCheck");
+
+if(myLen>len*2){
+
+c.value=str.substring(0,i+1);
+
+}
+
+else{
+
+wck.innerHTML = Math.floor((len*2-myLen)/2);
+
+}
+
+}
+
+function getStrleng(str){
+
+myLen =0;
+
+i=0;
+
+for(;(i<str.length)&&(myLen<=maxstrlen*2);i++){
+
+if(str.charCodeAt(i)>0&&str.charCodeAt(i)<128)
+
+myLen++;
+
+else
+
+myLen+=2;
+
+}
+
+return myLen;
+
+}
+
+</script>
+<div class="gtlyout bg-lightgray" style="padding:0">
+    <div class="gt-rowdivide"></div>
+
+    <div class="gtlyout" style="padding:4px 8px">
+
+        <span class="text-normal">
+            {$job.title}
+        </span>
+        <br/>
+        <span>{$job.date}</span> &nbsp;
+        <span>浏览量:{$job.view}</span>
+        <br/>
+        <span class="text-normal">
+            {$job.level2}
+        </span>
+        <span class="cl-orange" style="font-size:16px">
+            {$job.price}<small class="cl-lightgray">{$job.pricetype}</small>
+        </span>
+        <span class="text-normal cl-orange"></span>
+    </div>
+    <div class="gt-rowdivide" style="height:2px"></div>
+    <div class="gtlyout" style="padding:4px 8px">
+        <div class="pull-left">
+            <span class=" cl-orange">
+                {$job.name}
+            </span>
+        </div>
+        <div class="pull-right">
+            <span class="text-normal cl-orange glyphicon glyphicon-menu-right"></span>
+        </div>
+
+    </div>
+    <div class="gt-rowdivide" style="height:8px"></div>
+
+
+    <!--    &lt;!&ndash;标题&ndash;&gt;
+        <div class="gtlyout">
+            <div class="">
+                <span class="text-lg text-bold">
+                    {$job.title}
+                </span>
+            </div>
+            <div class="text-small cl-lightgray">
+                <span>{$job.date}</span> &nbsp;
+                <span>{$job.area}</span> &nbsp;
+                <span>浏览量:{$job.view}</span>
+
+            </div>
+        </div>-->
+    <!--兼职基本信息-->
+    <div class="gtlyout">
+        <div class="gtlyout">
+            <span class="cl-orange glyphicon glyphicon-user">
+            </span>
+            <span class="">
+                招聘人数:{$job.number}
+            </span>
+        </div>
+
+        <div class="gt-rowdivide" style="height:1px"></div>
+
+        <div class="gtlyout cl-orange">
+            <span class="glyphicon glyphicon-time">
+            </span>
+            <span>
+                时间
+            </span>
+            <br/>
+            <span class="glyphicon glyphicon-time" style="color:white">
+            </span>
+            <span class="" style="color:black;">
+                工作日期：{$job.workdate}
+            </span>
+            <br/>
+            <span class="glyphicon glyphicon-time" style="color:white">
+            </span>
+            <span class="" style="color:black;">
+                工作时间：{$job.worktime}
+            </span>
+        </div>
+    </div>
+    <div class="gt-rowdivide" style="height: 8px;"></div>
+    <!--工作地点-->
+    <div class="gtlyout" style="overflow: hidden;line-height: 2em">
+        <div class="col-xs-10" style="padding:0">
+            <span class="cl-orange glyphicon glyphicon-map-marker"></span>
+            <span class="">工作地点:{$job.address}</span>
+        </div>
+        <div class="col-xs-2" style="padding:0">
+            <span>
+                <a href="__MODULE__/Mobile/map?address={$job.address}" class="cl-orange">
+                    地图<span class="glyphicon glyphicon-play cl-orange"></span>
+                </a>
+            </span>
+        </div>
+
+    </div>
+
+    <div class="gt-rowdivide" style="height: 8px;"></div>
+
+    <!--职位描述-->
+    <div class="gtlyout" style="padding:4px 8px">
+        <!--TODO 数据表结构-->
+        <div class="cl-orange ">
+            <span class="glyphicon glyphicon-list-alt"></span>
+            职位描述
+        </div>
+        <!--TODO 分类
+                <div class="">
+                    兼职要求：
+                </div>
+                <div class="">
+                    工作内容：
+                </div>-->
+        <div class="mul-text">
+        </div>
+        <textarea id="job-intro">{$job.intro}</textarea>
+    </div>
+    <div class="gt-rowdivide"></div>
+    <!--联系方式-->
+    <div class="gtlyout">
+        <div class="gtlyout">
+            <span class=" cl-orange glyphicon glyphicon-time"></span>
+            <span class="">
+                报名截止:{$job.endtime}
+            </span>
+
+        </div>
+
+
+        <div class="gtlyout">
+            <span class="cl-orange glyphicon glyphicon-earphone"></span>
+            <span class="">联系电话:{$job.phone}
+                <span class="cl-orange">
+                    {$job.contacter}
+                </span>
+            </span>
+
+        </div>
+
+    </div>
+            <!-- 评论start -->
+    <div id="sec_wrap">
+                <div>
+                <span><b class="demo-icon">&#xe81b;</b>用户评论</span>
+            </div>
+    <div>
+        <ul class="discuss" style="overflow:hidden;">
+
+    <volist name="commentsList" id="cl">
+            <li>
+        <div class="review_in">
+    <if condition=" $cl.headpic  eq '' ">
+  <img src="__PUBLIC__/new/images/about_inso1.png" alt="默认头像" />
+    <else />
+    <img src="{$cl.headpic}" alt="" />
+    </if>
+
+                    
+                    <div class="con">
+                        <span class="font-orange">{$cl.username}</span>
+                        <p>{$cl.content}</p>
+                    </div>
+                </div>
+            </li>
+        </volist>
+        </ul>
+         </div>
+         <div class="sec_wrap"> 
+    <if condition="$Think.session.user neq ''">
+        <strong>你的评论</strong>
+         还可以输入<span style="font-family: Georgia; font-size: 21px;" id="wordCheck">100</span>个字符
+        <div class="discuss_con clearfix"> 
+             <form name="myform" method="post" action="__CONTROLLER__/jobComment" >  
+                 <textarea style="width: 100%;padding: 5px;" name="message"  rows="6" onKeyUp="javascript:checkWord(this);" onMouseDown="javascript:checkWord(this);" name="content"></textarea>
+                  <input type="hidden" name="jobid" value="{$job.id}"> </input>
+                  <input type="hidden" name="companyid" value="{$company.id}"> </input>
+                 <input type="submit" value="提交"/>      
+            </form> 
+        </div>
+        </div>
+    <else/>
+        <div class="pl_in">
+                登陆后可以进行评论<a href="__MODULE__/Index/pageLogin">立即登录</a><a href="__MODULE__/Index/pageReg">立即注册</a>
+        </div>
+    </if>
+    </div>
+    <div class="gt-rowdivide" style="height:48px;"></div>
+
+
+</div>
+<div class="gttab text-center">
+    <div class="col-xs-3 gtbtn" id="collection" style="background: white;border:1px solid orange;padding:0 2px">
+        <span class="text-normal cl-orange">
+            <a href="" class="cl-orange"
+               style="text-decoration: none;">
+                <span class="glyphicon glyphicon-star-empty"></span>
+                收藏
+            </a>
+        </span>
+    </div>
+
+    <div class="col-xs-5 gtbtn" id="call" style="background: white;border:1px solid orange;padding:0 2px">
+        <span class="text-normal">
+            <a href="tel:{$job.phone}" class="cl-orange"
+               style="text-decoration:none;">
+                <span class="glyphicon glyphicon-earphone"></span>
+                拨打电话
+            </a>
+        </span>
+    </div>
+
+    <div class="col-xs-4 gtbtn" id="applyPosition" style="border-right:2px solid #b27926;padding:0 2px">
+        <a href="javascript:"
+           style="color:white;text-decoration: none">
+            <span class="text-normal">
+                立即申请
+            </span>
+        </a>
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var regN = /[\n]/g;
+        $("#job-intro").hide();
+        var intro = $("#job-intro").html();
+        intro = intro.replace(regN, "<br/>");
+        $(".mul-text").html(intro);
+
+        $("#applyPosition").on('click', '', function (event) {
+            event.preventDefault();
+            $.get(MOD_PATH + "/Seeker/applyJob",
+                    {
+                        "jobid": "{$job.id}",
+                        "title": "{$job.title}",
+                        "companyname": "{$job.name}",
+                        "phone": "{$job.phone}"
+                    },
+                    function (data) {
+                        if (data['status'] == 0) {
+                            alert(data['info']);
+                        } else {
+                            alert(data['info']);
+                        }
+                        if (data['url'] != null && data['url'] != "") {
+                            location.href = data['url'];
+                        }
+
+                        console.log(data);
+                    });
+        });
+
+        $("#collection").on('click', '', function (event) {
+            event.preventDefault();
+            $.get(MOD_PATH + '/Seeker/collect',
+                    {
+                        'jobid': "{$job.id}"
+                    },
+                    function (data) {
+                        dealReturn(data);
+                    })
+        });
+    });
+
+
+</script>

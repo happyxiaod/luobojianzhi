@@ -1,0 +1,71 @@
+<div class="mainnav col-md-2" style="padding: 0;border-right:1px solid #ddd;border-bottom:1px solid #ddd">
+    <span class="nav-one">会员管理</span>
+    <li class="nav-two" id="navMemberSeeker">
+        <a href="__MODULE__/Member/pageSeeker" class="nav-a">注册用户</a>
+    </li>
+    <li class="nav-two" id="navMemberSeeker">
+        <a href="__MODULE__/Member/pageNotCheckedSeeker" class="nav-a">待审用户</a>
+    </li>
+    <li class="nav-two" id="navMemberCheckedSeeker">
+        <a href="__MODULE__/Member/pageCheckedSeeker" class="nav-a">认证用户</a>
+    </li>
+    <li class="nav-two" id="navMemberCompany">
+        <a href="__MODULE__/Member/pageCompany" class="nav-a">企业会员</a>
+    </li>
+    <li class="nav-two" id="navMemberSchool">
+        <a href="__MODULE__/Member/pageSchool" class="nav-a">学校机构会员</a>
+    </li>
+
+    <span class="nav-one">资料审核 </span>
+
+    <li class="nav-two" id="navAuditSeeker">
+        <a href="__MODULE__/Audit/pageSeeker" class="nav-a">个人资料审核</a>
+    </li>
+    <li class="nav-two" id="navAuditCompany">
+        <a href="__MODULE__/Audit/pageCompany" class="nav-a">企业资料审核</a>
+    </li>
+    <li class="nav-two" id="navAuditSchool">
+        <a href="__MODULE__/Audit/pageSchool" class="nav-a">校园机构资料审核</a>
+    </li>
+    <li class="nav-two" id="navAuditNotpass">
+        <a href="__MODULE__/Audit/pageNotpass" class="nav-a">未通过审核</a>
+    </li>
+
+    <span class="nav-one">职位信息</span>
+
+    <li class="nav-two" id="navPositionSeeker">
+        <a href="__MODULE__/Position/pageSeeker" class="nav-a">个人信息</a>
+    </li>
+    <li class="nav-two" id="navPositionCompany">
+        <a href="__MODULE__/Position/pageCompany" class="nav-a">企业信息</a>
+    </li>
+    <li class="nav-two" id="navPositionSchool">
+        <a href="__MODULE__/Position/pageSchool" class="nav-a">校园机构信息</a>
+    </li>
+
+    <span class="nav-one">网站设置</span>
+
+    <li class="nav-two" id="navSettingScroll">
+        <a href="__MODULE__/Setting/pageScroll" class="nav-a">轮播图设置</a>
+    </li>
+    <li class="nav-two" id="navSettingJobType">
+        <a href="__MODULE__/Setting/pageJobType" class="nav-a">兼职分类管理</a>
+    </li>
+    <li class="nav-two" id="navSettingAddSchool">
+        <a href="__MODULE__/Setting/pageAddSchool" class="nav-a">添加学校分类</a>
+    </li>
+    <li class="nav-two" id="navSettingRegion">
+        <a href="__MODULE__/Setting/pageRegionProvince" class="nav-a">地区管理</a>
+    </li>
+
+    <span class="nav-one">意见反馈</span>
+
+    <li class="nav-two" id="navFeedback">
+        <a href="__MODULE__/Feedback/pageFeedback" class="nav-a">意见反馈</a>
+    </li>
+    <span class="nav-one">微信活动</span>
+    <li class="nav-two" id="navWeixinActivity">
+        <a href="__MODULE__/Weixin/weal" class="nav-a">福利派送</a>
+    </li>
+
+</div>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>职位投递状态</title>
+    <include file="blocks/import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="actionbar-back">
+            <div class="col-xs-1 text-left" style="padding-left:8px">
+                <a href="javascript:" onclick="javascript:history.back(-1)">
+                    <span class="glyphicon glyphicon-menu-left"></span>
+                </a>
+            </div>
+            <div class="col-xs-10 text-center actionbar-title">
+                职位投递状态
+            </div>
+            <div class="col-xs-1 text-right">
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="gtlyout">
+            <volist name="applylist" id="vo">
+                <div class="gtlv-auto">
+                    <input type="hidden" value="{$vo.id}"/>
+                    <!--左边-->
+                    <div class="wx-circle pull-left text-center">
+                        {$vo.level2}
+                    </div>
+                    <div class="pull-left" style="max-width: 50%; overflow: hidden; white-space:nowrap;margin-left:8px">
+                        <div class="text-normal text-bold">
+                            {$vo.title|mb_substr=0,10,'utf-8'}
+                        </div>
+                        <div class="gt-cls cl-lightgray" style="font-size: 12px; margin: 5px 0;">
+                            <img src="__PUBLIC__/default/images/area.png" alt="" width="10px"
+                                 style="margin: -3px 3px 0 0;"/>
+                            &nbsp;{$vo.area}
+                        </div>
+                        <div class="gt-cls cl-lightgray" style="font-size: 12px;margin: 5px 0;">
+                            <img src="__PUBLIC__/default/images/date.png" alt="" width="10px"
+                                 style="margin: -2px 3px 0 0;"/>
+                            &nbsp;{$vo.date}
+                        </div>
+                    </div>
+
+                    <!--右半部分-->
+                    <div class="pull-right text-center" style="max-width: 30%; overflow: hidden; white-space:nowrap;margin-top: 16px;">
+                        <a href="__MODULE__/Company/jobSeeker?id={$vo.jobid}">
+                            <span class="cl-orange text-normal">
+                                {$vo.number}份简历
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </volist>
+        </div>
+    </div>
+    <div class="row">
+        <include file="blocks/footer"/>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        setCircle();
+    });
+    //设置列表最前面那列的圆颜色方法
+    function setCircle() {
+        var colour = ["#E4007F", "#00A0E9", "#F39800", "#996C33"];
+        $(".wx-circle").each(function () {
+            var index = Math.floor(Math.random() * colour.length);
+            back = colour[index];
+            $(this).attr("style", "border:1px solid " + back + ";color:" + back);
+        })
+    }
+</script>

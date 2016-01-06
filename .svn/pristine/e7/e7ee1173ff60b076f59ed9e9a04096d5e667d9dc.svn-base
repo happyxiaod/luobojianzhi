@@ -1,0 +1,36 @@
+<if condition="$Think.session.user.type eq 'seeker'">
+            <ul class="per_nav">
+                <li id="pageResume"><a href="__MODULE__/User/pageResume">我的简历</a></li>
+                <li id="pageUserApply"><a href="__MODULE__/User/pageUserApply">我的申请</a></li>
+                <li id="pageCollect"><a href="__MODULE__/User/pageCollect">我的收藏</a></li>
+                <!-- <li><a href="__MODULE__/User/pageMsg">消息</a></li> -->
+               <li id="pageWallet"><a href="__MODULE__/User/pageWallet">我的钱包</a></li>
+               <li id="pageMyloan"><a href="__MODULE__/User/pageMyloan1">我的借款</a></li>
+               <li id="pageBill"><a href="__MODULE__/User/pageBill">我的账单</a></li>
+               <li id="Authentication"><a href="__MODULE__/User/pageAuthentication">信用认证</a></li>
+                <li id="pageSafety"><a href="__MODULE__/User/pageSafety">安全保护</a></li>
+                <li id="pageFeedback"><a href="__MODULE__/Feed/pageFeedback">意见反馈</a></li>
+            </ul>
+ 
+<elseif condition="$Think.session.user.type eq 'company'"/>
+    <ul class="per_nav">
+                <li id="pageManage"><a href="__MODULE__/Company/pageManage">管理中心</a></li>
+                <li id="pagePost"><a href="__MODULE__/Company/pagePost">职位管理</a></li>
+                <li id="pageCompanyApply"><a href="__MODULE__/Company/pageCompanyApply">简历管理</a></li>
+                <li id="pageProve"><a href="__MODULE__/Company/pageProve">企业信息</a></li>
+                <li id="pageSafety"><a href="__MODULE__/User/pageSafety">安全中心</a></li>
+                <li id="pageFeedback"><a href="__MODULE__/Feed/pageFeedback">意见反馈</a></li>
+    </ul>
+<elseif condition="$Think.session.user.type eq 'school'"/>
+    <ul class="per_nav">
+                <li id="pagePost"> <a href="__MODULE__/Company/pagePost">我的发布</a></li>
+                <li id="pageCompanyApply" ><a href="__MODULE__/Company/pageCompanyApply">工作申请</a></li>
+                <li id="pageProve" ><a href="__MODULE__/Company/pageProve">认证信息</a></li>
+                <li id="pageFeedback"><a href="">我的钱包</a></li>
+                <li><a href="">我的借款</a></li>
+                <li><a href="">我的账单</a></li>
+                <li><a href="">信用认证</a></li>
+                <li id="pageSafety"><a href="__MODULE__/User/pageSafety">安全保护</a></li>
+                <li id="pageFeedback"><a href="__MODULE__/Feed/pageFeedback">意见反馈</a></li>
+    </ul>
+</if>

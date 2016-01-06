@@ -1,0 +1,99 @@
+<div class="row ">
+    <!-- 左边主要导航 -->
+    <include file="blocks/mainnav"/>
+    <!-- 内容 -->
+    <div class="content col-md-10">
+        <!-- 导航菜单内容显示 -->
+        <div class="row" style="background:#f4f4f4;height:36px;line-height:36px;border-bottom:1px solid #ddd">
+
+			<span class="mleft2">
+				添加学校分类l
+			</span>
+        </div>
+        <div class="fragbox">
+            <div style="margin-top:10px">
+                <div class="form-inline" gt-model="school">
+                    <select class="form-control" gt-isparam="province">
+                        <option value="请选择">请选择</option>
+                        <volist name="provinceList" id="vo">
+                            <option value="{$vo.id}" gt-menu-click="loadCityList2">{$vo.name}</option>
+                        </volist>
+                    </select>
+                    <select class="form-control" id="cityBox" gt-isparam="city">
+                        <option value="请选择">请选择</option>
+                    </select>
+                    <input type="hidden" gt-islabel="学校名称"/>
+                    <input class="form-control" type="text" placeholder="输入学校名" gt-isparam="school"/>
+                    <input class="btn btn-primary" type="button" value="添加" gt-btn-click="addSchool"/>
+                </div>
+
+            </div>
+            <!-- 右边具体内容 -->
+            <div class="row middle-content">
+                <div class="col-md-10">
+                    <table class="table text-center mtop1">
+                        <thead>
+                        <tr>
+                            <th class="text-center">省份</th>
+                            <th class="text-center">城市</th>
+                            <th class="text-center">学校名称</th>
+                            <th class="text-center">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <volist name="schoollist" id="vo">
+                            <tr>
+                                <td>{$vo.province}</td>
+                                <td>{$vo.city}</td>
+                                <td>{$vo.school}</td>
+                                <td>
+                                    <input type="hidden" value="{$vo.id}"/>
+                                    <button class="btn btn-danger btn-sm"
+                                            gt-btn-click="delSchool">删除
+                                    </button>
+                                </td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                    <include file="blocks/pagedivide"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("[gt-isparam='province']").change(function(){
+            loadCityList($(this), '2');
+        });
+
+        //    添加学校
+        $("[gt-btn-click='addSchool']").on('click', '', function (event) {
+            event.preventDefault();
+            var school = M("school");
+            if(school['state'] == 0) {
+                return;
+            }
+            if(school['province'] == "请选择") {
+                alert("请选择省份");
+                return;
+            }
+            if(school['city'] == "请选择") {
+                alert("请选择城市");
+                return;
+            }
+            post(MOD_PATH + "/Setting/addSchool", school);
+        });
+
+        //删除学校
+        $("[gt-btn-click='delSchool']").on('click', '', function (event) {
+            event.preventDefault();
+            var id = $(this).siblings("input[type='hidden']").val();
+            post(MOD_PATH + "/Setting/delSchool", id);
+        });
+    });
+
+
+</script>

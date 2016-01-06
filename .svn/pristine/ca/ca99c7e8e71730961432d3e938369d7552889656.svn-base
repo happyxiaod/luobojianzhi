@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>证件上传</title>
+    <include file="blocks/import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="actionbar-back">
+            <div class="col-xs-1 text-left" style="padding-left:8px   background:url('__PUBLIC__/default/images/companyBG') no-repeat;width:90%;height:90%;"  >
+                <a href="javascript:" onclick="javascript:history.back(-1)">
+                    <span class="glyphicon glyphicon-menu-left"></span>
+                </a>
+            </div>
+            <div class="col-xs-10 text-center actionbar-title">
+                证件上传
+            </div>
+            <div class="col-xs-1 text-right">
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 8px">
+        <div class="gtlyout text-center" style="padding:16px 4px">
+            <div class="col-xs-7">
+                <img class="credentail-upload curs-pt" src="{$credentialpic}" id="credentialpic"/>
+                <input type="file" name="credentialpic" accept="image/*"/>
+            </div>
+            <div class="col-xs-5" style="padding-top: 30px">
+                <span class="text-danger">*法人身份证照</span>
+                <br/>
+                <span class="text-danger">*点击图片区域即可上传</span>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 8px">
+        <div class="gtlyout text-center" style="padding:16px 4px">
+            <div class="col-xs-7">
+                <img class="credentail-upload curs-pt" src="{$orgauth}" id="orgauth"/>
+                <input type="file" name="orgauth" accept="image/*"/>
+            </div>
+            <div class="col-xs-5" style="padding-top: 30px">
+                <span class="text-danger">*企业营业执照</span>
+                 <br/>
+                <span class="text-danger">*点击图片区域即可上传</span>
+            </div>
+        </div>
+    </div>
+   <span id="saveupload" style="border:1px solid orange;border-radius: 3px;color:#666;margin-left:130px;">
+  返回</span> 
+
+
+    <div class="row">
+        <include file="blocks/footer"/>
+    </div>
+</div>
+</body>
+</html>
+
+<script>
+
+    var img;//图片上传数据
+    $(document).ready(function () {
+        $("input[name='credentialpic']").hide();
+        $("#credentialpic").on('click', '', function (event) {
+            event.preventDefault();
+            $("input[name='credentialpic']").click();
+
+        });
+         $("#orgauth").on('click', '', function (event) {
+            event.preventDefault();
+            $("input[name='orgauth']").click();
+
+        });
+        //选择图片并显示预览图并上传
+        $("input[name='credentialpic']").on('change', '', function (event) {
+            event.preventDefault();
+            var files = this.files;
+            var file = files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function(){
+                img=this.result;
+                $("#credentialpic").attr('src',this.result);
+                postfile(MOD_PATH + '/Mobile/uploadFile',file,"idobverse");
+            };
+        });
+
+         $("input[name='orgauth']").on('change', '', function (event) {
+            event.preventDefault();
+            var files = this.files;
+            var file = files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function(){
+                img=this.result;
+                $("#orgauth").attr('src',this.result);
+                postfile(MOD_PATH + '/Mobile/uploadFile',file,"orgauth");
+            };
+        });
+
+          $("#saveupload").on('click', '', function (event) {
+            event.preventDefault();
+            window.history.back(-1);
+        });
+
+    });
+</script>

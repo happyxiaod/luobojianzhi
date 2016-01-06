@@ -1,0 +1,47 @@
+<!--企业管理中心-->
+<div id="person">
+        <!-- 个人中心start -->
+        <div class="per_t">
+            <include file="blocks/per_t"/>
+        </div> 
+        <div class="per_b clearfix">
+           <include file="blocks/mainnav"/>
+            <div class="per_r_dal">             
+                <h4 class="font-orange">数据中心</h4>
+                <table class="manage">
+                    <tr>
+                        <th width="220"></th>
+                        <th width="220">新增报名</th>
+                        <th width="220">新增职位</th>
+                        <th>新增评论</th>
+                    </tr>
+                    <tr>
+                        <td>今天</td>
+                        <td>{$dayApplycount}</td>
+                        <td>{$dayjobcount}</td>
+                        <td>{$dayCommentcount}</td>
+                    </tr>
+                    <tr>
+                        <td>本周</td>
+                        <td>{$weekApplycount}</td>
+                        <td>{$weekjobcount}</td>
+                        <td>{$weekCommentcount}</td>
+                    </tr>
+                    <tr>
+                        <td>上周</td>
+                        <td>{$lastweekApplycount}</td>
+                        <td>{$lastweekjobcount}</td>
+                        <td>{$lastweekCommentcount}</td>
+                    </tr>
+                    <tr>
+                        <td>本月</td>
+                        <td>{$monthApplycount}</td>
+                        <td>{$monthjobcount}</td>
+                        <td>{$monthCommentcount}</td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+        <!-- 个人中心end -->
+    </div>

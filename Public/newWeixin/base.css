@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+@import "reset.css";
+
+@import "layout.css";
+
+
+
+/***自定义***/
+
+.hide{display:none;}
+
+/* 软件开发 */
+.color-class01{background:#00a0e8;}
+/* 传单派发 */
+.color-class02{background:#946134;}
+/* 服务员 */
+.color-class03{background:#f39700;}
+/* 礼仪 */
+.color-class04{background:#d70050;}
+/* 客服 */
+.color-class05{background:#16834c;}
+/* 小时工 */
+.color-class06{background:#f8b62c;}
+/* 勤工助学 */
+.color-class07{background:#ea5414;}
+/* 家教 */
+.color-class08{background:#00a29a;}
+/* 销售 */
+.color-class09{background:#c30d22;}
+/* 实习生 */
+.color-class09{background:#8ec31e;}
+/* 其他 */
+.color-class10{background:#df68fd;}
+
+.font-orange{color:#ed7612;}
+.font-blue{color:#337ab7;}
+.font-red{color:#f00;}

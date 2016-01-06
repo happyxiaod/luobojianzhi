@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>意见反馈</title>
+    <include file="blocks/import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="actionbar-back">
+            <div class="col-xs-1 text-left" style="padding-left:8px">
+                <a href="javascript:" onclick="javascript:history.back(-1)">
+                    <span class="glyphicon glyphicon-menu-left"></span>
+                </a>
+            </div>
+            <div class="col-xs-10 text-center actionbar-title">
+                意见反馈
+            </div>
+            <div class="col-xs-1 text-right">
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="gtlyout cl-lightgray">
+            <form action="__MODULE__/Setting/doFeedBack" method="post">
+                <label>你的建议是对我们最大的支持：</label>
+                <textarea name="content" class="form-control" rows="5"></textarea>
+                <div class="gt-rowdivide"></div>
+                <input type="submit" class="btn btn-warning form-control input-lg btn-lg" value="提交反馈"/>
+            </form>
+        </div>
+
+    </div>
+    <div class="row">
+
+    </div>
+    
+</div>
+</body>
+</html>
+<script>
+    
+</script>

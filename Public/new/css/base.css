@@ -1,0 +1,54 @@
+@charset "utf-8";
+
+@import "reset.css";
+
+@import "layout.css";
+
+/***自定义***/
+
+.hide{display:none;}
+/* 默认 */
+.color-class{background:#00a0e3;}
+
+/* 软件开发 */
+.color-class1{background:#00a0e8;}
+/* 传单派发 */
+.color-class2{background:#946134;}
+/* 服务员 */
+.color-class3{background:#f39700;}
+/* 礼仪 */
+.color-class4{background:#d70050;}
+/* 客服 */
+.color-class5{background:#16834c;}
+/* 小时工 */
+.color-class6{background:#f8b62c;}
+/* 勤工助学 */
+.color-class7{background:#ea5414;}
+/* 家教 */
+.color-class8{background:#00a29a;}
+/* 销售 */
+.color-class9{background:#c30d22;}
+/* 实习生 */
+.color-class10{background:#8ec31e;}
+/* 其他 */
+
+.color-class12{background:#df68fd;}
+
+.list_hot li{height:80px;border-bottom:1px solid #ccc;padding: 0 35px;}
+.list_hot li>span {width: 40px;height: 40px;border-radius: 1000px;text-align: center;font-size: 8px;display: inline-block;margin-top: 20px;line-height: 40px;color: #fff;float: left;}
+.list_hot .job_show {width: 350px;margin: 0 40px 0 20px;float: left;}
+.job_show a {display: block;font-size: 16px;color: #4a81bf;margin: 14px 0;}
+.job_show a:hover{text-decoration:underline;}
+.job_show span {color: #333;float: left;width: auto;margin-right: 20px;margin-top: 0;height: auto;border-radius: 0;font-size: 12px;}
+.hot-icon {padding: 0 15px;height: 80px;float: left;}
+.new-icon {padding: 0 15px;height: 80px;float: left;}
+.new-icon i {background: url(../images/user_icon.png) 0 -93px no-repeat;width: 22px;height: 30px;display: block;margin-top: 25px;float: left;}
+.hot-icon i {background: url(../images/user_icon.png) 0 -53px no-repeat;width: 22px;height: 30px;display: block;margin-top: 25px;float: left;}
+.hot-icon i:nth-child(2) {background-position: 0 -93px;margin-left: 10px;}
+.hot-money {width: 110px;height: 80px;float: right;text-align: center;font-size: 16px;}
+.hot-money span{color: #ed7612;display: block;font-size: 16px;/* padding-top: 23px; */line-height:80px;}
+
+.font-orange{color:#ed7612;}
+.font-blue{color:#337ab7;}
+.font-red{color:#f00;}
+

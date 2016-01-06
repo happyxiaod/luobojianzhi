@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>兼职-列表</title>
+    <include file="blocks/import"/>
+    <style>
+        header span.search {
+    line-height: normal;
+    padding-top: 6px;
+}
+.glyphicon{
+    font-size: 20px;
+}
+ .search input {
+    width: 160px;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid #eb7312;
+    font-size: 16px;
+    padding-left: 5px;
+}
+ .search span {
+  margin-left:-35px; 
+}
+
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="header row">
+        <div class="actionbar-back">
+            <div class="col-xs-3 text-left" style="padding-left:8px">
+                <a href="__MODULE__/Mobile/choseArea" style="font-size:18px">
+                    {$Think.session.city}
+                </a>
+            </div>
+            <div class="col-xs-6 text-center actionbar-title">
+               <!--  <span style="font-weight: bold">萝卜兼职</span> -->
+               <span class="search">
+                    <input type="text" name="" id="" placeHolder="搜索">
+                    <span class="glyphicon glyphicon-search" gt-btn-click="searchjobs"></span>
+
+                </span>
+            </div>
+            <div class="col-xs-3 text-right" >
+                <a href="__MODULE__/Mobile/myCenter">
+                    <span class="glyphicon glyphicon-user" style="font-size:17px"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:1px">
+        <include file="contJobs"/>
+    </div>
+    <div class="row">
+        <include file="blocks/footer"/>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    jQuery(document).ready(function() {
+        bindClick();
+    });
+</script>

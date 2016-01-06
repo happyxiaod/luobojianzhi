@@ -1,0 +1,98 @@
+<?php
+
+namespace Common\Model;
+use Think\Model;
+
+class JobsModel extends Model{
+
+   public function getJobList($limit,$newCity,$order,$sub=51){
+   		$re=$this->table('jobs, user_company as company')
+                 ->field("jobs.id,jobs.level1,jobs.level2,jobs.price,jobs.title,jobs.city,jobs.county,jobs.date,jobs.view,company.id as uid,company.logo,jobs.pricetype")->limit($limit)->where("jobs.uid=company.id AND jobs.state=0 AND jobs.city='$newCity' ")->order($order)->select();
+         foreach ($re as $key => $value) {
+            $level1=$value['level1'];
+            $map['name'] = $level1;
+            $colorid=M('job_level1')->field('id')->where($map)->find();
+            $re["$key"]["colorId"]=$colorid['id'];
+            if (strlen($value['title'])>$sub) {
+              $re["$key"]['subtitle']=mb_substr($value['title'], 0,$sub)."...";
+            }else{
+                $re["$key"]['subtitle']=$value['title'];
+            }
+           
+          }
+
+        return $re;     
+      
+   }
+   
+   /*得到兼职页的jobs列表
+    *param limit 每页展示的条数
+    *param p     当前页
+    *param order 排序
+    *param where where条件
+   */
+   public function getCommonJobsList($limit,$p,$order,$where){
+
+      $re=$this->table('jobs, user_company as company')
+               ->field("jobs.id,jobs.level2,jobs.level1,jobs.price,jobs.title,jobs.city,jobs.county,jobs.date,jobs.view,company.id as uid,company.logo,jobs.pricetype")->limit($limit)->where("jobs.uid=company.id AND jobs.state=0")->where($where)->order($order)->page($p, $limit)->select();
+            foreach ($re as $key => $value) {
+                  $level1=$value['level1'];
+                  $map['name'] = $level1;
+                  $colorid=M('job_level1')->field('id')->where($map)->find();
+                  $re["$key"]["colorId"]=$colorid['id'];
+                  if(strlen($value['title'])>50){
+                    $re["$key"]['subtitle']=mb_substr($value['title'], 0,15,"utf-8");
+                  }else{
+                     $re["$key"]['subtitle']=$value['title'];
+                  }
+              }
+      return $re;     
+   }
+   //获取兼职总记录数
+   public function getCount($where){
+      $re=$this->table('jobs, user_company as company')
+               ->field("jobs.id,jobs.level2,jobs.price,jobs.title,jobs.city,jobs.county,jobs.date,jobs.view,company.id as uid,company.logo,jobs.pricetype")->where("jobs.uid=company.id")->where($where)->count();
+      return $re;     
+   }
+
+   //获取某个公司的发布的兼职记录数，根据年月日
+   public function getCountByCompany($where,$starttime,$endtime){
+      $re=$this->table('jobs')->where($where)->where("UNIX_TIMESTAMP(date)>=$starttime AND UNIX_TIMESTAMP(date)<$endtime")->count();
+      return $re;     
+   }
+   //获取某个公司的兼职报名数，根据年月日
+   public function getApplyCountByCompany($where,$starttime,$endtime){
+      $re=$this->table('jobs_apply')->where($where)->where("UNIX_TIMESTAMP(createtime)>=$starttime AND UNIX_TIMESTAMP(createtime)<$endtime")->count();
+      return $re;     
+   }
+   //获取某个公司兼职评论数，根据年月日
+   public function getCommentCountByCompany($where,$starttime,$endtime){
+      $re=$this->table('job_comments')->where($where)->where("addtime>=$starttime AND addtime<$endtime")->count();
+      return $re;     
+   }
+
+
+    //获取行业分类（一级分类）
+     public function getJoblevel1($limit=0){
+        $db = M('job_level1');
+        $re = $db->order('sort,id')->limit("$limit")->select();  
+        return $re;
+   }
+    public function getJoblevel2(){
+        $db =M('job_level2');
+        $re = $db->select();
+        return $re;
+   }
+
+   public function getCountyList($nowCity){
+            //查询区县信息
+        $countyList = M()->table("county, city")
+            ->field("county.name")
+            ->where("city.name='$nowCity'AND county.cid=city.id")
+            ->select();
+        return $countyList;
+   }
+
+
+
+} 

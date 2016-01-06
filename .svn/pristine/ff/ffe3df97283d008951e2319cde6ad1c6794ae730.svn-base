@@ -1,0 +1,245 @@
+<script>
+
+var maxstrlen=100;
+
+function Q(s){return document.getElementById(s);}
+
+function checkWord(c){
+
+len=maxstrlen;
+
+var str = c.value;
+
+myLen=getStrleng(str);
+
+var wck=Q("wordCheck");
+
+if(myLen>len*2){
+
+c.value=str.substring(0,i+1);
+
+}
+
+else{
+
+wck.innerHTML = Math.floor((len*2-myLen)/2);
+
+}
+
+}
+
+function getStrleng(str){
+
+myLen =0;
+
+i=0;
+
+for(;(i<str.length)&&(myLen<=maxstrlen*2);i++){
+
+if(str.charCodeAt(i)>0&&str.charCodeAt(i)<128)
+
+myLen++;
+
+else
+
+myLen+=2;
+
+}
+
+return myLen;
+
+}
+
+</script>
+<div id="quarter">
+        <h2> {$jobDetails.title}</h2>
+        <div class="row clearfix">
+            <div class="pull-left">
+                <span>兼职类型：<b class="font-orange">{$jobDetails.level1} {$jobDetails.level2}</b></span>
+            </div>
+            <div class="pull-right">
+                <span>地区：{$jobDetails.area}</span>
+                <span>发布时间：{$jobDetails.date}</span>
+                <!--TODO 填写阅读数-->
+                <span>阅读：{$jobDetails.view}</span>
+            </div>
+        </div>
+        <div class="row map clearfix">
+            <div class="pull-left">
+                <p>
+                    发布机构：<span style="color: #0A83FF">{$jobDetails.name}</span>
+                </p>
+                <p>
+                    招聘人数：<span>{$jobDetails.number}</span>
+                </p>
+                <p>
+                    工资待遇：<span>{$jobDetails.price} {$jobDetails.pricetype}</span>
+                </p>
+                <p>
+                    详细地址：<span>{$jobDetails.address}</span>
+                </p>
+                <input type="button" id="sendApply" value="发送申请" />
+            </div>
+            <div class="pull-right">
+                 <div id="bdmap" style="width:100%;height:220px;border:1px solid #bbb;border-radius: 3px;">
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <h3>职位描述：</h3>
+            <div class="mul-text">
+                <p id="job-intro">{$jobDetails.intro}</p>
+               <!--  <textarea id="job-intro">{$jobDetails.intro}</textarea> -->
+            </div>
+        </div>
+        <div class="row">
+            <h3>企业简介：</h3>
+            <div class="company">
+                <p>{$company.companyname}</p>
+                <p>{$company.companytype}</p>
+                <p>{$company.contacterphone}</p>
+                <p>{$company.province}{$company.city}{$company.county}{$company.address}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="contact">
+                <p>联系人：{$jobDetails.contacter}</p>
+                <p>联系电话：{$jobDetails.phone} <a href="__APP__/Home/Index/pageLogin" class="font-blue" ></a></p>
+                <p class="font-orange">提示：凡收取费用，需缴纳押金的企业均有欺诈嫌疑，请您警惕！
+                </br>
+                联系时请说是在萝卜兼职上看到的兼职信息，谢谢</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="share bdsharebuttonbox" data-tag="share_2">
+                <a href="" id="collect" jobid="{$jobDetails.id}" style="height: 39px">收藏</a>
+                <a class="bds_more" data-cmd="more" style="height: 39px">分享</a>
+                <a href="#"  style="height: 39px" id="complaint">举报</a>
+            </div>
+        </div>
+    </div>
+    <!-- 岗位信息end -->
+
+    <!-- 评论start -->
+    <div id="review">
+        <ul>
+        <volist name="commentsList" id="cl">
+            <li>
+                <b>评论：</b>
+                <div class="review_in">
+    <if condition=" $cl.headpic  eq '' ">
+  <img src="__PUBLIC__/new/images/about_inso1.png" alt="默认头像" />
+    <else />
+    <img src="{$cl.headpic}" alt="" />
+    </if>
+
+                    
+                    <div>
+                        <span class="font-orange">{$cl.username}</span>
+                        <p>{$cl.content}</p>
+                    </div>
+                </div>
+            </li>
+        </volist>
+        </ul>
+    <if condition="$Think.session.user neq ''">
+        <strong>你的评论</strong>
+         还可以输入<span style="font-family: Georgia; font-size: 21px;" id="wordCheck">100</span>个字符
+        <div class="review_pl"> 
+             <form name="myform" method="post" action="__CONTROLLER__/jobComment" >  
+                 <textarea name="message"  rows="6" onKeyUp="javascript:checkWord(this);" onMouseDown="javascript:checkWord(this);" name="content"></textarea>
+                  <input type="hidden" name="jobid" value="{$jobDetails.id}"> </input>
+                  <input type="hidden" name="companyid" value="{$company.id}"> </input>
+                 <input type="submit" value="提交"/>      
+            </form> 
+        </div>
+    <else/>
+        <div class="pl_in">
+                登陆后可以进行评论<a href="__MODULE__/Index/pageLogin">立即登录</a><a href="__MODULE__/Index/pageReg">立即注册</a>
+        </div>
+    </if>
+    </div>
+
+
+    <div id="reportBox"> 
+    
+            <strong>举报信窗口</strong><a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn">×</a>
+    
+        <form name="Report" method="post" action="__CONTROLLER__/jobReport" >  
+                 <textarea  rows="6" cols="58"  name="reportContent"  placeholder="填写举报原因"></textarea>
+                  <input type="hidden" name="jobid" value="{$jobDetails.id}"> </input> 
+                  <input type="hidden" name="jobtitle" value="{$jobDetails.title}"> </input>
+                  <input type="hidden" name="jobinfo" value="{$jobDetails.info}"> </input>
+                  <input type="hidden" name="companyid" value="{$company.id}"> </input>
+                 <input type="submit" value="提交"/>      
+        </form> 
+    </div>
+    
+    <!-- 评论end -->
+    
+
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=P5AXQi2Q4I1wGcSGdIYZMPOG"></script>
+<!--百度地图相关-->
+<script type="text/javascript">
+    var map = new BMap.Map("bdmap");    // 创建Map实例
+    var point = new BMap.Point(122.09395837, 37.52878708);//威海
+    map.centerAndZoom(point, 14);
+    //    map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+    map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+
+    // 创建地址解析器实例
+    var myGeo = new BMap.Geocoder();
+    var address = $("#mapaddress").html();
+    address = $.trim(address);
+    // 将地址解析结果显示在地图上,并调整地图视野
+    myGeo.getPoint(address, function (point) {
+        if (point) {
+            map.centerAndZoom(point, 16);
+            map.addOverlay(new BMap.Marker(point));
+        } else {
+            alert("您选择地址没有解析到结果!");
+        }
+    }, "威海市");
+
+    var regN=/[\n]/g;
+    $("#job-intro").hide();
+    var intro = $("#job-intro").html();
+    intro=intro.replace(regN,"<br/>");
+    $(".mul-text").html(intro);
+        //弹出举报
+        $('#complaint').on('click',function(){
+            jQuery.ajax({
+                url: '__CONTROLLER__/checklogin',
+                type: 'GET',
+                complete: function (xhr, textStatus) {
+                   
+                },
+                success: function (data, textStatus, xhr) {
+                   if (data['status']==0) {
+                    gtAlert(data['info']);
+                   }else{
+                    $("body").append("<div id='mask'></div>");
+                    $("#mask").addClass("mask").fadeIn("slow");
+                    $("#reportBox").fadeIn("slow");
+                   }
+
+                },
+                error: function (xhr, textStatus, errorThrown) {  
+                }
+            });
+
+        });
+
+       //关闭
+        $(".close_btn").hover(function () { $(this).css({ color: 'black' }) }, function () { $(this).css({ color: '#999' }) }).on('click', function () {
+            $("#reportBox").fadeOut("fast");
+            $("#mask").css({ display: 'none' });
+        });
+
+        
+
+      
+
+</script>
+

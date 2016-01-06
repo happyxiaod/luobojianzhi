@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>编辑信息</title>
+    <include file="blocks/import_user"/>
+
+</head>
+<body>
+<div class="container-fluid">
+    <!-- 头部内容 -->
+        <include file="blocks/header"/>
+    <!-- 主体内容 -->
+        <include file="User/contEditMyCenter"/>
+    <!-- 底部内容 -->
+        <include file="blocks/footer"/>
+</div>
+</body>
+</html>
+<script>
+    jQuery(document).ready(function($) {
+        bindClick();
+        bindCheck();
+        //修改左侧导航栏样式使导航栏的橙色样式对应当前页面
+        $("#pageMyCenter").removeClass("nav-normal").addClass("nav-active");
+        
+         $("input[gt-isparam='realname']").blur(function(){
+            nameStr=$(this).val();
+            if(verfifyContactName(nameStr)){
+                $(this).removeClass("error");
+                $("#realnamewrong").removeClass("wrong");
+                $("#realnamewrong").html("");
+            }else{
+               $(this).addClass("error"); 
+               $("#realnamewrong").addClass("wrong");
+               $("#realnamewrong").html("请输入中文、数字、或英文");
+            }
+        });
+         $("input[gt-isparam='qq']").blur(function(){
+            var qq=$(this).val();
+            gtCheckQQ(qq);
+         })
+
+        //设置当前性别
+        sex = $("#sex").val();
+        $("input[name='sex']").each(function(e) {
+            if($(this).val() == sex) {
+                $(this).attr("checked", "checked");
+            }
+        });
+
+        //获取城市列表
+        $(".select-province").on('click', '', function (event) {
+            event.preventDefault();
+            var province = $(this).find("span").attr("loadid");
+            province = $.trim(province);
+            $.post(MOD_PATH + "/Index/getCityByProvince", {province: province}, function (data) {
+                if (data != "failed") {
+                    var str = "";
+                    $.each(data, function (key, value) {
+                        str += "<li class='spinner-option select-city'><span loadid='" + value['id'] + "'>" + value['name'];
+                        str += "</span></li>";
+                    });
+                    $("#cityList").html(str);
+                } else {
+                    $("#cityList").html("");
+                    dealReturn("获取城市列表失败");
+                }
+            });
+        });
+
+        //获取区县列表和学校列表
+        $("body").on('click', '.select-city', function (event) {
+            event.preventDefault();
+            var city = $(this).find("span").attr("loadid");
+            city = $.trim(city);
+            $.post(MOD_PATH + "/Index/getCountyByCity", {city: city}, function (data) {
+                if (data != "failed") {
+                    var str = "";
+                    $.each(data, function (key, value) {
+                        str += "<li class='spinner-option'><span>" + value['name'];
+                        str += "</span></li>";
+                    });
+                    $("#countyList").html(str);
+                } else {
+                    $("#countyList").html("");
+                    dealReturn("获取区（县）列表失败");
+                }
+            });
+
+            $.post(CON_PATH + "/getSchoolByCity", {city: city}, function (data) {
+                if (data != "failed") {
+                    var str = "";
+                    $.each(data, function (key, value) {
+                        str += "<li class='spinner-option'><span>" + value['school'];
+                        str += "</span></li>";
+                    });
+                    $("#schoollist").html(str);
+                } else {
+                    $.each(data, function (key, value) {
+                        str += "<li class='spinner-option'><span>先选择省</span></li>";                     
+                    });
+                    $("#schoollist").html(str);
+                    dealReturn("该城市暂无学校信息");
+                }
+            });
+            
+        });
+        //地区选择
+        $(".dropdown-menu").delegate('.spinner-option','click', function (event) {
+            var city=$("sapn[gt-isparam='city']").val();
+            var value = $(this).find("span").html();
+            value = $.trim(value);
+            $(this).parent().siblings(".spinner-content").html(value);
+        });
+
+         $("input[type='file']").on("change", function(){
+        var files = !!this.files ? this.files : [];
+        if (!files.length || !window.FileReader) return;
+        var name=$(this).attr("gt-isparam");
+        // 判断是否为图片类型
+        if (/^image/.test( files[0].type)){
+            var img = $(this).siblings(".reg-id-img");
+            var reader = new FileReader();
+            reader.readAsDataURL(files[0]);
+            reader.onloadend = function(){
+                img.attr("src", this.result);
+            };
+            //ajax提交图片
+            postfile(APP_PATH + '/User/User/uploadFile',files[0],name);
+        }else{
+            alert("请选择图片进行上传");
+        }
+    });
+
+    });
+</script>

@@ -1,0 +1,69 @@
+<!-- 找回密码start -->
+    <div class="middle">
+        <!--Geethin Tech! code by NilTor on 15/04/16
+        Email:admin@geethin.com
+        intro:找回密码-->
+        <div class="find_pwd" gt-model="phone">
+            <div class="ablock2">
+                <div class="row" style="width:84%;margin: 0 auto">
+                    <div class="reg-title text-center">
+                        找回密码
+                    </div>
+                </div>
+                <div class="reg-content">
+                    <legend>- 验证手机号码</legend>
+                    <div class="reg-type input-chose">
+                        <input type="hidden" gt-islabel="身份类型"/>
+                        <input type="radio" gt-isparam="type" value="seeker" name="type" checked="checked">
+                        <span>求职者</span>
+                        <input type="radio" gt-isparam="type" value="company" name="type">
+                        <span>企业或机构</span>
+                    </div>
+                    <div class="reg-other">
+                        <span class="label-text">
+                            手机号
+                        </span>
+                        <div class="right">
+                            <input type="hidden" gt-islabel="手机号"/>
+                            <input class="edit-text" type="text" gt-isparam="phone" gt-check="phone" placeholder="手机号"/>
+                        </div>
+                    </div>
+                    <!-- <label for="" class="wrong">手机号输入有误</label> -->
+                    <div class="reg-other">
+                        <span class="label-text">
+                            图形验证
+                        </span>
+                        <div class="right">
+                           <input type="hidden" gt-islabel="图形验证"/>
+                            <input class="edit-text" id="input_res" type="text" name="res"  placeholder="请输入计算结果"/>
+                        </div>
+                         <img src="__CONTROLLER__/getValidate"  border="1" onclick= this.src="__CONTROLLER__/getValidate/"+Math.random() style="cursor: pointer;" title="看不清？点击更换另一个验证码。">
+                    </div>
+                    <div class="reg-other">
+                        <span class="label-text">
+                            验证码
+                        </span>
+                        <div class="right">
+                            <input type="hidden" gt-islabel="验证码"/>
+                            <input class="edit-text" type="text" gt-isparam="phonecaptcha" placeholder="验证码"/>
+                        </div>
+
+                         <input type="hidden" id="captchaType" value="findPwd"/>
+                        <button class="btn-captcha" gt-btn-click="getphonecaptcha">获取手机验证码</button>
+                    </div>
+                    <button class="btn btn_reg" id="check">验证手机</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 找回密码end -->
+<script>
+    $(document).ready(function () {
+        $("#check").on('click', '', function (event) {
+            event.preventDefault();
+            var phone = M("phone");
+            post(APP_PATH + "/User/User/checkPhone", phone);
+
+        });
+    });
+</script>

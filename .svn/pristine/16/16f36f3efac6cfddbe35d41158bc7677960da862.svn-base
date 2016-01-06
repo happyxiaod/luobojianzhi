@@ -1,0 +1,12 @@
+<div class="per_nav">
+ <a href="__ACTION__/pageManage">首页</a> > <a href="__SELF__">{$top_nav}</a>
+</div>
+<div class="per_dal">
+    <img class="reg-id-img" src="__ROOT__/Uploads/{$user.logo}" width="130" height="130" />
+    <div>
+    <span>{$user.companyname}</span>
+    <p>{$user.companytype}</p>
+    <!-- <a href="">修改头像</a> -->
+    <p>{$user.intro}</p>
+    </div>
+</div>

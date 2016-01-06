@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>地区管理</title>
+    <include file="blocks/import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <!-- 头部内容 -->
+    <div class="header">
+        <include file="blocks/header"/>
+    </div>
+    <!-- 主体内容 -->
+    <div class="middle row">
+        <include file="Setting/contSaveCounty"/>
+    </div>
+    <!-- 底部内容 -->
+    <div class="footer">
+        <include file="blocks/footer"/>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    jQuery(document).ready(function($) {
+        bindClick();
+        $("#navSettingRegion").addClass("nav-two-active"); //更改导航样式
+
+        //修改区（县）按钮绑定
+        $("button[name='saveCounty']").on('click', '', function (event) {
+            event.preventDefault();
+            saveCounty();
+        });
+    });
+
+    //修改区（县）
+    function saveCounty() {
+        data = M2("saveCounty");
+
+        if(data['state'] == 0) {
+            return;
+        }
+
+        if(data["pid"] == "请选择") {
+            alert("请选择所属省份");
+            return;
+        }
+        if(data["cid"] == "请选择") {
+            alert("请选择所属城市");
+            return;
+        }
+
+        value = /^[A-Za-z]+$/; //判断是否为字母的正则表达式
+
+        //判断是否为字母
+        if (value.test(data['spell'])) {
+            //截取首字母，并转换为大写
+            data['first'] = data['spell'].substr(0,1).toUpperCase();
+        } else {
+            alert("名称全拼格式不正确！");
+            return;
+        }
+
+        post("__CONTROLLER__/saveCounty", data);
+    }
+</script>

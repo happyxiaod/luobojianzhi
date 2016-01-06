@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>安全保护</title>
+	<include file="blocks/import_user"/>
+</head>
+<body>
+<div class="container-fluid">
+    <!-- 头部内容 -->
+
+        <include file="blocks/header"/>
+
+    <!-- 主体内容 -->
+
+        <include file="User/contSafety"/>
+
+    <!-- 底部内容 -->
+
+        <include file="blocks/footer"/>
+
+</div>
+</body>
+</html>
+<script>
+	jQuery(document).ready(function() {
+		bindClick();
+        //修改左侧导航栏样式使导航栏的橙色样式对应当前页面
+        $("#pageSafety").removeClass("cur").addClass("cur");
+    });
+
+    //    修改密码
+    $("#originalPassword").on('blur', '', function (event) {
+        event.preventDefault();
+        if($(this).val()==''){
+            $(this).addClass('error');
+            $(this).parent().next("label").html('请输入原始密码');
+        }else{
+             $(this).removeClass('error');
+            $(this).parent().next("label").html('');
+        }
+    });
+    $("#repwd").on('blur', '', function (event) {
+        event.preventDefault();
+        if($(this).val()!=$("#newPwd").val()){
+            $(this).addClass('error');
+            $(this).parent().next("label").html('两次密码不一致');
+        }else{
+             $(this).removeClass('error');
+            $(this).parent().next("label").html('');
+        }
+    });
+
+     $("#confirmUserPwd").on('click', '', function (event) {
+        event.preventDefault();
+        data = M("userPwd");
+        console.log(data);
+        post('updateUserpwd', data);
+    });
+</script>
+
+
+

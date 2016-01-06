@@ -1,0 +1,70 @@
+    <div id="person">
+        <!-- 个人中心start -->
+        <!-- <div class="per_t">
+            <div class="per_nav">
+                <a href="">首页</a> > <a href="">个人管理中心</a>
+            </div>
+            <div class="per_dal">
+                <img src="images/review.jpg" alt="" width="130" height="130" />
+                <div>
+                    <span>马云</span>
+                    <p>山东大学（威海）</p>
+                    <a href="">修改头像</a>
+                </div>
+            </div>
+        </div> -->
+        <div class="per_b clearfix">
+            <include file="blocks/mainnav" />
+            <div class="per_r_dal">
+                <h4 class="font-orange">
+                    简历信息
+                    <a href="__CONTROLLER__/pageEditMyCenter" class="return">编辑</a>
+                </h4>
+                <div class="per_cont">
+                    <div>
+                        <span class="label_text">姓名：</span>
+                        {$user.realname}
+                    </div>
+                    <div>
+                        <span class="label_text">性别：</span>
+                        {$user.sex}
+                    </div>
+                    <div>
+                        <span class="label_text">所在地：</span>
+                        {$user.area}{$user.address}
+                    </div>
+                    <div>
+                        <span class="label_text">所在学校：</span>{$user.school}
+                    </div>
+                    <div>
+                        <span class="label_text">入学年份：</span>
+                        {$user.schoolyear}
+                    </div>
+                    <div>
+                        <span class="label_text">手机号码：</span>
+                      {$user.phone}
+                    </div>
+                    <div>
+                        <span class="label_text">QQ号码：</span>
+                        {$user.qq}
+                    </div>
+                    <div style="overflow:hidden;height:auto;">
+                        <span class="label_text">证件：</span>
+                        <div class="person_r">
+                            <div class="papers">正面</div>
+                            <img src="__ROOT__/Uploads/{$user.idobverse}" alt="身份证正面" />      
+                        </div>
+                        <div class="person_r">
+                            <div class="papers">背面</div>
+                            <img src="__ROOT__/Uploads/{$user.idreverse}" alt="身份证反面" />           
+                        </div>  
+                    </div>
+                    <div style="overflow:hidden;height:auto;">
+                        <span class="label_text">自我评价：</span>
+                        <p>{$user.intro}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 个人中心end -->
+    </div>

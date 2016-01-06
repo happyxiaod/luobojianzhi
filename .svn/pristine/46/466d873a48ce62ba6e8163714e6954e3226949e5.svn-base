@@ -1,0 +1,64 @@
+<!--工作申请 - 详情-->
+<div class = "container">
+    <div class="ablock row" style="padding-top:25px; padding-bottom:100px">
+        <div class="col-md-2">
+            <include file="blocks/mainnav"/>
+        </div>
+        <div class="col-md-10 loadTablePage" id="company-apply-content" style="padding-right:45px; padding-left:25px;">
+            <div class="input-chose" style="margin-left:20px;margin-bottom: 5px;">
+                <input type="checkbox" id="choseAllMsg"/>
+                <span>全选</span>
+                <!--<button class="list-operate-btn" type="contCompanyApply">删除</button>-->
+            </div>
+            <div class="list-box">
+                <volist name="list" id="vo">
+                    <div class="list-row">
+                        <div class="list-checkbox">
+                            <input type="hidden" value="{$vo.id}"/>
+                            <input type="checkbox"/>
+                        </div>
+                        <div class="list-span">
+                            <img src="__PUBLIC__/default/images/12.png" height="18px"/>
+                        </div>
+                        <div style="width: 15%; float: left;">
+                            <a href="" class="list-p-blue">
+                                {$vo.realname}
+                            </a>
+                        </div>
+                        <div class="list-p-blue" style="width: 20%; float: left;">
+                            <a href="" class="list-p-blue">
+                                {$vo.school}
+                            </a>
+                        </div>
+                        <div class="list-p-phone" style="width: 15%; float: left;">
+                            {$vo.phone}
+                        </div>
+                        <div class="list-p-gray" style="width: 15%; float: left;">
+                            {$vo.createtime|substr=0,10}
+                        </div>
+                        <div class="text-center" style="padding: 9px 0 0 0; float: right;">
+                            <input type="hidden" value="{$vo.id}" name="id"/>
+                            <input type="hidden" value="{$vo.applyid}" name="applyid"/>
+                            <input type="hidden" value="{$vo.phone}" name="phone"/>
+                            <input type="hidden" value="{$vo.realname}" name="realname"/>
+
+                            <button class="list-btn Applyresume" style="margin-right: 10px;">
+                                查看简历
+                            </button>
+                            <if condition="$vo.state eq 2">
+                                <button class="list-btn applyYes" style="margin-right: 10px;">确认</button>
+                                <button class="list-btn applyNo" style="margin-right: 10px;">拒绝</button>
+                                <elseif condition="$vo.state eq 1"/>
+                                <span class="state" style="color: green">已确认</span>
+                                <elseif condition="$vo.state eq 0"/>
+                                <span class="state" style="color: red">已拒绝</span>
+                            </if>
+                        </div>
+                    </div>
+                </volist>
+            </div>
+            <!--分页-->
+            <include file="blocks/pagedivide"/>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+.col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9 {float: left;}
+
+#login{width:1200px;margin:0 auto;}
+.login{width:100%;background:url(../images/login_bg.png) no-repeat;background-size: 100% 100%;min-height: 400px;margin-bottom: 100px;margin-top: 20px;}
+.col-md-6{position: relative;min-height: 100px;padding-right: 15px;padding-left: 15px;box-sizing:border-box;}
+.login-panel-border {margin-left: 20px;height: 270px;margin-top: 40px;background: rgba(231, 230, 228, 0.4);border-radius: 5px;min-width: 340px;width: 60%;padding: 12px;}
+.login-panel {background: #fff;width: 100%;height: 100%;border-radius: 3px;}
+.login-panel {background: #fff;width: 100%;height: 100%;border-radius: 3px;}
+.login-input-ico {text-align: center;color: #a5a5a4;float: left;font-size: 18px;width: 10%;line-height: 34px;}
+.login-input-ico .glyphicon-user{width:18px;border: none;padding: 0;font-size:18px;color: #a5a5a4;background: transparent;height:22px;cursor:pointer;margin-top:9px;}
+.login-input-ico .glyphicon-lock{width:18px;border: none;padding: 0;font-size:18px;color: #a5a5a4;background: transparent;height:22px;cursor:pointer;margin-top:9px;}
+.row {margin-right: -15px;margin-left: -15px;}
+.login-content {padding: 5px 60px;}
+.login-input {background: #d2d2d2;border-radius: 3px;padding: 1px 5px;min-height: 36px;margin-top: 10px;margin-bottom: 5px;}
+.login-input-text {float: left;width: 88%;min-height: 36px;background: transparent;border: none;}
+.login-type {height: 35px;border-bottom: 2px solid #ff9a22;padding: 0 26px;font-size: 15px;line-height: 35px;margin: 0;}
+.input-chose input {vertical-align: middle;margin: 0;padding: 0;width: 12px;height: 12px;}
+.input-chose input[type='radio'] {width: 12px;height: 12px;margin-left:5px;}
+.input-chose span {vertical-align: middle;cursor:pointer;}
+a {color: #337ab7;text-decoration: none;}
+a.font-blue:hover{color: #337ab7;}
+.btn {width:100%;display: inline-block;text-align: center;border-radius: 4px;color: #fff;font-size: 16px;height:40px;line-height:40px;background: #ed7312;cursor:pointer;}
+.btn:hover{color:#fff;}
+
+.middle {margin-top: 20px;margin-bottom: -2px;padding-top: 20px;}
+.find_pwd{width:1170px;margin:0 auto;padding-right: 15px;padding-left: 15px;margin-right: auto;margin-left: auto;}
+
+.reg-title {padding: 10px 15px;display: inline-block;background: #ed7312;color: #fff;font-size:20px;}
+.reg-content {border-top: 1px solid #E1E1E1;padding:20px 8% 35px;padding-top: 25px;margin: 30px auto;width: 100%;overflow:hidden;box-sizing:border-box;}
+
+legend {display: block;width: 100%;padding: 0;margin-bottom: 20px;font-size: 18px;line-height: inherit;color: #333;border: 0;border-bottom: 1px solid #ccc;line-height:30px;}
+
+.reg-type {margin-bottom:20px;line-height:20px;height:20px;margin-left:85px;}
+.reg-type input,.reg-type span{float:left;margin-right:20px;color:#333;font-size:16px;}
+.reg-type input{margin-top:4px;margin-right:5px;}	
+.reg_all>div{display: none;}
+.reg_all div.cur{display: block;}
+.reg-other{height:42px;line-height:42px;margin-bottom:20px;}
+.label-text{float:left;width:70px;text-align:right;margin-right:15px;line-height:40px;height:40px;}
+.right{float:left;}
+input.edit-text {border: 1px solid #ccc;height: 38px;width:200px;padding-left: 5px;margin-right:15px;}
+.reg-other img{cursor:pointer;float:left;margin-top:5px;}
+.btn-captcha {background-color: #ed7312;color: #fff;height: 40px;line-height: 40px;display: block;text-align: center;border: none;padding: 0 24px;cursor:pointer;}
+.btn_reg{width:205px;border:0;margin-left:85px;cursor:pointer;}
+
+input.error{border:1px solid #f00;}
+label.wrong{margin-left:85px;margin-bottom:20px;display:block;}
+.reg-other .spinner-content{margin-right:0;text-align:left;width:auto;}
+.reg-other .spinner .glyphicon-triangle-bottom{margin-top:-6px;}
+
+.reg-other input[type="checkbox"]{margin-left:85px;margin-right:10px;float:left;height:40px;line-height:40px;width:20px;}
+
+.add_sel{width:100%; margin: 0 auto;font-size:16px;}
+.add_sel .label-text{margin-right:10px;width:auto;}
+.btn-active{border:0;padding:0 30px;line-height:40px;}
+.pull-right input.edit-text{margin-right:0;width:auto;}
+.city span{margin-bottom:15px;display:block;height:40px;line-height:40px;font-size:16px;}
+.city a{margin-right:10px;}
+
+.city_eng span{margin-bottom:0;}
+.city_dal>div{overflow:hidden;}
+.col-md-1 {width:100px;margin:10px 0;margin-left:30px;}
+.city_dal a{float:left;display:block;margin:10px 0;}
+.city_dal a:hover{text-decoration:underline;}

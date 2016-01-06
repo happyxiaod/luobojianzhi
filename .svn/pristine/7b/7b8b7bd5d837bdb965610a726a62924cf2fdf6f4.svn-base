@@ -1,0 +1,107 @@
+<!--个人中心-->
+<div class = "container">
+    <div class="ablock row" style="padding-top:25px; padding-bottom:100px">
+        <div class="col-md-10" id="user-mycenter-content" style="padding-right:45px; padding-left:45px;">
+            <div style="font-size: 17px;" gt-model="userInfo">
+                <div class="row" style="line-height: 40px;">
+                    <input type="hidden" value="{$user.id}" gt-isparam="id"/>
+                    <div class="col-md-2 text-right">
+                        <span class="label-text">
+                            姓名：
+                        </span>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="hidden" gt-islabel="姓名"/>
+                        <input class="edit-text noborder" type="text" value="{$user.realname}"
+                               disabled="disabled" gt-isparam="realname"/>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 35px">
+                    <div class="col-md-2 text-right">
+                        <span class="label-text">
+                            所在地区：
+                        </span>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="hidden" gt-islabel="所在地区"/>
+                        <input type="text" class="edit-text noborder" value="{$user.area}"
+                               disabled="disabled" gt-isparam="area"/>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 35px">
+                    <div class="col-md-2 text-right">
+                        <span class="label-text">
+                            详细地址：
+                        </span>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="hidden" gt-islabel="详细地址"/>
+                        <input type="text" class="edit-text noborder" value="{$user.address}"
+                               disabled="disabled" gt-isparam="address"/>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 35px">
+                    <div class="col-md-2 text-right">
+                        <span class="label-text">
+                            所在学校：
+                        </span>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="hidden" gt-islabel="所在学校"/>
+                        <input type="text" class="edit-text noborder" value="{$user.school}"
+                               disabled="disabled" gt-isparam="school"/>
+                    </div>
+                </div>
+                <!--<div class="row" style="margin-top: 35px">
+                    <div class="col-md-2 text-right">出生日期：</div>
+                    <div class="col-md-10">1995.08.08</div>
+                </div>
+                <div class="row" style="margin-top: 35px">
+                    <div class="col-md-2 text-right">身高：</div>
+                    <div class="col-md-10">190cm</div>
+                </div>
+                <div class="row" style="margin-top: 35px">
+                    <div class="col-md-2 text-right">QQ：</div>
+                    <div class="col-md-10">12345678</div>
+                </div>-->
+                <div class="row" style="margin-top: 35px">
+                    <div class="col-md-2 text-right">
+                        <span class="label-text">
+                            联系邮箱：
+                        </span>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="hidden" gt-islabel="联系邮箱"/>
+                        <input type="text" class="edit-text noborder" value="{$user.email}"
+                               disabled="disabled" gt-isparam="email"/>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 35px">
+                    <div class="col-md-2 text-right">
+                        <span class="label-text">
+                            绑定手机：
+                        </span>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="hidden" gt-islabel="绑定手机"/>
+                        <input type="text" class="edit-text noborder" value="{$user.phone}"
+                               disabled="disabled" gt-isparam="phone"/>
+                    </div>
+                </div>
+
+                <!--TODO-->
+                <div class="row" style="margin-top: 45px">
+                    <div class="col-md-2 text-right">
+                        <span class="label-text">自我描述：</span>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="hidden" gt-islabel="自我描述"/>
+                        <textarea class="edit-multext noborder" rows="6" gt-isparam="intro" disabled="disabled">{$user.intro}</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

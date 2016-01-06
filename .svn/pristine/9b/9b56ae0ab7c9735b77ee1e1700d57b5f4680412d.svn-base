@@ -1,0 +1,13 @@
+<div class="actionbar-back">
+    <div class="col-xs-1 text-left" style="padding-left:8px">
+        <a href="">
+            <span class="glyphicon glyphicon-menu-left"></span>
+        </a>
+    </div>
+    <div class="col-xs-10 text-center actionbar-title">
+        {$title} 登录
+    </div>
+    <div class="col-xs-1 text-right">
+        {$else}
+    </div>
+</div>

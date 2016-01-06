@@ -1,0 +1,48 @@
+<!--
+Geethin Tech! code by NilTor on 15-04-15
+Email:admin@geethin.com
+intro:企业查看职位被申请信息
+-->
+<div class="gtlyout" style="padding:0">
+    <volist name="applylist" id="vo" empty="暂无申请的职位！">
+        <div class="gtlv-auto">
+            <div class="">
+                <div class="pull-left">
+                <span class="text-normal">
+                    {$vo.title}
+                </span>
+                </div>
+                <div class="pull-right">
+                    <span class="text-normal cl-orange">
+                        {$vo.number}人投简历
+                    </span>
+                </div>
+            </div>
+
+            <div class="gt-cls cl-lightgray">
+                <div class="pull-left">
+                <span>
+                    {$vo.date}
+                </span>
+                </div>
+                <div class="pull-right">
+                    <span>
+                        <!--TODO 跳转到详细页面，参考PC-->
+                        <a href="__CONTROLLER__/pageApplyList?id={$vo.jobid}"
+                           style="border:1px solid #e68f3d;border-radius: 3px;padding:1px;">
+                            查看详情
+                        </a>
+                    </span>
+                    &nbsp;
+                </div>
+            </div>
+            <input type="hidden" value="{$vo.id}"/>
+        </div>
+    </volist>
+</div>
+<script>
+    $(document).ready(function () {
+        //TODO 点击之后跳转到兼职的详情页
+
+    });
+</script>

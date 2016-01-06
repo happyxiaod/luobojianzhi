@@ -1,0 +1,84 @@
+<div id="header">
+        <div class="top-line"></div>
+        <div class="container">
+            <div class="ablock ablock1">
+                <h1><a href="__MODULE__"></a></h1>
+                <div class="chose-city">
+                    <span>{$nowCity}</span>
+                    <a href="__MODULE__/Index/pageSwopCity" class="change-city" style="color:#808080">切换城市</a>
+                </div>
+                <div class="header-pt">
+                    最靠谱的大学生兼职平台 <br>
+                    www.luobojianzhi.com
+                </div>
+                <div class="header-nav pull-right">
+                    <!--登录前-->
+                    <ul class="login-before">
+                        <li><a href="__MODULE__/Article/index">关于我们</a></li>
+                        <div class="nav-dlmt"></div>
+                        <li><a href="">手机端</a></li>
+                        <div class="nav-dlmt"></div>
+                        <li><a href="__APP__/Home/Index/pageReg">注册</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+</div>
+    <!-- 头end -->
+
+<!-- 登录start -->
+    <div id="login">
+        <div class="login" gt-model="userLogin">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-6">
+                <div class="login-panel-border">
+                    <div class="login-panel" >
+                        <!--用户登录类型选择-->
+                        <div class="row login-type input-chose">
+                            <input type="radio" name="type" value="seeker" gt-isparam="type" checked="checked">
+                            <span style="margin-right:15px;">求职者</span>
+                            <input type="radio" name="type" value="company" gt-isparam="type">
+                            <span style="margin-right:15px;">企业或机构</span>
+                            <input type="radio" name="type" value="school" gt-isparam="type">
+                            <span>学校机构</span>
+                        </div>
+
+
+                        <div class="row login-content">
+                            <!--登录框-->
+                            <div class="row login-input">
+                                <span class="login-input-ico">
+                                   <span class="glyphicon glyphicon-user">&#xe815;</span>
+                                </span>
+                                <input type="hidden" gt-islabel="用户名"/>
+                                <input class="login-input-text" gt-isparam="username" id="usernameInput" type="text">
+                            </div>
+
+                            <div class="row login-input">
+                                <span class="login-input-ico">
+                                   <span class="glyphicon glyphicon-lock">&#xe80e;</span>
+                                </span>
+                                <input type="hidden" gt-islabel="密码"/>
+                                <input class="login-input-text" gt-isparam="password" id="passwordInput" type="password">
+                            </div>
+                            <!--忘记密码-->
+                            <div class="row text-right">
+                                <a href="pageFindPwd">忘记密码</a>
+                            </div>
+                            <div class="row" style="margin-top: 15px;">
+                            <a href="javascript:" class="btn" gt-btn-click="login" id="loginBtn" style="width: 100%;">登录</a>
+                            </div>
+                            <div class="row text-right " style="margin-top: 10px">
+                                <a href="pageReg.html">立即注册</a><!--&nbsp;&nbsp;
+                            <input type="checkbox"/>
+                            <span>记住密码</span>-->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 登录end -->

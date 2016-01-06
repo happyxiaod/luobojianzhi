@@ -1,0 +1,28 @@
+<!--
+Geethin Tech
+code by NilTor on 2015/03/01
+Email:admin@geethin.com
+intro:主页分类导航内容
+-->
+<div class="index-job-nav">
+    <div class="index-job-nav-block">
+        <!--TODO 主页左边分类导航-->
+        <volist name="level1list" id="vo">
+            <div class="index-job-nav-block">
+                <a href="__ACTION__?l1={$vo.name}" class="index-job-title">
+                    {$vo.name}
+                </a>
+                <!--二级分类-->
+                <div class="index-job-content">
+                    <volist name="level2list" id="vo2">
+                        <eq name="vo.id" value="$vo2.fid">
+                            <a href="__ACTION__?l2={$vo2.name}">{$vo2.name}</a>
+                        </eq>
+
+                    </volist>
+                </div>
+            </div>
+
+        </volist>
+    </div>
+</div>

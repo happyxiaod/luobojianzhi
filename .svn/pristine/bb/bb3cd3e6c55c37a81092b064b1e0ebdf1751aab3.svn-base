@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>我的收藏</title>
+	<include file="blocks/import_user"/>
+</head>
+<body>
+    <!-- 头部内容 -->
+        <include file="blocks/header"/>
+    <!-- 主体内容 -->
+        <include file="User/contCollect"/>
+    <!-- 底部内容 -->
+        <include file="blocks/footer"/>
+</body>
+</html>
+<script>
+	jQuery(document).ready(function($) {
+		bindClick();
+        //修改左侧导航栏样式使导航栏的橙色样式对应当前页面
+        $("#pageCollect").removeClass("cur").addClass("cur");
+	});
+</script>

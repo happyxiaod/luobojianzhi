@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>企业信息</title>
+	<include file="blocks/import"/>	
+</head>
+<body>
+	<div class="container-fluid">
+		<!-- 头部内容 -->
+		<div class="header">
+			<include file="blocks/header"/>
+		</div>
+		<!-- 主体内容 -->
+		<div class="middle row">
+			<include file="Position/contCompany"/>
+		</div>
+		<!-- 底部内容 -->
+		<div class="footer">
+			<include file="blocks/footer"/>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+	jQuery(document).ready(function($) {
+		bindClick();
+		loadPage($(".load-table-page"), CON_PATH+"/fragCompanyPublishList");
+		$("#navPositionCompany").addClass("nav-two-active"); //更改导航样式
+	});
+</script>

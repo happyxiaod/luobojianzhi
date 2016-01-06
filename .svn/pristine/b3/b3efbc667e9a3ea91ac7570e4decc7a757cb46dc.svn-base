@@ -1,0 +1,15 @@
+<div id="person">
+        <div class="per_b clearfix">
+            <include file="newArtNav"/>
+            <div class="per_r_dal">
+                <h4 class="font-orange">关于捷城</h4>
+                <div class="pre">
+                    <strong>捷城科技秉承“专业、贴心、极致”的服务理念，为客户提供最全面的移动互联网解决方案。
+                    <br/>
+                    目前总部设于适宜人居城市威海，我们会为最佳用户体验而不断努力创新，
+                    未来的"萝卜兼职"，将成为人人信赖的大学生兼职服务平台。</strong>
+                </div>
+            </div>
+
+        </div>
+ </div>

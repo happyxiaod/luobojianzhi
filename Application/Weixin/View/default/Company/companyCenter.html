@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>企业中心</title>
+    <include file="blocks/import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="actionbar-back">
+            <div class="col-xs-1 text-left" style="padding-left:8px">
+                <a href="javascript:" onclick="javascript:history.back(-1)">
+                    <span class="glyphicon glyphicon-menu-left"></span>
+                </a>
+            </div>
+            <div class="col-xs-10 text-center actionbar-title">
+                企业中心
+            </div>
+            <div class="col-xs-1 text-right">
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!--头像-->
+        <div class="text-center" style="height:200px;padding-top:40px">
+            <div class="headpic-alp">
+                <img src="{$headpic}" class="headpic-lg" style="border:none"/>
+            </div>
+        </div>
+        <div class="gt-rowdivide" style="height:8px"></div>
+        <div class="gtlyout" style="height:48px;line-height: 48px;padding:0">
+            <div class="col-xs-2">
+                <img src="__PUBLIC__/default/images/appico1.png" width="32px"/>
+            </div>
+            <div class="col-xs-10 curs-pt" id="info">
+                <span class="text-normal">企业信息</span>
+            </div>
+        </div>
+
+        <div class="gt-rowdivide" >
+        </div>
+
+        <div class="gtlyout" style="height:48px;line-height: 48px;padding:0">
+            <div class="col-xs-2">
+                <img src="__PUBLIC__/default/images/appico2.png" width="32px"/>
+            </div>
+            <div class="col-xs-10 curs-pt" id="postjob">
+                <span class="text-normal ">发布兼职</span>
+            </div>
+        </div>
+
+        <div class="gtlyout" style="height:48px;line-height: 48px;padding:0;margin-top:-4px">
+            <div class="col-xs-2">
+                <img src="__PUBLIC__/default/images/company3.png" width="32px"/>
+            </div>
+            <div class="col-xs-10 curs-pt" id="postrecord">
+                <span class="text-normal ">发布记录</span>
+            </div>
+        </div>
+        <div class="gtlyout" style="height:48px;line-height: 48px;padding:0;margin-top:-4px">
+            <div class="col-xs-2">
+                <img src="__PUBLIC__/default/images/company4.png" width="32px"/>
+            </div>
+            <div class="col-xs-10 curs-pt" id="jobstate">
+                <span class="text-normal ">投递状态</span>
+            </div>
+        </div>
+
+        <div class="gt-rowdivide"></div>
+
+        <div class="gtlyout" style="height:48px;line-height: 48px;padding:0">
+            <div class="col-xs-2">
+                <img src="__PUBLIC__/default/images/appico4.png" width="32px" height="32px"/>
+            </div>
+            <div class="col-xs-10 curs-pt" id="setting">
+                <span class="text-normal">设置</span>
+            </div>
+        </div>
+
+        <div class="gt-rowdivide">
+        </div>
+    </div>
+    <div class="row">
+        <include file="blocks/footer"/>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        $('#info').on('click', '', function (event) {
+            event.preventDefault();
+            location.href = '__MODULE__/Company/companyInfo';
+        });
+        $('#postjob').on('click', '', function (event) {
+            event.preventDefault();
+            location.href = '__MODULE__/Company/postJob';
+        });
+        $('#postrecord').on('click', '', function (event) {
+            event.preventDefault();
+            location.href = '__MODULE__/Company/postRecord';
+        });
+        $('#jobstate').on('click', '', function (event) {
+            event.preventDefault();
+            location.href = '__MODULE__/Company/jobState';
+        });
+        $('#setting').on('click', '', function (event) {
+            event.preventDefault();
+            location.href = '__MODULE__/Setting/setting';
+        });
+    });
+</script>

@@ -1,0 +1,10 @@
+<div class="">
+    <volist name="list" id="vo">
+        {$vo.}
+
+        {$vo.}
+
+        {$vo.}
+
+    </volist>
+</div>

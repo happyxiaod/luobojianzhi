@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>登录</title>
+	<include file="blocks/import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <div>
+        <include file="Index/contLogin"/>
+    </div>
+    <!-- 底部内容 -->
+
+        <include file="blocks/footer"/>
+
+</div>
+</body>
+</html>
+<script>
+    $(document).ready(function() {
+        bindClick();
+
+        //在账号密码输入框按回车，就触发登陆按钮的click事件
+        $("#usernameInput, #passwordInput").keydown(function(e) {
+            if(e.keyCode==13){
+                $("#loginBtn").click();
+            }
+        });
+    });
+</script>

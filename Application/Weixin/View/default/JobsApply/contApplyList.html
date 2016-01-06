@@ -1,0 +1,45 @@
+<div class="gtlyout" style="padding: 0">
+    <volist name="list" id="vo" empty="暂无申请人信息！">
+        <div class="gtlv-auto">
+            <div class="">
+                <div class="pull-left">
+                <span class="text-normal">
+                    {$vo.realname}
+                </span>
+                </div>
+                <div class="pull-right">
+                    <span class="">
+                        <a href="__MODULE__/UserCenter/pageResume?id={$vo.id}"
+                           style="border:1px solid #e68f3d;border-radius: 3px;padding:1px 4px;">
+                            查看简历
+                        </a>
+                    </span>
+                </div>
+            </div>
+
+            <div class="gt-cls cl-lightgray">
+                <div class="pull-left">
+                <span>
+                    {$vo.school} |　{$vo.createtime|substr=0,11}
+                </span>
+                </div>
+                <div class="pull-right">
+                    <eq name="vo.state" value="1">
+                        已通过
+                    </eq>
+                    <eq name="vo.state" value="0">
+                        已拒绝
+                    </eq>
+                    <eq name="vo.state" value="2">
+                        <span>
+                            <a href="acceptApply?id={$vo.applyid}" class="label label-success">通过</a>
+                            <a href="refuseApply?id={$vo.applyid}" class="label label-danger">拒绝</a>
+                        </span>
+                    </eq>
+
+                </div>
+            </div>
+            <input type="hidden" value="{$vo.id}"/>
+        </div>
+    </volist>
+</div>

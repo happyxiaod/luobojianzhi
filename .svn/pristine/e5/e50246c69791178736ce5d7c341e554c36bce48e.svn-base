@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>账号绑定</title>
+    <include file="blocks/import"/>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row" style="padding:5px 10px;">
+            <p>请选择用户类型：</p>
+
+            <form action="bindWX" method="post">
+                <select name="type" id="" class="wx-input">
+                    <option value="seeker">学生用户</option>
+                    <option value="company">企业用户</option>
+                </select>
+                <input class="wx-input" type="text" name="phone" placeholder="请输入手机号"/>
+                <input class="wx-input" type="text" name="password" placeholder="请输入密码"/>
+                <div class="btn-normal">
+                    绑定
+                </div>
+            </form>
+
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+
+    });
+</script>

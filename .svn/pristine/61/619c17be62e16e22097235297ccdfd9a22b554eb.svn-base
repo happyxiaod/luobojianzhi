@@ -1,0 +1,296 @@
+<?php
+namespace Home\Controller;
+use Think\Controller;
+
+/**
+ * Class JobsController
+ *
+ * @package Home\Controller
+ */
+class JobsController extends Controller {
+    static $user;//当前登录用户session
+
+    /**初始化方法，默认的属性值
+     *
+     */
+    public function _initialize()
+    {
+         $nowCity = I("get.nowCity");
+        if (empty($nowCity)){
+            $nowCity = session('nowCity');
+            $this->assign('nowCity', $nowCity);
+        }else{
+            session('nowCity', $nowCity);
+            $this->assign('nowCity', $nowCity);
+        }
+        //验证是否为管理员登陆
+        if(session('user')['adminname'] == "radish") {
+            session("user", null);
+        }
+        self::$user = session("user");
+        //构造查询的条件
+
+    }
+
+      public function jobComment()
+    {   
+        if(!empty(I("post.message"))){
+        $data['jobid'] = I("post.jobid");
+        $data['content']=I("post.message");
+        $data['companyid']=I("post.companyid");
+        $data['sid']=$_SESSION['user']['id'];
+        $data['addtime']=time();
+        $db = M("job_comments");
+        if( $db->add($data)){
+            $this->success("发表评论成功");
+        }else{
+            $this->error("评论失败",U('Home/Index/pageLogin'));
+            /*echo "留言失败";*/
+        }
+        }else{
+           $this->error("评论不能为空"); 
+        }
+    }
+
+
+      public function jobReport()
+    {   
+        if(!empty(I("post.reportContent"))){
+        $data['jobid'] = I("post.jobid");
+        $data['complaint']=I("post.reportContent");
+        $data['companyid']=I("post.companyid");
+        $data['complainterid']=$_SESSION['user']['id'];
+        $data['jobtitle']=I("post.jobtitle");
+        $data['jobinfo']=I("post.jobinfo");
+        $data['reporttime']=time();
+
+        $db = M("job_complaints");
+        if( $db->add($data)){
+            $this->success("举报成功，萝卜助手会尽快处理");
+        }else{
+            $this->error("请先登录",U('Home/Index/pageLogin'));
+            /*echo "留言失败";*/
+        }
+        }else{
+           $this->error("请填写举报原因"); 
+        }
+    }
+
+    public function pageJobsDetails() {
+        $nowCity = I("get.nowCity");
+        if (empty($nowCity)){
+            $nowCity = session('nowCity');
+            $this->assign('nowCity', $nowCity);
+        }else{
+            session('nowCity', $nowCity);
+            $this->assign('nowCity', $nowCity);
+        }
+        $jobid=I("get.id");
+        $where['id'] = I("get.id");
+
+        $commentsList=M()->table('job_comments,user_seeker')->field('user_seeker.username,user_seeker.headpic,job_comments.content')->where("jobid=$jobid AND job_comments.sid=user_seeker.id")->order('addtime desc')->limit('2')->select();
+         $this->assign("commentsList", $commentsList);
+        $db = M("Jobs");
+        //更新阅读数量
+        $db->where($where)->setInc('view');
+        $re = $db->order('view desc')->where($where)->find();
+        $uid=$re['uid'];
+        $company=M('user_company')->find($uid);
+        $this->assign('company',$company);
+        $this->assign("jobDetails", $re);
+        $this->display();
+    }
+    //实习
+    public function pagePractice() {
+        
+        $this->display();
+    }
+
+    //热门兼职
+    public  function hoteJobs(){
+        $db = M("jobs");
+        $re = $db->order('view desc ')->select();
+        $this->assign("hoteJobs",$re);
+        $this->display();
+    }
+    //兼职页
+    public function pageJobsLists() {
+        $nowCity = I("get.nowCity");
+        if (empty($nowCity)){
+            $nowCity = session('nowCity');
+            $this->assign('nowCity', $nowCity);
+        }else{
+            session('nowCity', $nowCity);
+            $this->assign('nowCity', $nowCity);
+        }
+        //查询区县信息
+        $jobs=D('Jobs');
+        $countyList=$jobs->getCountyList($nowCity);
+        $this->assign("countyList", $countyList);
+
+        // 查询分类信息
+        $l1=D('jobs')->getJoblevel1();
+        $this->assign("job_level1", $l1);
+        // 随机查询6个职业分类作为热门搜索内容
+        $sql = "SELECT * FROM job_level2 ORDER BY RAND()  LIMIT 6";
+        $levelRandom = M()->query($sql);
+        $this->assign("level2RandomList", $levelRandom);
+
+        $p = I('get.p', 1);//分页，页数
+        $limit = I('get.limit', 12);//个数
+        //构造查询的条件
+        $level2 = I('get.l2');//职业
+        $level1 = I('get.l1');//行业
+        $time=I('get.time');
+        switch ($time) {
+            case 'day':
+               $startTime=date("Y-m-d");
+               $endTime=date("Y-m-d");
+                break;
+            case 'week':
+               $startTime=date("Y-m-d",mktime(0, 0 , 0,date("m"),date("d")-date("w")+1,date("Y")));
+               $endTime =date("Y-m-d",mktime(23,59,59,date("m"),date("d")-date("w")+7,date("Y")));
+                break;
+            case 'month':
+               $startTime = date("Y-m-d",mktime(0, 0 , 0,date("m"),1,date("Y")));
+               $endTime=date("Y-m-d",mktime(23,59,59,date("m"),date("t"),date("Y")));
+                break;
+            case 'year':
+               $startTime=date("Y").'-01-01';
+               $endTime=date("Y").'-12-31';
+                break;
+            default:
+                break;
+        }
+        $keyword = I('get.keyword');//关键词，搜索
+        $county = I('get.county'); //地区
+        $host = I('get.host');
+        $where['jobs.state'] = array ('neq', 3);
+        $where['jobs.area|jobs.city'] = array ('LIKE', "%" .  $nowCity . "%"); //根据城市查询
+        if (!empty($level1)) {
+            $where['jobs.level1'] = $level1;
+        }
+        if (!empty($level2)) {
+            $where['jobs.level2'] = $level2;
+        }
+        if (!empty($keyword)) {
+            $where['jobs.title'] = array ('LIKE', "%" .  $keyword . "%");
+        }
+        if (!empty($county)) {
+            $where['jobs.area|jobs.county'] = array ('LIKE', "%" .  $county . "%");
+        } 
+        if (!empty($time)) {
+            $where['jobs.date'] = array ('BETWEEN',array($startTime,$endTime));
+        }       
+        $jobs=D('Jobs');
+         if(!empty($host)){
+           $commonJobLists=$jobs->getCommonJobsList($limit,$p,"jobs.view desc",$where);
+        }else{
+            $commonJobLists=$jobs->getCommonJobsList($limit,$p,"jobs.date desc,jobs.id desc",$where);
+        } 
+        $count=$jobs->getCount($where);
+        $this->assign('count',$count);
+        $page = gtPage($count, $limit, $p);
+        $this->assign("pagelist", $page);
+        $this->assign("curtpage", $p);
+        $this->assign('commonJobLists',$commonJobLists);
+        $this->assign("jobsList", true);//确定当前导航样式
+        $this->display();
+    }
+
+    //申请职位
+    public function sendApply() {
+        //判断是否登陆
+        if(empty(self::$user)) {
+            $this->error("请登录后再进行操作！");
+        }
+        //判断用户类型
+        if(self::$user['type'] != "seeker") {
+            $this->error("企业或学校不能申请职位！");
+        }
+
+        if (self::$user['state'] == 2) {
+            $this->error("您的信息正在审核中，请确认信息完整！");
+        }
+        $data['uid'] = self::$user['id'];
+        $data['jobid'] = I("post.jobid");
+        $data['companyid'] = I("post.companyid");
+        $re = M("jobs_apply")->where($data)->find();
+        if($re) {
+            $this->error("您已经申请过该职位！");
+        }
+        $data['companyname'] = I("post.companyname");
+        $data['createtime'] = date('Y-m-d H:i:s',time());
+        $data['state'] = 2;
+        $re = M("jobs_apply")->add($data);
+        if ($re) {
+          sendAplMsgToCop(I('post.companyphone'),I('post.companyname'), I('post.title'), self::$user['realname'], self::$user['phone']);
+            $this->success("申请成功");
+        }else{
+             $this->error("申请失败");
+        }
+    }
+
+    //收藏职位
+    public function collect() {
+        //判断是否登陆
+        if(empty(self::$user)) {
+            $this->error("请登录后再进行操作！");
+        }
+        //判断用户类型
+        if(self::$user['type'] != "seeker") {
+            $this->error("企业或学校不能收藏职位！");
+        }
+        $data['uid'] = self::$user['id'];
+        $data['jobid'] = I("post.jobid");
+        $re = M("jobs_collection")->where($data)->find();
+        if($re) {
+            $this->error("您已经收藏过该职位！");
+        }
+        $data['createtime'] = date('Y-m-d H:i:s',time());
+        $re = M("jobs_collection")->add($data);
+        if ($re) {
+            $this->success("收藏成功");
+        } else {
+            $this->error("收藏失败");
+        }
+    }
+
+
+      //收藏职位
+    public function checklogin() {
+        //判断是否登陆
+        if(empty(self::$user)) {
+            $this->error("请登录后再进行操作！");
+        }
+        //判断用户类型
+        if(self::$user['type'] != "seeker") {
+            $this->error("企业或学校不能评论职位！");
+        }
+    }
+
+    public function pageTailor()
+    {
+        $this->assign('taitor',true);
+        $this->display();
+    }
+
+    public function pageLoan()
+    {
+       $this->assign('loan',true);
+        $this->display();
+    }
+    /**public function pagePractice()
+    {
+       $this->assign('practice',true);
+        $this->display();
+    }
+    **/
+
+    public function pageServe()
+    {
+        $this->assign('serve',true);
+        $this->display();
+    }
+}
+

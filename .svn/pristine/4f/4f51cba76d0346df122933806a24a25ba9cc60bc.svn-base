@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>地区管理</title>
+    <include file="blocks/import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <!-- 头部内容 -->
+    <div class="header">
+        <include file="blocks/header"/>
+    </div>
+    <!-- 主体内容 -->
+    <div class="middle row">
+        <include file="Setting/contRegionProvince"/>
+    </div>
+    <!-- 底部内容 -->
+    <div class="footer">
+        <include file="blocks/footer"/>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    jQuery(document).ready(function($) {
+        bindClick();
+        $("#navSettingRegion").addClass("nav-two-active"); //更改导航样式
+
+        //删除点击事件
+        $(".delProvince").on('click', '', function (event) {
+            event.preventDefault();
+            delProvince($(this));
+        });
+    });
+
+    //删除省
+    function delProvince(btn) {
+        id = btn.siblings("input[name='id']").val();
+        jQuery.ajax({
+            url: CON_PATH + '/delProvince',
+            type: 'POST',
+            dataType: '',
+            data: {'id': id},
+            complete: function (xhr, textStatus) {
+                //called when complete
+            },
+            success: function (data, textStatus, xhr) {
+                alert(data);
+                location.reload();
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                
+            }
+        });
+    }
+</script>

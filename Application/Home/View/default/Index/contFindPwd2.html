@@ -1,0 +1,51 @@
+    <div id="person">
+      
+    
+        <div class="per_b clearfix">
+           
+            <div class="per_r_dal">
+                <h4 class="font-orange">修改密码</h4>
+                <div class="per_cont" gt-model="password">
+                    <div>
+                        <span class="label_text">新密码</span>
+                         <input type="hidden" gt-islabel="新的密码"/>
+                        <input type="password" gt-isparam="password"  placeholder="新的密码"/>
+                    </div>
+                    <div>
+                        <span class="label_text">确认密码</span>
+                        <input type="hidden" gt-islabel="确认密码"/>
+                        <input type="password" gt-isparam="repassword" id="repassword" placeholder="确认密码"/>
+                    </div>
+                    <label for="" class="wrong"></label>
+                    <input type="button" value="保存" class="btn_save" id="checkpassword"/>
+                    
+                </div>
+                
+            </div>
+
+        </div>
+
+    </div>
+<script>
+    $(document).ready(function () {
+        $("#repassword").on('blur', '', function (event) {
+            event.preventDefault();
+            var password = M3("password");
+            if(password.password != password.repassword) {
+               $(this).parent().next("label").html("两次密码不一致");
+            }else{
+                $(this).parent().next("label").html("");
+            }
+        });
+
+         $("#checkpassword").on('click', '', function (event) {
+            event.preventDefault();
+            var password = M("password");
+            if(password.password != password.repassword) {
+               alert("两次密码不一致");
+            }else{
+                post(APP_PATH + "/User/User/setPassword?type={$type}&id={$id}", password);
+            }    
+        });
+    });
+</script>

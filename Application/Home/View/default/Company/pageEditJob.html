@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>我的发布</title>
+    <include file="blocks/import_user"/>
+    <script src="__PUBLIC__/default/js/datetimepicker.min.js"></script>
+    <script src="__PUBLIC__/default/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=P5AXQi2Q4I1wGcSGdIYZMPOG"></script>
+<style type="text/css">
+    .per_r_dal .add {
+    height: auto;
+    }
+</style>
+</head>
+<body>
+<div class="container-fluid">
+    <!-- 头部内容 -->
+        <include file="blocks/header"/>
+    <!-- 主体内容 -->
+        <include file="Company/contEditJob"/>
+    <!-- 底部内容 -->
+        <include file="blocks/footer"/>
+</div>
+</body>
+</html>
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        bdmap();
+        bindClick();
+        bindCheck();
+        bindSpinner();
+        //修改左侧导航栏样式使导航栏的橙色样式对应当前页面
+        $("#pagePost").removeClass("nav-normal").addClass("nav-active");
+        //选择职位分类事件
+        $("select[name='level1']").on('change', '', function (event) {
+            level1 = $(this).val();
+
+             jQuery.ajax({
+                url: CON_PATH + "/getLevel2ListByname",
+                type: 'POST',
+                data: {'level1': level1},
+                complete: function (xhr, textStatus) {
+                    //called when complete
+                },
+                success: function (data, textStatus, xhr) {
+
+                    if (data != "failed") {
+                        var str = "";
+                        $.each(data, function (key, value) {
+                            str += "<option value='" + value['name']+"'>";
+                            str += value['name']+"</option>";
+                        });
+                        $("#level2ListBox").html(str);
+
+
+                    } else {
+                        $("#level2ListBox").html("");
+                        dealReturn("暂无职位信息");
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+
+                }
+            });
+        });
+
+      
+
+    });
+
+    $('#form_date').datetimepicker({
+        format: 'yyyy-mm-dd',
+        language: 'zh-CN',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2
+    });
+
+    function bdmap() {
+        var map = new BMap.Map("bdmap");    // 创建Map实例
+        map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+        var geoc = new BMap.Geocoder();
+        var point;
+        var nowCity="{$Think.session.nowCity}";
+        map.centerAndZoom(nowCity);
+
+        //鼠标点击后定位
+        map.addEventListener("click", function (e) {
+            var pt = e.point;
+            var mk = new BMap.Marker(pt);
+            map.clearOverlays();
+            map.addOverlay(mk);
+            map.panTo(pt);
+
+            geoc.getLocation(pt, function (rs) {
+                var addComp = rs.addressComponents;
+                $("[gt-isparam='address']").val(addComp.province + addComp.city + addComp.district + addComp.street
+                + addComp.streetNumber);
+
+            });
+        });
+    }
+
+     //选择省事件
+        $("select[name='province']").on('change','',function() {
+            pname = $(this).val();
+            jQuery.ajax({
+                url: MOD_PATH + "/Index/getCityByProvinceName",
+                type: 'POST',
+                dataType: '',
+                data: {'province': pname},
+                complete: function (xhr, textStatus) {
+                    //called when complete
+                    getSchool();
+                },
+                success: function (data, textStatus, xhr) {
+                    if (data != "failed") {
+                        var str = "";
+
+                        $.each(data, function (key, value) {
+                            str += "<option value='" + value['name']+"'>";
+                            str += value['name']+"</option>";
+                        });
+                        $("#cityList").html(str);
+
+
+                    } else {
+                        $("#cityList").html("");
+                        dealReturn("暂无城市信息");
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert("获取城市列表失败");
+                }
+            });
+
+        });
+
+ //获取区县列表
+
+    $("select[name='city']").on('change','',function() {
+            getCounty();
+    });
+
+     function getCounty() {
+        var city= $("#cityList").val();
+        $.post(MOD_PATH + "/Index/getCountyByCityName", {city: city}, function (data) {
+
+            if (data != "failed") {
+                var str = "";
+                $.each(data, function (key, value) {
+                    str += "<option value='" + value['name']+"'>";
+                    str += value['name']+"</option>";
+                });
+                $("#countyList").html(str);
+            } else {
+                $("#countyList").html("");
+                dealReturn("该城市暂地区信息");
+            }
+        });
+
+    }
+
+  
+
+</script>

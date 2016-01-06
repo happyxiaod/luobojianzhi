@@ -1,0 +1,35 @@
+<table class="table text-center mtop1 table-hover">
+	<thead>
+	<tr>
+		<th class="text-center">用户名</th>
+		<th class="text-center">姓名</th>
+		<th class="text-center">手机号</th>
+		<th class="text-center">提交时间</th>
+		<!--<th class="text-center">上传材料</th>-->
+		<th class="text-center">审核</th>
+		<th class="text-center">查看</th>
+	</tr>
+	</thead>
+	<tbody>
+	<volist name="userSeekerList" id="vo">
+		<tr>
+			<td style="line-height: 30px;">{$vo.username}</td>
+			<td style="line-height: 30px;">{$vo.realname}</td>
+			<td style="line-height: 30px;">{$vo.phone}</td>
+			<td style="line-height: 30px;">{$vo.createtime}</td>
+			<!--<td>
+                <button class="audit-thumbnail" gt-btn-click="audit-thumbnail" popup-src="__ROOT__/Uploads/{$vo.idobverse}">正面</button>
+                <button class="audit-thumbnail" gt-btn-click="audit-thumbnail" popup-src="__ROOT__/Uploads/{$vo.idreverse}">反面</button>
+            </td>-->
+			<td>
+				<input type="hidden" value="{$vo.id}" name="id"/>
+				<button class="btn btn-success btn-sm" gt-btn-click="audit-seeker-pass">通过</button>
+			</td>
+			<td>
+				<a href="__CONTROLLER__/pageSeekerInfo?id={$vo.id}" target="_blank" class="btn btn-primary btn-sm">查看详情</a>
+			</td>
+		</tr>
+	</volist>
+	</tbody>
+</table>
+<include file="blocks/pagedivideload"/>

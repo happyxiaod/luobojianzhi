@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>编辑职位</title>
+    <include file="blocks/import"/>
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="actionbar-back">
+            <div class="col-xs-1 text-left" style="padding-left:8px">
+                <a href="javascript:" onclick="javascript:history.back(-1)">
+                    <span class="glyphicon glyphicon-menu-left"></span>
+                </a>
+            </div>
+            <div class="col-xs-10 text-center actionbar-title">
+                编辑职位
+            </div>
+            <div class="col-xs-1 text-right">
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <form action="" id="form-job">
+            <div class="gtlyout" style="line-height: 36px">
+                <input type="hidden" name="id" value="{$job.id}"/>
+
+                <div class="col-xs-3 text-right" style="padding:0">
+                    行业分类:
+                </div>
+                <div class="col-xs-9">
+
+                    <select name="level1" id="choselevel1" class="form-control">
+                        <option value="">选择行业</option>
+                        <volist name="level1" id="vo">
+                            <option value="{$vo.id}"
+                            <php>
+                                if($job['level1']==$vo['name']){
+                                echo('selected="selected"');
+                                }
+                            </php>
+                            >{$vo.name}</option>
+                        </volist>
+                    </select>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-xs-3 text-right" style="padding:0">
+                    职业岗位:
+                </div>
+                <div class="col-xs-9">
+                    <select name="level2" id="choselevel2" class="form-control">
+                        <option value="{$job.level2}">{$job.level2}</option>
+
+                    </select>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-xs-3 text-right" style="padding:0">
+                    职位名称:
+                </div>
+                <div class="col-xs-9">
+                    <input class="form-control" type="text" name="title" value="{$job.title}"/>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-xs-3 text-right" style="padding:0">
+                    详细地址:
+                </div>
+                <div class="col-xs-9">
+                    <input class="form-control" type="text" name="address" value="{$job.address}"/>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-xs-3 text-right" style="padding:0">
+                    薪资待遇:
+                </div>
+                <div class="col-xs-4" style="padding-right:0">
+                    <input class="form-control" type="text" name="price" value="{$job.price}"/>
+                </div>
+                <div class="col-xs-4" style="padding-left:0">
+                    <select name="pricetype" class="form-control">
+                        <option value="元/时"
+                        <php>
+                            if($job['pricetype']=="元/时"){
+                            echo('selected="selected"');
+                            }
+                        </php>
+                        >元/时</option>
+                        <option value="元/天"
+                        <php>
+                            if($job['pricetype']=="元/天"){
+                            echo('selected="selected"');
+                            }
+                        </php>
+                        >元/天</option>
+                        <option value="元/月"
+                        <php>
+                            if($job['pricetype']=="元/月"){
+                            echo('selected="selected"');
+                            }
+                        </php>
+                        >元/月</option>
+                        <option value="元/次、件"
+                        <php>
+                            if($job['pricetype']=="元/次、件"){
+                            echo('selected="selected"');
+                            }
+                        </php>
+                        >元/次、件</option>
+                    </select>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-xs-3 text-right" style="padding:0">
+                    结算方式:
+                </div>
+                <div class="col-xs-9">
+                    <select name="paytype" class="form-control">
+                        <option value="日结"
+                        <php>
+                            if($job['paytype']=="日结"){
+                            echo('selected="selected"');
+                            }
+                        </php>
+                        >日结</option>
+                        <option value="周结"
+                        <php>
+                            if($job['paytype']=="周结"){
+                            echo('selected="selected"');
+                            }
+                        </php>
+                        >周结</option>
+                        <option value="月结"
+                        <php>
+                            if($job['paytype']=="月结"){
+                            echo('selected="selected"');
+                            }
+                        </php>
+                        >月结</option>
+                        <option value="按量(次)结"
+                        <php>
+                            if($job['paytype']=="按量(次)结"){
+                            echo('selected="selected"');
+                            }
+                        </php>
+                        >按量(次)结</option>
+                    </select>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-xs-3 text-right" style="padding:0">
+                    招聘人数:
+                </div>
+                <div class="col-xs-9">
+                    <input class="form-control" type="number" name="number" value="{$job.number}"/>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-xs-3 text-right" style="padding:0">
+                    工作日期:
+                </div>
+                <div class="col-xs-9">
+                    <input class="form-control" name="workdate" value="{$job.workdate  }"/>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-xs-3 text-right" style="padding:0">
+                    工作时间:
+                </div>
+                <div class="col-xs-9">
+                    <input class="form-control" name="worktime" value="{$job.worktime}"/>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-xs-3 text-right" style="padding:0">
+                    截止日期:
+                </div>
+                <div class="col-xs-9">
+                    <input class="form-control" type="date" name="endtime" value="{$job.endtime|substr=0,10}"/>
+                </div>
+                <div class="clearfix"></div>
+
+            </div>
+
+            <div class="gt-rowdivide">
+            </div>
+
+            <div class="gtlyout">
+                <div class="col-xs-12">
+                <span class="cl-orange">
+                    职位描述：
+                </span>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="col-xs-12">
+                    <textarea class="form-control" name="intro" rows="8">{$job.intro}</textarea>
+                </div>
+            </div>
+
+            <div class="gtlyout" style="line-height: 36px">
+                <div class="col-xs-3 text-right" style="padding:0">
+                    联系人:
+                </div>
+                <div class="col-xs-9">
+                    <input class="form-control" type="text" name="contacter" value="{$job.contacter}"/>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="col-xs-3 text-right" style="padding:0">
+                    联系电话:
+                </div>
+                <div class="col-xs-9">
+                    <input class="form-control" type="text" name="phone" value="{$job.phone}"/>
+                </div>
+                <div class="clearfix"></div>
+
+            </div>
+        </form>
+        <div class="gt-rowdivide"></div>
+        <div class="text-center">
+            <button class="btn btn-warning form-control btn-lg input-lg"
+                    style="width:98%" id="editjob"/>
+            修改</button>
+
+        </div>
+    </div>
+    <div class="row">
+        <include file="blocks/footer"/>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        $("#choselevel1").on('change', '', function (event) {
+            event.preventDefault();
+            var id = $(this).val();
+            $.post(MOD_PATH + "/Company/getLevel2", {'id': id}, function (data) {
+                var str = "";
+                for (var i = 0; i < data.length; i++) {
+                    str += '<option value="' + data[i]['name'] + '">' + data[i]['name'] + '</option>';
+                }
+                $("#choselevel2").html(str);
+                console.log(data);
+            })
+        });
+
+        $("#editjob").on('click', '', function (event) {
+            event.preventDefault();
+            var params = $("#form-job").serialize();
+            console.log(params);
+            $.post(MOD_PATH + "/Company/doUpdateJob", params, function (data) {
+                dealReturn(data);
+            })
+        });
+
+    });
+</script>

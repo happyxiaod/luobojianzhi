@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>头像上传</title>
+    <include file="blocks/import"/>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="actionbar-back">
+                <div class="col-xs-1 text-left" style="padding-left:8px">
+                    <a href="javascript:" onclick="javascript:history.back(-1)">
+                        <span class="glyphicon glyphicon-menu-left"></span>
+                    </a>
+                </div>
+                <div class="col-xs-10 text-center actionbar-title">
+                    头像
+                </div>
+                <div class="col-xs-1 text-right">
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 8px">
+            <div class="gtlyout text-center" style="padding:16px 4px">
+                <div class="col-xs-6">
+                    <img class="head-upload curs-pt" src="{$headpicurl}" id="headpic"/>
+                    <input type="file" name="headpic" accept="image/gif,image/png,image/jpg,image/jpeg"/>
+                </div>
+                <div class="col-xs-6" style="padding-top: 30px">
+                    <span id="uploadhead" class="curs-pt"
+                          style="padding:2px 16px;border:1px solid orange;border-radius: 3px;color:#666">
+                        上传
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <include file="blocks/footer"/>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+
+    var img;//图片上传数据
+    $(document).ready(function () {
+        $("input[name='headpic']").hide();
+        $("#headpic").on('click', '', function (event) {
+            event.preventDefault();
+            $("input[name='headpic']").click();
+
+        });
+        //选择图片并显示预览图
+        $("input[name='headpic']").on('change', '', function (event) {
+            event.preventDefault();
+
+            var files = this.files;
+            var file = files[0];
+            var reader = new FileReader();
+
+            reader.readAsDataURL(file);
+            reader.onload = function(){
+                img=this.result;
+                console.log(img);
+                $("#headpic").attr('src',this.result);
+            };
+        });
+
+        //上传图片
+        $("#uploadhead").on('click', '', function (event) {
+            event.preventDefault();
+            $.post(MOD_PATH+"/Mobile/doUploadHead",{'img':img},function(data) {
+                dealReturn(data);
+            });
+        });
+
+    });
+</script>

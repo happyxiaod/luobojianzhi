@@ -1,0 +1,39 @@
+<!--更改验证邮箱-->
+<div class="safety-box" gt-model="saveCompanyEmail">
+    <div class="row">
+        <button class="btn btn-disable" style="margin-left: 20px;" gt-btn-click="editCompanyPwd">修改密码</button>
+        <button class="btn btn-disable" style="margin-left: 20px;" gt-btn-click="editCompanyPhone">更换手机绑定</button>
+        <button class="btn btn-active" style="margin-left: 20px;" gt-btn-click="editCompanyEmail">验证邮箱</button>
+        <!--<button class="btn btn-disable" style="margin-left: 20px;" gt-btn-click="editCompanyId">证件上传</button>-->
+    </div>
+    <div class="row" style="margin-top: 20px">
+        <div class="col-md-2 text-right" style="line-height: 40px">
+            原始邮箱
+        </div>
+        <div class="col-md-9">
+            <input type="hidden" gt-islabel="原始邮箱"/>
+            <input class="edit-text" type="text" gt-isparam="oldEmail"/>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px">
+        <div class="col-md-2 text-right" style="line-height: 40px">
+            新邮箱
+        </div>
+        <div class="col-md-9">
+            <input type="hidden" gt-islabel="新邮箱"/>
+            <input class="edit-text" type="text" gt-isparam="newEmail"/>
+        </div>
+    </div>
+    <div class="row pull-right" style="margin: 20px 60px 0 0">
+        <button class="btn btn-active" id="saveCompanyEmail">确定</button>
+    </div>
+</div>
+<script>
+    //修改邮箱
+    $("#saveCompanyEmail").on('click', '', function (event) {
+        event.preventDefault();
+        data = M("saveCompanyEmail");
+        console.log(data);
+        post(CON_PATH + "/saveEmail", data);
+    });
+</script>

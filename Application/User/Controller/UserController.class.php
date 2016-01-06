@@ -1,0 +1,401 @@
+<?php
+namespace User\Controller;
+
+use Think\Controller;
+
+class UserController extends Controller
+{
+    public function _initialize()
+    {
+
+    }
+
+    public function index()
+    {
+
+    }
+
+    //登录
+    public function doLogin()
+    {
+        $json   = $_POST['params'];
+        $json   = htmlspecialchars_decode($json);
+        $params = json_decode($json, TRUE);
+        $db     = M();
+        $type   = $params['type'];
+        switch ($type) {
+            case 'seeker':
+                $db = M('user_seeker');
+                break;
+            case 'company':
+                $db = M('user_company');
+                break;
+            case 'school':
+                $db = M('user_school');
+                break;
+            default:
+                $this->error("登录身份错误！");
+        }
+        $where['username'] = $params['username'];
+        $where['password'] = md5($params['password']);
+
+        $where1['phone']    = $params['username'];
+        $where1['password'] = md5($params['password']);
+
+        $re1 = $db->where($where)->find();
+        $re2 = $db->where($where1)->find();
+        if ($re1) {
+            $user         = $re1;
+            $user['type'] = $type;//将用户类型也存入
+            session("user", $user);
+            if ($user['state'] == 2) {
+                if (strtotime($user['updatetime'])>strtotime($user['createtime'])){
+                  $this->success("登录成功1", U("Home/Index/index"));
+                }else{
+                $this->success("登录成功，请先补全您的信息", U("Home/User/pageEditMyCenter"));}
+            }
+            //$this->success("登录成功", U("Home/Index/index"));
+
+        } else {
+            if ($re2) {
+                $user         = $re2;
+                $user['type'] = $type;//将用户类型也存入
+                session("user", $user);
+                if ($user['state'] == 2) {
+                    if (strtotime($user['updatetime'])>strtotime($user['createtime'])){
+                        $this->success("登录成功", U("Home/Index/index"));
+                    }else{
+                    $this->success("登录成功，请先补全您的信息", U("Home/User/pageEditMyCenter"));
+                    }
+                }
+                $login_url=$_SESSION['login_url'];
+                if ($login_url) {
+                     $this->success("登录成功", $login_url);
+                }else{
+                    $this->success("登录成功", U("Home/Index/index"));
+                }
+                
+            } else {
+                $this->error("用户名或密码错误,请重新登录");
+            }
+        }
+    }
+
+
+    //点击获取验证码前的验证条件
+    public function beforeGetCaptcha(){
+        $db     = M();
+        $json   = $_POST['params'];
+        $params = json_decode($json, TRUE);
+        if ($params['type'] == 'seeker') {
+            if (empty($params['school']) || $params['school'] == "选择学校") {
+                $this->error("请填选学校信息");
+            }
+        }
+		
+        switch ($params['type']) {
+                case "seeker":
+                    //$url = U("Home/Index/pageDetailUser");
+                    $db = M('user_seeker');
+                    break;
+                case "company":
+                    //$url = U("Home/Index/pageDetailCompany");
+                    $db = M('user_company');
+
+                    break;
+                case "school":
+                    //$url = U("Home/Index/pageDetailSchool");
+                    $db = M('user_school');
+
+                    break;
+            }
+            $where['username'] = $params['username'];
+            $where['phone']    = $params['phone'];
+            $where['_logic']   = 'or';
+			$re = $db->where($where)->find();
+             if (empty($params['phone']) || $params['phone'] == "") {
+            }elseif ($re) {
+                $this->error("该手机号已注册");
+                //$this->ajaxreturn('false');
+            }
+			
+    }
+
+    //注册基本信息验证存储
+    public function doRegBase()
+    {   
+        $db     = M();
+        $json   = $_POST['params'];
+        $params = json_decode($json, TRUE);
+        if ($params['type'] == 'seeker') {
+            if (empty($params['school']) || $params['school'] == "选择学校") {
+                $this->error("请填选学校信息");
+            }
+        }
+        $captcha = $params['phonecaptcha'];
+        //验证码是否正确
+        if ($captcha == session('captcha') && $params['phone'] == session('captchaPhone')) {
+            //          正确后，跳转
+            $this->unsetCaptcha(); //清空验证码
+            $url = "";
+            switch ($params['type']) {
+                case "seeker":
+                    $url = U("Home/User/pageAddMyCenter");
+                    $db = M('user_seeker');
+                    break;
+                case "company":
+                    $url = U("Home/Company/pageProve");
+                    $db = M('user_company');
+
+                    break;
+                case "school":
+                    $url = U("Home/Company/pageProve");
+                    $db = M('user_school');
+                    break;
+            }
+            //判断用户名是否存在
+            $where['username'] = $params['username'];
+            $where['phone']    = $params['phone'];
+            $where['_logic']   = 'or';
+
+            $re = $db->where($where)->find();
+
+            if ($re) {
+                $this->error("该用户名或手机号已注册");
+            } else {
+
+                if($params['type']=="seeker"){
+                $add['phone']    = $params['phone'];
+                $add['password'] = md5($params['password']);
+                $add['state']    = 2;
+                $add['province'] = $params['province'];
+                $add['city']   = $params['city'];
+                $add['area']   = $params['province'] . $params['city'];
+                $add['school'] = $params['school'];
+                $add['createtime']=date("Y-m-d H:i:s"); 
+                }else{
+                $add['phone']    = $params['phone'];
+                $add['password'] = md5($params['password']);
+                $add['state']    = 2;
+                $add['createtime']=date("Y-m-d H:i:s"); 
+                }
+                if ($db->add($add)) {
+                    $regphone=$add['phone'];
+                    $regid=$db->where("phone=$regphone")->find();
+                    $add['id']=$regid['id'];
+                    $add['type']=$params['type'];
+                    session('user',$add);
+                    $this->success("注册成功，请完善信息",$url);
+                }
+            }
+
+        } else {
+            $this->error("手机验证码错误");
+        }
+    }
+
+    //清空验证码session;
+    public function unsetCaptcha()
+    {
+        session("captcha", NULL);
+    }
+
+
+    public function doReg()
+    {
+        $db     = M();
+        $json   = $_POST['params'];
+        $params = json_decode($json, TRUE);
+        //取出之前内容
+        $user = session("baseReg");
+
+        switch ($user['type']) {
+            case "seeker":
+                $db = M('user_seeker');
+                break;
+            case "company":
+                $db = M('user_company');
+
+                break;
+            case "school":
+                $db = M('user_school');
+                break;
+        }
+
+        //判断用户名是否存在
+        $where['username'] = $user['username'];
+        $where['phone']    = $user['phone'];
+        $where['_logic']   = 'or';
+        $re                = $db->where($where)->find();
+        if ($re) {
+            $this->error("该用户名或手机号已注册");
+        }
+
+        $imgurls = session("imgurls");
+        foreach ($imgurls as $key => $value) {
+            $params[$key] = $value;
+        }
+        $params = array_merge($user, $params);
+        // 处理区域地址等其他字段
+        $params['password']   = md5($params['password']);
+        $params['createtime'] = date("Y-m-d H:i:s");
+        $params['state']      = 2;
+        $params['area']       = $params['province'] . $params['city'] . $params['county'] . $params['district'];
+        unset($params["district"], $params["type"], $params["agree"]);
+        if ($db->add($params)) {
+            $this->success("注册成功", U("Home/Index/pageLogin"));
+        } else {
+            $this->error("注册失败");
+        }
+
+    }
+
+    //验证手机号及验证码
+    public function checkPhone()
+    {
+        $json   = $_POST['params'];
+        $params = json_decode($json, TRUE);
+        if ($params['phonecaptcha'] != session("captcha") && $params['phone'] == session('captchaPhone')) {
+            $this->error("验证码错误");
+        }
+        //判断手机号是否存在，用户类型
+        $where['phone'] = $params['phone'];
+        $type           = $params['type'];
+        $id             = "";
+        switch ($type) {
+            case 'seeker':
+                $db = M('user_seeker');
+                break;
+            case 'company':
+                $db = M('user_company');
+        }
+
+        $re = $db->where($where)->find();
+        if ($re) {
+            $id = $re['id'];
+        } else {
+            $this->error("该手机号不存在");
+        }
+        $this->success("验证成功", U("Home/Index/pageFindPwd2", "id=$id&type=$type"));
+
+    }
+
+    //设置新密码
+    public function setPassword()
+    {
+        $json   = $_POST['params'];
+        $params = json_decode($json, TRUE);
+        $type   = I('get.type');
+        $db     = M();
+        switch ($type) {
+            case "seeker":
+                $db = M("user_seeker");
+                break;
+            case "company":
+                $db = M("user_company");
+                break;
+        }
+
+        $id = I('get.id');
+        if (!empty($id)) {
+            $where['id']      = $id;
+            $save['password'] = md5($params['password']);
+            $re               = $db->where($where)->save($save);
+            if ($re) {
+                $this->success("修改成功，返回登录页", U("Home/Index/pageLogin"));
+            } else {
+                $this->error("修改失败，请联系管理员", "reload");
+            }
+        }
+    }
+
+
+    public function checkCode(){
+        $input_res=$_GET['input_res'];
+        if ($input_res== $_SESSION['res']) {
+           echo "1";
+        }else{
+            echo "0";
+        }
+
+    }
+
+
+    //获取验证码 0-9 6位
+    public function getCaptcha_good()
+    {
+        $json   = $_POST['params'];
+        $params = json_decode($json, TRUE);
+        $phone  = $params['phone'];
+        $input_res  = $params['input_res'];
+        $str    = "0123456789";
+        $result = "";
+        for ($i = 0; $i < 6; $i++) {
+            $num[$i] = rand(0, 9);
+            $result .= $str[$num[$i]];
+        }
+        session("captcha", $result);
+        session("captchaPhone", $phone);
+
+   
+         sendCaptcha($phone, $result, $params['captchaType']);
+       
+         $this->success("已发送验证码");
+      
+        //　调用第三方接口完成短信的发送
+        sendCaptcha($phone, $result, $params['captchaType']);
+        $this->success("已发送验证码");
+        
+    }
+
+    //退出
+    public function doLogout()
+    {
+        session('user', NULL);
+        session('login_url', NULL);
+        $this->success("正在退出登录，请稍候！", U("Home/Index/index"));
+    }
+
+
+    public function uploadFile()
+    {
+        $upload           = new \Think\Upload();// 实例化上传类
+        $upload->maxSize  = 2097152;
+        $upload->exts     = array ('jpg', 'gif', 'png', 'jpeg');
+        $upload->rootPath = './Uploads/';
+        $upload->savePath = 'ids/'; // 设置附件上传（子）目录
+        // 上传文件
+        $info = $upload->upload();
+        if (!$info) {// 上传错误提示错误信息
+             $this->error($upload->getError());
+        } else {// 上传成功
+            //将字段名存储到session中
+            $imgurls = session("imgurls");
+            foreach ($info as $key => $value) {
+                $imgurls[$value['key']] = $value['savepath'] . $value['savename'];
+                break;
+            }
+
+            switch ($_SESSION['user']['type']) {
+                case 'user':
+                $db=M('user_seeker');
+                $id=$_SESSION['user']['id'];
+                $db->where("id=$id")->save($data);
+                    break;
+                case 'company':
+                $db=M('user_company');
+                $id=$_SESSION['user']['id'];
+                $db->where("id=$id")->save($imgurls);
+                    break;
+                case 'school':
+                $db=M('user_school');
+                $id=$_SESSION['user']['id'];
+                $db->where("id=$id")->save($imgurls);
+                    break;
+            }
+            session("imgurls", $imgurls);
+            $this->success("上传成功");
+        }
+    }
+ 
+}

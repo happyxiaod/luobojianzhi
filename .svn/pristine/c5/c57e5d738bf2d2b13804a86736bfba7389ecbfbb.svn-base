@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>地区管理</title>
+    <include file="blocks/import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <!-- 头部内容 -->
+    <div class="header">
+        <include file="blocks/header"/>
+    </div>
+    <!-- 主体内容 -->
+    <div class="middle row">
+        <include file="Setting/contRegionAdd"/>
+    </div>
+    <!-- 底部内容 -->
+    <div class="footer">
+        <include file="blocks/footer"/>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    jQuery(document).ready(function($) {
+        bindClick();
+        $("#navSettingRegion").addClass("nav-two-active"); //更改导航样式
+
+        //添加省按钮绑定
+        $("button[name='addProvince']").on('click', '', function (event) {
+            event.preventDefault();
+            addProvince();
+        });
+        //添加市按钮绑定
+        $("button[name='addCity']").on('click', '', function (event) {
+            event.preventDefault();
+            addCity();
+        });
+        //添加区（县）按钮绑定
+        $("button[name='addCounty']").on('click', '', function (event) {
+            event.preventDefault();
+            addCounty();
+        });
+
+        $("#choseprovince").change('',function(data) {
+            loadCityList($(this),"");
+        });
+    });
+
+    //添加省
+    function addProvince() {
+        data = M("addProvince");
+
+        value = /^[A-Za-z]+$/; //判断是否为字母的正则表达式
+
+        //判断是否为字母
+        if (value.test(data['spell'])) {
+            //截取首字母，并转换为大写
+            data['first'] = data['spell'].substr(0,1).toUpperCase();
+        } else {
+            alert("名称全拼格式不正确！");
+            return;
+        }
+
+        //console.log(data);
+        post("__CONTROLLER__/addProvince", data);
+    }
+
+    //添加市
+    function addCity() {
+        data = M("addCity");
+
+        if(data['state'] == 0) {
+            return;
+        }
+
+        if(data["pid"] == "请选择") {
+            alert("请选择所属省份");
+            return;
+        }
+
+        value = /^[A-Za-z]+$/; //判断是否为字母的正则表达式
+
+        //判断是否为字母
+        if (value.test(data['spell'])) {
+            //截取首字母，并转换为大写
+            data['first'] = data['spell'].substr(0,1).toUpperCase();
+        } else {
+            alert("名称全拼格式不正确！");
+            return;
+        }
+
+        post("__CONTROLLER__/addCity", data);
+    }
+
+    //添加区（县）
+    function addCounty() {
+        data = M("addCounty");
+
+        if(data['state'] == 0) {
+            return;
+        }
+
+        if(data["pid"] == "请选择") {
+            alert("请选择所属省份");
+            return;
+        }
+        if(data["cid"] == "请选择") {
+            alert("请选择所属城市");
+            return;
+        }
+
+        value = /^[A-Za-z]+$/; //判断是否为字母的正则表达式
+
+        //判断是否为字母
+        if (value.test(data['spell'])) {
+            //截取首字母，并转换为大写
+            data['first'] = data['spell'].substr(0,1).toUpperCase();
+        } else {
+            alert("名称全拼格式不正确！");
+            return;
+        }
+
+        post("__CONTROLLER__/addCounty", data);
+    }
+</script>

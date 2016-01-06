@@ -1,0 +1,191 @@
+<!--学校完善注册-->
+<div class="container">
+    <div class="row ablock">
+        <!--注册提示-->
+        <div class="row" style="width:90%;margin: 0 auto">
+            <div class="reg-title text-center" style="width: 260px;">
+                完善学校机构资料
+            </div>
+        </div>
+        <!--注册显示内容-->
+        <div class="row reg-content" gt-model="detailReg">
+            <input type="hidden" gt-isparam="userType" value="school"/>
+            <!--<div class="row">-->
+                <!--<div class="col-md-8">-->
+                    <!--<div class="row" style="margin-bottom:22px">-->
+                        <!--<div class="col-md-3 text-right">-->
+                            <!--<span class="label-text">-->
+                                <!--单位名称-->
+                            <!--</span>-->
+                        <!--</div>-->
+                        <!--<div class="col-md-9">-->
+                            <!--<input type="hidden" gt-islabel="单位名称"/>-->
+                            <!--<input class="edit-text" type="text" gt-isparam="schoolname"/>-->
+                        <!--</div>-->
+
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-md-4" style="padding-left: 0;">-->
+                    <!--<img src="__PUBLIC__/default/images/1.png"/>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin-bottom:22px">
+                        <div class="col-md-3 text-right hidden-xs">
+                            <span class="label-text">
+                                证件上传
+                            </span>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="row">
+                                <!--<div class="col-md-4">
+                                    <div class="thumbnail">
+                                        <img class="reg-id-img" src=""/>
+                                        <input type="hidden" gt-islabel="机构logo"/>
+                                        <input type="file" gt-isparam="logo" style="width:100%"/>
+                                        <div class="caption text-center">
+                                            机构LOGO
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <div class="col-md-6">
+                                    <div class="thumbnail">
+                                        <img class="reg-id-img" src="" />
+                                        <input type="hidden" gt-islabel="负责人身份证"/>
+                                        <input type="file" gt-isparam="idobverse" style="width:100%"/>
+                                        <div class="caption text-center">
+                                            负责人身份证
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="thumbnail">
+                                        <img class="reg-id-img" src="" />
+                                        <input type="hidden" gt-islabel="机构证明材料"/>
+                                        <input type="file" gt-isparam="orgauth" style="width:100%"/>
+                                        <div class="caption text-center">
+                                            机构证明材料
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 hidden-xs">
+
+                    <div class="row reg-id-down">
+                        <a href="" style="color:red">机构证明材料模块下载</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin-bottom:22px">
+                        <div class="col-md-3 text-right hidden-xs">
+                            <span class="label-text">
+                                机构简介
+                            </span>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="hidden" gt-islabel=机构简介"/>
+                            <textarea class="edit-multext" rows="5" gt-isparam="intro"
+                                    placeholder="机构简介"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!--nothing-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin-bottom:22px">
+                        <div class="col-md-3 text-right hidden-xs">
+                            <span class="label-text">
+                                联系人
+                            </span>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="hidden" gt-islabel="联系人"/>
+                            <input class="edit-text" type="text" gt-isparam="contacter" placeholder="联系人"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!--nothing-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin-bottom:22px">
+                        <div class="col-md-3 text-right hidden-xs">
+                            <span class="label-text">
+                                联系电话
+                            </span>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="hidden" gt-islabel="联系电话"/>
+                            <input class="edit-text" type="text" gt-isparam="contacterphone" placeholder="联系电话"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!--nothing-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin-bottom:22px">
+                        <div class="col-md-3 text-right hidden-xs">
+                            <span class="label-text">
+                                学校详细地址
+                            </span>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="hidden" gt-islabel="学校详细地址"/>
+                            <input class="edit-text" type="text" gt-isparam="address" placeholder="学校详细地址"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!--nothing-->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin-bottom:22px">
+                        <div class="col-md-3">
+                            <!--nothing-->
+                        </div>
+                        <div class="col-md-9">
+                            <input type="checkbox" gt-isparam="agree" value="no"/>
+                            <span class="reg-agree">
+                                我已阅读
+                                <a href="javascript:protocol();">《萝卜兼职协议条款》</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!--nothing-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" style="margin:40px auto">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9 text-center">
+                            <input type="button"class="btn btn-active" gt-btn-click="detailReg" value="立即确认"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!--nothing-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

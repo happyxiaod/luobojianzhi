@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <include file="blocks/import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="header row">
+        <div class="actionbar-back">
+            <div class="col-xs-1 text-left" style="padding-left:8px">
+                <a href="javascript:" onclick="javascript:history.back(-1)">
+                    <span class="glyphicon glyphicon-menu-left"></span>
+                </a>
+            </div>
+            <div class="col-xs-10 text-center actionbar-title">
+                个人中心
+            </div>
+            <div class="col-xs-1 text-right">
+
+            </div>
+        </div>
+    </div>
+    <div class="middle row">
+        <!--头像-->
+        <div class="text-center" style="height:200px;padding-top:40px">
+            <div class="headpic-alp">
+                <img src="{$headpic}" class="headpic-lg" style="border:none"/>
+            </div>
+        </div>
+        <div class="gt-rowdivide" style="height:8px"></div>
+        <div class="gtlyout" style="height:48px;line-height: 40px">
+            <div class="col-xs-2">
+                <img src="__PUBLIC__/default/images/appico1.png" width="32px"/>
+            </div>
+            <div class="col-xs-10 curs-pt" id="myresume">
+                 <span class="text-lg">我的简历</span>
+            </div>
+        </div>
+
+        <div class="gt-rowdivide" style="height:8px">
+        </div>
+
+        <div class="gtlyout" style="height:48px;line-height: 40px">
+            <div class="col-xs-2">
+                <img src="__PUBLIC__/default/images/appico2.png" width="32px"/>
+            </div>
+            <div class="col-xs-10 curs-pt" id="applyrecord">
+                <span class="text-lg">申请记录</span>
+            </div>
+        </div>
+
+        <div class="gtlyout" style="height:48px;line-height: 40px;margin-top:-4px">
+            <div class="col-xs-2">
+                <img src="__PUBLIC__/default/images/appico3.png" width="32px"/>
+            </div>
+            <div class="col-xs-10 curs-pt" id="mycollect">
+                <span class="text-lg">我的收藏</span>
+            </div>
+        </div>
+        <div class="gt-rowdivide"style="height:8px;"></div>
+
+        <div class="gtlyout" style="height:48px;line-height: 40px">
+            <div class="col-xs-2">
+                <img src="__PUBLIC__/default/images/appico4.png" width="32px"/>
+            </div>
+            <div class="col-xs-10 curs-pt" id="setting">
+                <span class="text-lg">设置</span>
+            </div>
+        </div>
+    </div>
+    <div class="gt-rowdivide">
+    </div>
+    <br/><br/>
+    <div class="row">
+        <include file="blocks/footer"/>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        $('#myresume').on('click', '', function (event) {
+            event.preventDefault();
+            location.href='__MODULE__/Seeker/myResume';
+        });
+        $('#applyrecord').on('click', '', function (event) {
+            event.preventDefault();
+            location.href='__MODULE__/Seeker/applyRecord';
+        });
+        $('#mycollect').on('click', '', function (event) {
+            event.preventDefault();
+            location.href='__MODULE__/Seeker/myCollect';
+        });
+        $('#setting').on('click', '', function (event) {
+            event.preventDefault();
+            location.href='__MODULE__/Setting/setting';
+        });
+    });
+</script>

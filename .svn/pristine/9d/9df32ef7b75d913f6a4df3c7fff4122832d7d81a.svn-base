@@ -1,0 +1,13 @@
+<div class="col-md-10">
+
+    <volist name="feedback" id="vo">
+        <div class="row" style="border:1px solid #ddd;border-radius: 3px;margin:5px 2px;padding:5px">
+            <div>
+                {$vo.date} | {$vo.time}
+            </div>
+            <div>
+                {$vo.content}
+            </div>
+        </div>
+    </volist>
+</div>

@@ -1,0 +1,313 @@
+<?php
+namespace Home\Controller;
+
+use Think\Controller;
+
+/**
+ * Class IndexController
+ *
+ * @package Home\Controller
+ */
+class IndexController extends Controller
+{
+
+    public function _initialize()
+    {
+        if(isMobile()){
+            $this->redirect('Weixin/Jobs/pageJobs');
+        }
+
+        //验证是否为管理员登陆
+        if(session('user')['adminname'] == "radish") {
+            session("user", null);
+        }
+
+        //定位城市
+        $nowCity = session("nowCity");
+        if(empty($nowCity)) {
+            $nowCity = "威海市";
+            session("nowCity", $nowCity);
+            $ip = get_client_ip();
+            if($ip != "0.0.0.0"){
+                $data = file_get_contents("http://ip.taobao.com/service/getIpInfo.php?ip=" . $ip);
+                $data = json_decode($data, TRUE);
+                if($data['code'] == 0) {
+                    $db = M("city");
+                    $city = str_replace("市", "", $data['data']['city']);
+                    $where['name'] = array('like', "%" . $city . "%");
+                    $re = $db->where($where)->find();
+                    if($re) {
+                        $nowCity = $re['name'];
+                        session("nowCity", $nowCity);
+                    }
+                }
+            }
+        }
+        $this->assign("nowCity", $nowCity);
+        
+        $sql = "SELECT * FROM job_level2 ORDER BY RAND()  LIMIT 5";
+        $level2RandomList = M()->query($sql);
+        $this->assign("level2RandomList", $level2RandomList);
+    }
+
+    public function islogin()
+    {
+        $user = session("user");
+        if (empty($user)) {
+            return FALSE;
+        }
+        return TRUE;
+    }
+   
+
+    public function index()
+    {   define(IMPORT_CSS, "index");
+        $nowCity = I("get.nowCity");
+        if (empty($nowCity)){
+            $nowCity = session('nowCity');
+            $this->assign('nowCity', $nowCity);
+        }else{
+            session('nowCity', $nowCity);
+            $this->assign('nowCity', $nowCity);
+        }
+
+        $jobs=D('Jobs');
+        //获取左侧分类
+        $level1=$jobs->getJoblevel1(5);
+        $level2=$jobs->getJoblevel2();
+        //热门兼职 
+        $hotJobs=$jobs->getJobList(4,"jobs.view desc");
+        //最新兼职
+        $lateJobs=$jobs->getJobList(4,"jobs.date desc");
+
+        //得到兼职页的jobs列表
+        $this->assign("level1list", $level1);
+        $this->assign("level2list", $level2);
+        $this->assign("hotJobs", $hotJobs);
+        $this->assign("lateJobs", $lateJobs);
+        //查询第一张轮播图地址
+        $db = M("config_new");
+        $re = $db->where("type='scroll'")->order("`key`")->find();
+        $this->assign("scrollimg", $re['value']);
+        $this->assign("scrollLink", $re['else']);
+        $this->assign('index',true);//确认导航的样式
+        $this->display();
+    }
+
+    public function pageSwopCity() {
+        //获取省份
+     define(IMPORT_CSS, "passfind");
+       $db = M("province");
+        $re = $db->select();
+        $this->assign("provinceList", $re);
+
+        //获取常用城市
+        $db = M("city");
+        $re = $db->where("often=1")->select();
+        $this->assign("oftenCityList", $re);
+        //获取所有城市
+        $re = $db->order("first")->select();
+        $result = array();
+        foreach($re as $k=>$v){
+            $result[$v['first']][] = $v;
+        }
+        $this->assign("cityList", $result);
+        $this->display();
+    }
+
+
+    //搜索城市
+    public function seekCity() {
+        $db = M("city");
+        $keyword = I("post.keyword");
+        $where['name|spell'] = array ('LIKE', "%" . $keyword . "%");
+        $re = $db->where($where)->select();
+        if($re) {
+            $this->ajaxReturn($re);
+        } else {
+            $this->ajaxReturn("failed");
+        }
+    }
+
+    //查询轮播图内容
+    public function scrolllist() {
+        $db = M("config_new");
+        $re = $db->where("type='scroll'")->order("`key`")->select();
+        $this->ajaxReturn($re);
+    }
+
+    public function pageLogin()
+    {   define(IMPORT_CSS, "login");
+        if ($this->islogin()) {
+            $this->redirect("Index/index");
+        }
+        $this->display();
+    }
+
+    //注册页面
+    public function pageReg()
+    {
+        //获取省份
+		define(IMPORT_CSS, "login");
+        $db = M("province");
+        $re = $db->select();
+        $this->assign("provinceList", $re);
+
+        $tplname = "contRegUser";
+        $type = I('get.type');
+        switch ($type) {
+            case "seeker":
+                $tplname = "contRegUser";
+                break;
+            case "company":
+                $tplname = "contRegCompany";
+                break;
+            case "school":
+                $tplname = "contRegSchool";
+
+        }
+        $this->assign("tplname", $tplname);
+        $this->display();
+    }
+    //图形验证码函数
+    public function getValidate()
+    {
+     CalculationValidate();
+    }
+
+
+    //获取学校列表
+    public function getSchoolByCity()
+    {
+
+        $where['city'] = array ('LIKE', "%" . I('post.city') . "%");
+        $db = M('schools');
+        $re = $db->where($where)->field("school")->select();
+        if ($re) {
+            $this->ajaxReturn($re);
+        } else {
+            $this->ajaxReturn("failed");
+        }
+
+
+    }
+
+    //获取城市列表
+    public function getCityByProvince() {
+       $db = M('city');
+        $where['pid'] = I('post.province');
+        $re = $db->where($where)->field("name,id")->select();
+        if ($re) {
+            $this->ajaxReturn($re);
+        } else {
+            $this->ajaxReturn("failed");
+        }
+    }
+
+    //根据省名称获取城市列表
+    public function getCityByProvinceName() {
+        $db = M('city');
+        $where['pname'] = I('post.province');
+        $re = $db->where($where)->field("name,id")->select();
+        if ($re) {
+            $this->ajaxReturn($re);
+        } else {
+            $this->ajaxReturn("failed");
+        }
+    }
+
+
+    //获取区县列表
+    public function getCountyByCity() {
+       $db = M('county');
+        $where['cid'] = I('post.city');
+        $re = $db->where($where)->field("name")->select();
+        if ($re) {
+            $this->ajaxReturn($re);
+        } else {
+            $this->ajaxReturn("failed");
+        }
+    }
+/*
+    //根据城市名称获取区县列表
+    public function getCountyByCityName() {
+        $db = M('county');
+        $where['cname'] = I('post.city');
+        $re = $db->where($where)->field("name")->select();
+        if ($re) {
+            $this->ajaxReturn($re);
+        } else {
+            $this->ajaxReturn("failed");
+        }
+    }*/
+
+    public function pageDetailUser()
+    {
+        //获取省份
+        $db = M("province");
+        $re = $db->select();
+        $this->assign("provinceList", $re);
+
+        $user = session("baseReg");
+        if ($user == NULL || $user == "") {
+            $this->redirect("pageReg");
+        }
+        session("imgurls", NULL);
+        $this->display();
+    }
+
+    public function pageDetailCompany()
+    {
+        $user = session("baseReg");
+        if ($user == NULL || $user == "") {
+            $this->redirect("pageReg","type=company");
+        }
+        session("imgurls", NULL);
+        $this->display();
+
+    }
+
+    public function pageDetailSchool()
+    {
+        $user = session("baseReg");
+        if ($user == NULL || $user == "") {
+            $this->redirect("pageReg","type=school");
+        }
+        session("imgurls", NULL);
+        $this->display();
+
+    }
+    //找回密码页面
+    public function pageFindPwd()
+    {
+		define(IMPORT_CSS, "passfind");
+        $this->display();
+    }
+
+    public function pageFindPwd2()
+    {
+        $this->assign("id", I('get.id'));
+        $this->assign("type", I('get.type'));
+        $this->display();
+    }
+
+    public function pagePost()
+    {
+
+    }
+    public function action() {
+        $this->display();
+    }
+
+    public function test()
+    {
+        $cityInfo=array();
+        $topcitys = M('city')->field('id,pid,name as city,spell as pinyin')->where('often=1')->select();
+        $citys = M('city')->field('id,pid,name as city,spell as pinyin')->select();
+        $cityInfo['topCitys']=$topcitys;
+        $cityInfo['citys']=$citys;
+        $data = json_encode($cityInfo);
+        file_put_contents(APP_PATH.'../Uploads/json/citylist.json',$data);
+
+    }
+}

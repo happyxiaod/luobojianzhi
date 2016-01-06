@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>个人会员</title>
+	<include file="blocks/import"/>	
+</head>
+<body>
+	<div class="container-fluid">
+		<!-- 头部内容 -->
+		<div class="header">
+			<include file="blocks/header"/>
+		</div>
+		<!-- 主体内容 -->
+		<div class="middle row">
+			<include file="Member/contSeeker"/>
+		</div>
+		<!-- 底部内容 -->
+		<div class="footer">
+			<include file="blocks/footer"/>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+	jQuery(document).ready(function($) {
+		bindClick();
+		$("#navMemberSeeker").addClass("nav-two-active"); //更改导航样式
+	});
+</script>

@@ -1,0 +1,70 @@
+<div class="row ">
+	<!-- 左边主要导航 -->
+	<include file="blocks/mainnav"/>
+	<!-- 内容 -->
+	<div class="content col-md-10">
+		<!-- 导航菜单内容显示 -->
+		<div class="row" style="background:#f4f4f4;height:36px;line-height:36px;border-bottom:1px solid #ddd">
+
+		<!-- TODO 换成当前的导航菜单内容-->
+			<span class="mleft2">
+				审核 > 审核企业
+			</span>
+		</div>
+		<!-- 右边具体内容 -->
+		<div class="row fragbox">
+			<div class="col-md-10">
+				<table class="table text-center mtop1">
+					<thead>
+					<tr>
+						<th class="text-center">企业名称</th>
+						<th class="text-center">手机号</th>
+						<th class="text-center">提交时间</th>
+						<th class="text-center">上传材料</th>
+						<th class="text-center">审核</th>
+						<th class="text-center">查看</th>
+					</tr>
+					</thead>
+					<tbody>
+					<volist name="userCompanyList" id="vo">
+						<tr>
+							<td>{$vo.companyname}</td>
+							<td>{$vo.phone}</td>
+							<td>{$vo.createtime}</td>
+							<td>
+								<php>
+									if(!empty($vo['idobverse'])){
+									echo('
+									<button class="audit-thumbnail" gt-btn-click="audit-thumbnail"
+											popup-src="__ROOT__/Uploads/'.$vo['idobverse'].'">证件照
+									</button>
+									');
+									}
+									if(!empty($vo['orgauth'])){
+									echo('
+									<button class="audit-thumbnail" gt-btn-click="audit-thumbnail"
+											popup-src="__ROOT__/Uploads/'.$vo['orgauth'].'">营业执照
+									</button>
+									');
+									}
+								</php>
+							</td>
+							<td>
+								<input type="hidden" value="{$vo.id}" name="id"/>
+								<button class="btn btn-success btn-sm" gt-btn-click="audit-company-pass">通过</button>
+								<button class="btn btn-danger btn-sm" gt-btn-click="audit-company-notpass">未通过</button>
+							</td>
+							<td>
+								<a href="__CONTROLLER__/pageCompanyInfo?id={$vo.id}" target="_blank" class="btn btn-primary btn-sm">查看详情</a>
+							</td>
+						</tr>
+					</volist>
+					</tbody>
+				</table>
+				<include file="blocks/pagedivide"/>
+			</div>
+            <!--显示缩略图-->
+            <include file="blocks/popupImg"/>
+		</div>
+	</div>
+</div>

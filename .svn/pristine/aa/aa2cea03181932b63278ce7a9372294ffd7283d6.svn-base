@@ -1,0 +1,27 @@
+/**
+ * happyxiaod
+ */
+function bindClick() {
+    // 按钮点击事件
+    $(document).on('click', "[gt-btn-click]", function (event) {
+        event.preventDefault();
+        value = $(this).attr("gt-btn-click");
+        switch (value) {
+            //搜索兼职
+            case 'searchjobs':
+                searchjobs($(this));
+                break;
+            default:
+                break;
+        }
+    });
+}
+//搜索兼职
+function searchjobs(o) {
+    var value = o.siblings("input").val();
+    if (value == null || value == "") {
+        alert("你并未输入任何关键词");
+        return;
+    }
+    location.href = MOD_PATH + '/Jobs/pageJobs?keyword=' + value;
+}

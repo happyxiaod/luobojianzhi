@@ -1,0 +1,21 @@
+
+/* 灰色头像 */
+.reg_login{width:120px;height:120px;margin:30px auto;border:3px solid #d4d4d5;border-radius:800px;}
+.reg_login img{width:85px;margin:10px auto 0;}
+
+section{padding:0 3%;}
+.login-user-jg,.user,.password{width:100%;height:50px;line-height:50px;border:1px solid #ccc;border-radius:5px;background-color: #fff;margin-bottom:10px;}
+.login-user-jg div{width:300px;margin:0 auto;}
+.login-user-jg input[type=radio]{margin-right: 2px;vertical-align: text-bottom;margin-left:2px;border:1px solid #ccc;}
+.login-user-jg label {margin-right:10px;font-size:16px;}
+.user,.password{margin-bottom:1px;}
+.user span,.password span{float:left;width:10%;font-size:20px;color:#ccc;}
+.user input,.password input{float:left;height:100%;line-height:50px;box-sizing:border-box;width:90%;}
+
+.next_login{margin-top:10px;}
+.next_login input{width:15px;height:15px;border:1px solid #ccc;vertical-align: text-bottom;}
+.next_login a,.register a{float:right;text-decoration:underline;}
+
+.register{height:30px;}
+.register a{color:#eb7312;}
+

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>认证信息</title>
+	<include file="blocks/import_user"/>
+</head>
+<body>
+<div class="container-fluid">
+    <!-- 头部内容 -->
+        <include file="blocks/header"/>
+    <!-- 主体内容 -->
+        <include file="Company/contProve"/>
+    <!-- 底部内容 -->
+        <include file="blocks/footer"/>
+</div>
+</body>
+</html>
+<script>
+	jQuery(document).ready(function($) {
+
+        $(".input-group .glyphicon-triangle-bottom").click(function(event) {
+            $(".dropdown-menu").stop().slideUp();
+            $(this).next('ul').stop().slideToggle();
+        });
+        $(".spinner-content").click(function(event) {
+            $(".dropdown-menu").stop().slideUp();
+            $(this).next().next('ul').stop().slideToggle();
+        });
+
+		bindClick();
+        bindCheck();
+        bindSpinner();
+
+        //修改左侧导航栏样式使导航栏的橙色样式对应当前页面
+        $("#pageProve").removeClass("cur").addClass("cur");
+
+        $("input[gt-isparam='companyname']").blur(function(){
+            nameStr=$(this).val();
+            if(verfifyContactName(nameStr)){
+                $(this).removeClass("error");
+                $("#companynameWrong").removeClass("wrong");
+                $("#companynameWrong").html("");
+            }else{
+               $(this).addClass("error"); 
+               $("#companynameWrong").addClass("wrong");
+               $("#companynameWrong").html("请输入中文、数字、或英文");
+            }
+        });
+         $("input[gt-isparam='buslicense']").blur(function(){
+            nameStr=$(this).val();
+            if(verfifyContactName(nameStr)){
+                $(this).removeClass("error");
+                $("#buslicenseWrong").removeClass("wrong");
+                $("#buslicenseWrong").html("");
+            }else{
+               $(this).addClass("error"); 
+               $("#buslicenseWrong").addClass("wrong");
+               $("#buslicenseWrong").html("请输入营业执照编号");
+            }
+        });
+
+        $("input[type='file']").on("change", function(){
+            var files = !!this.files ? this.files : [];
+            if (!files.length || !window.FileReader) return;
+            var name=$(this).attr("gt-isparam");
+            // 判断是否为图片类型
+            if (/^image/.test( files[0].type)){
+                var img = $(this).siblings(".reg-id-img");
+                var reader = new FileReader();
+                reader.readAsDataURL(files[0]);
+                reader.onloadend = function(){
+                    img.attr("src", this.result);
+                };
+                //ajax提交图片
+                postfile(APP_PATH + '/User/User/uploadFile',files[0],name);
+                $("#uploadWrong").html("");
+            }else{
+                $("#uploadWrong").html("请选择图片类型上传");
+                //alert("请选择图片进行上传");
+            }
+        });
+        
+
+	});
+</script>

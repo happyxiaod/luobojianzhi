@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>消息</title>
+    <include file="blocks/import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <!-- 头部内容 -->
+    <div class="header row">
+        <include file="blocks/header"/>
+    </div>
+    <!-- 主体内容 -->
+    <div class="middle row">
+        <include file="User/contMsg"/>
+    </div>
+    <!-- 底部内容 -->
+    <div class="footer row">
+        <include file="blocks/footer"/>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    var ids = [];
+    var boxs = $(".list-box").find("input[type='checkbox']");
+    jQuery(document).ready(function ($) {
+        bindClick();
+        choseAllMsg();
+        //修改左侧导航栏样式使导航栏的橙色样式对应当前页面
+        $("#pageMsg").removeClass("nav-normal").addClass("nav-active");
+
+        $(".list-operate-btn").on('click', '', function (event) {
+            event.preventDefault();
+            if (ids.length>0){
+                post("delMsg", ids);
+            }
+
+        });
+    });
+
+    function choseAllMsg() {
+        $("#choseAllMsg").on('click', '', function () {
+            if ($(this).is(":checked")) {
+                boxs.prop("checked", true);
+                boxs.each(function () {
+                    var id = $(this).siblings("input[type='hidden']").val();
+                    ids.push(id);
+                });
+                console.log(ids);
+            } else {
+                boxs.prop("checked", false);
+                ids.splice(0, ids.length);
+            }
+        });
+        boxs.on('click', function (event) {
+            if ($(this).is(":checked")) {
+                var id = $(this).siblings("input[type='hidden']").val();
+                ids.push(id);
+                console.log(ids);
+            }else{
+
+            }
+        });
+
+    }
+</script>

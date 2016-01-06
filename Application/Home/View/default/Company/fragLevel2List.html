@@ -1,0 +1,12 @@
+<input type="hidden" gt-islabel="职位"/>
+<span type="text" class="spinner-content" gt-isparam="level2">选择职位</span>
+<span class="input-group-addon glyphicon glyphicon-triangle-bottom"
+      data-toggle="dropdown">
+</span>
+<ul class="dropdown-menu">
+    <volist name="level2list" id="vo">
+        <li class="spinner-option">
+            <span>{$vo.name}</span>
+        </li>
+    </volist>
+</ul>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>设置</title>
+    <include file="blocks/import"/>
+
+</head>
+<body>
+    <div class="container-fluid">
+        <!--头部标题-->
+        <div class="row">
+            <div class="actionbar-back">
+                <div class="col-xs-1 text-left" style="padding-left:8px">
+                    <a href="javascript:" onclick="javascript:history.back(-1)">
+                        <span class="glyphicon glyphicon-menu-left"></span>
+                    </a>
+                </div>
+                <div class="col-xs-10 text-center actionbar-title">
+                    设置
+                </div>
+                <div class="col-xs-1 text-right">
+                </div>
+            </div>
+        </div>
+        <!--内容-->
+        <div class="row" style="margin-top:8px">
+            <div class="gtlyout" style="height:48px;line-height: 40px">
+                <div class="col-xs-2">
+                    <img src="__PUBLIC__/default/images/appsetting1.png" width="32px"/>
+                </div>
+                <div class="col-xs-10 curs-pt" id="updatepwd">
+                    <span class="text-normal ">修改密码</span>
+                </div>
+            </div>
+            <div class="gtlyout" style="height:48px;line-height: 40px">
+                <div class="col-xs-2">
+                    <img src="__PUBLIC__/default/images/appsetting2.png" width="32px"/>
+                </div>
+                <div class="col-xs-10 curs-pt" id="feedback">
+                    <span class="text-normal ">意见反馈</span>
+                </div>
+            </div>
+            <div class="gtlyout" style="height:48px;line-height: 40px">
+                <div class="col-xs-2">
+                    <img src="__PUBLIC__/default/images/appsetting3.png" width="32px"/>
+                </div>
+                <div class="col-xs-10 curs-pt" id="about">
+                    <span class="text-normal ">关于我们</span>
+                </div>
+            </div>
+            <div class="gt-rowdivide" style="height:16px"></div>
+            <div class="text-center">
+                <a href="__MODULE__/Mobile/logout">
+                    <img src="__PUBLIC__/default/images/appsetting5.png" style="width:94%;height:48px"/>
+                </a>
+            </div>
+
+
+        </div>
+        <!--底部内容 -->
+        <div class="row">
+            <include file="blocks/footer"/>'
+
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        $('#updatepwd').on('click', '', function (event) {
+            event.preventDefault();
+            location.href='__MODULE__/Setting/updatepwd';
+        });
+        $('#feedback').on('click', '', function (event) {
+            event.preventDefault();
+            location.href='__MODULE__/Setting/feedback';
+        });
+        $('#about').on('click', '', function (event) {
+            event.preventDefault();
+            location.href='__MODULE__/Mobile/about';
+        });
+        $('#update').on('click', '', function (event) {
+            event.preventDefault();
+//            location.href='__MODULE__/Setting/update';
+        });
+    });
+</script>

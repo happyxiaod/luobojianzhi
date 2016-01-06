@@ -1,0 +1,65 @@
+<!--修改密码-->
+<div class="safety-box" gt-model="userPwd">
+    <div class="row">
+        <button class="btn btn-active" style="margin-left: 20px;" gt-btn-click="editUserPwd">
+            修改密码
+        </button>
+        <button class="btn btn-disable" style="margin-left: 20px;" gt-btn-click="editUserPhone">
+            更换手机绑定
+        </button>
+        <button class="btn btn-disable" style="margin-left: 20px;" gt-btn-click="editUserEmail">
+            验证邮箱
+        </button>
+        <!--<button class="btn btn-disable" style="margin-left: 20px;" gt-btn-click="editUserId">
+            证件上传
+        </button>-->
+    </div>
+    <div class="row" style="margin-top: 20px">
+        <div class="col-md-2 text-right" style="line-height: 40px">
+            原始密码
+        </div>
+        <div class="col-md-9">
+            <input type="hidden" gt-islabel="原始密码"/>
+            <input class="edit-text" type="password" gt-isparam="oldpwd"/>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px">
+        <div class="col-md-2 text-right" style="line-height: 40px">
+            新密码
+        </div>
+        <div class="col-md-9">
+            <input type="hidden" gt-islabel="新密码"/>
+            <input class="edit-text" type="password" gt-isparam="newpwd"/>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px">
+        <div class="col-md-2 text-right" style="line-height: 40px">
+            确认密码
+        </div>
+        <div class="col-md-9">
+            <input type="hidden" gt-islabel="确认密码"/>
+            <input class="edit-text" type="password" gt-isparam="repwd"/>
+        </div>
+    </div>
+    <div class="row pull-right" style="margin: 20px 60px 0 0">
+        <button class="btn btn-active" id="confirmUserPwd">
+            确定
+        </button>
+    </div>
+</div>
+<script>
+    $("#confirmUserPwd").on('click', '', function (event) {
+        event.preventDefault();
+        var data = M('userPwd');
+        if(data['newpwd']!=data['repwd']) {
+            alert("密码输入不一致");
+            return;
+        }
+        if(data['newpwd']==data['oldpwd']){
+            alert("原密码和新密码不能一样");
+            return;
+        }
+        post('updateUserpwd', data);
+        console.log(data);
+    });
+</script>

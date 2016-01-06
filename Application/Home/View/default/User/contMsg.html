@@ -1,0 +1,39 @@
+<!--TODO 消息页面的选择与管理-->
+<!--消息-->
+<div class = "container">
+    <div class="ablock row" style="padding-top:25px; padding-bottom:100px">
+        <div class="col-md-2">
+            <include file="blocks/mainnav"/>
+        </div>
+        <div class="col-md-10" style="padding-right:45px; padding-left:45px;">
+            <div class="input-chose" style="margin-left:20px;margin-bottom: 5px;">
+                <input type="checkbox" id="choseAllMsg"/>
+                <span>全选</span>
+                <button class="list-operate-btn">删除</button>
+            </div>
+            <div class="list-box">
+
+                <volist name="msglist" id="vo">
+                    <div class="list-row">
+                        <div class="list-checkbox">
+                            <input type="hidden" value="{$vo.id}"/>
+                            <input type="checkbox"/>
+                        </div>
+                        <div class="list-span">
+                            <img src="__PUBLIC__/default/images/12.png" alt="" height="18"/>
+                        </div>
+                        <a href="__MODULE__/Msg/pageReplyMsg" class="pull-left list-p-blue">
+                            {$vo.poster}
+                        </a>
+                        <div class="pull-right list-p-gray">
+                            {$vo.createtime}
+                        </div>
+                    </div>
+                </volist>
+                <include file="blocks/pagedivide"/> 
+            </div>
+        </div>
+        <!--分页-->
+        <include file="blocks/pagedivide"/>
+    </div>
+</div>

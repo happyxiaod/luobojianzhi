@@ -1,0 +1,8 @@
+<ul class="per_nav per_about">
+                <li id="AboutRadish" class="<?php echo $_GET['nav']=='AboutRadish'?'new_nav':'';?>"> <a href="__ACTION__/?nav=AboutRadish">关于萝卜兼职</a></li>
+                <li id="AboutJC" class="<?php echo $_GET['nav']=='AboutJC'?'new_nav':'';?>"><a href="__ACTION__/?nav=AboutJC">关于捷城</a></li>
+                <li id="FeedBack" class="<?php echo $_GET['nav']=='FeedBack'?'new_nav':'';?>"> <a href="__MODULE__/Feed/pageFeedback">在线反馈</a></li>
+                <li id="Service" class="<?php echo $_GET['nav']=='Service'?'new_nav':'';?>"><a href="__ACTION__/?nav=Service" >企业服务</a></li>
+                <li id="avtivity" class="<?php echo $_GET['nav']=='avtivity'?'new_nav':'';?>"><a href="__ACTION__/?nav=Question">常见问题</a></li>
+                <li id="Contact" class="<?php echo $_GET['nav']=='Contact'?'new_nav':'';?>"><a href="__ACTION__/?nav=Contact">联系我们</a></li>
+</ul>

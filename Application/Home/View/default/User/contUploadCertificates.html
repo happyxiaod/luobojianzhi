@@ -1,0 +1,55 @@
+<div id="person">
+        <!-- 个人中心start -->
+        <!-- <div class="per_t">
+            <div class="per_nav">
+                <a href="">首页</a> > <a href="">个人管理中心</a>
+            </div>
+            <div class="per_dal">
+                <img src="images/review.jpg" alt="" width="130" height="130" />
+                <div>
+                    <span>马云</span>
+                    <p>山东大学（威海）</p>
+                    <a href="">修改头像</a>
+                </div>
+            </div>
+        </div> -->
+        <div class="per_b clearfix">
+          <include file="blocks/mainnav" />
+            <div class="per_r_dal">
+                <h4 class="font-orange">证件上传</h4>
+                <div class="photo_up">
+                    <ul>
+                        <li>
+                            <span>学生证</span>
+                            <div class="file">
+                                <b>选择图片</b>
+                                <input type="file" multiple="" accept="image/*" class="fileElem" onchange="handleFiles(this)">
+                            </div>
+                            <div id="fileList"></div>
+                            <input type="button" value="上传">
+                        </li>
+                        <li>
+                            <span>身份证</span>
+                            <div class="file">
+                                <b>选择图片</b>
+                                <input type="file" multiple="" accept="image/*" class="fileElem" onchange="handleFiles1(this)">
+                            </div>
+                            <div id="fileList1"></div>
+                            <input type="button" value="上传">
+                        </li>
+                        <li>
+                            <span>本人手持身份证</span>
+                            <div class="file">
+                                <b>选择图片</b>
+                                <input type="file" multiple="" accept="image/*" class="fileElem" onchange="handleFiles2(this)">
+                            </div>
+                            <div id="fileList2"></div>
+                            <input type="button" value="上传">
+                        </li>
+                    </ul>
+                    <input type="button" value="保存" class="btn_save" />
+                </div>
+            </div>
+        </div>
+        <!-- 个人中心end -->
+    </div>

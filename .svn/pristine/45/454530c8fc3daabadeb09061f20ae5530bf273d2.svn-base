@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>选择兼职-分类</title>
+    <include file="blocks/import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="middle row">
+        <div class="gtlyout bg-lightgray" style="padding:0">
+            <div class="gtlv-type-title">
+                <div class="gttv">
+                    <a href="__MODULE__/Jobs/pageJobs?l1=all">
+                        全部
+                    </a>
+                </div>
+
+            </div>
+
+            <volist name="firsttypes" id="vo">
+                <div class="gtlv-type-title">
+                    <div class="gttv">
+                        <a href="__MODULE__/Jobs/pageJobs?l1={$vo.name}">
+                            {$vo.name}
+                        </a>
+                    </div>
+
+                </div>
+
+                <!--二级分类-->
+                <volist name="secondtypes" id="vo2">
+                    <eq name="vo.id" value="$vo2.fid">
+                        <input type="hidden" value="{$vo2.name}"/>
+
+                        <div class="gtlv-single">
+                            <div class="gttv">
+                                <a href="__MODULE__/Jobs/pageJobs?l2={$vo2.name}">{$vo2.name}
+                                </a>
+                        <span class="badge pull-right" style="margin-top:15px;background: #e07a00;margin-right:8px;">
+                            {$vo2.number}
+                        </span>
+                            </div>
+
+                        </div>
+                    </eq>
+
+                </volist>
+                <div class="gt-rowdivide"></div>
+            </volist>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        $(".gtlv-single").on('click', '', function (event) {
+            event.preventDefault();
+            var name = $(this).find("a").html();
+            name = $.trim(name);
+            console.log(name);
+            location.href = MOD_PATH + "/Jobs/pageJobs?l2=" + name;
+        });
+    });
+</script>

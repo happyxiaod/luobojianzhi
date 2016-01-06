@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="https://gtlib.b0.upaiyun.com/bootstrap3.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="__PUBLIC__/default/css/gt.manage.css">
+<link rel="stylesheet" href="__PUBLIC__/default/css/gt.manage2.css">
+<script src="https://gtlib.b0.upaiyun.com/jquery/jquery1.10.2.min.js"></script>
+<script src="https://gtlib.b0.upaiyun.com/bootstrap3.3/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/default/js/geethin.js"></script>
+<script src="__PUBLIC__/default/js/gt.manage.js"></script>
+<script>
+    var APP_PATH = "__APP__";
+    var MOD_PATH = "__MODULE__";
+    var CON_PATH = "__CONTROLLER__";
+    var SEL_PATH = "__SELF__";
+    var ACT_PATH = "__ACTION__";
+</script>

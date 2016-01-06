@@ -1,0 +1,932 @@
+Index: Cache/Home/7214c2de544332ee1a053793cdb37845.php
+===================================================================
+--- Cache/Home/7214c2de544332ee1a053793cdb37845.php	(revision 50)
++++ Cache/Home/7214c2de544332ee1a053793cdb37845.php	(working copy)
+@@ -10,6 +10,23 @@
+ <meta name="baidu-site-verification" content="ID4hXOITos" />
+ <meta name="keywords" content="萝卜兼职，大学生兼职平台，靠谱兼职，luobojianzhi">
+ <meta name="description" content="萝卜兼职，做最靠谱的大学生兼职平台">
++<<<<<<< .mine
++<link rel="stylesheet" href="/jb/Public/new/css/base.css"/>
++<link rel="stylesheet" href="/jb/Public/new/css/main.css"/>
++<script src="/jb/Public/default/js/geethin.js"></script>
++<script src="/jb/Public/default/js/gtcheck.js"></script>
++<script src="/jb/Public/default/js/gt.home.js"></script>
++<script src="/jb/Public/new/js/public.js"></script>
++<script src="/jb/Public/default/js/jquery1.10.2.min.js"></script>
++||||||| .r47
++<link rel="stylesheet" href="/luobo_new/Public/new/css/base.css"/>
++<link rel="stylesheet" href="/luobo_new/Public/new/css/main.css"/>
++<script src="/luobo_new/Public/default/js/geethin.js"></script>
++<script src="/luobo_new/Public/default/js/gtcheck.js"></script>
++<script src="/luobo_new/Public/default/js/gt.home.js"></script>
++<script src="/luobo_new/Public/new/js/public.js"></script>
++<script src="/luobo_new/Public/default/js/jquery1.10.2.min.js"></script>
++=======
+ <link rel="stylesheet" href="/luobo2/Public/new/css/base.css"/>
+ <link rel="stylesheet" href="/luobo2/Public/new/css/main.css"/>
+ <script src="/luobo2/Public/default/js/geethin.js"></script>
+@@ -17,12 +34,27 @@
+ <script src="/luobo2/Public/default/js/gt.home.js"></script>
+ <script src="/luobo2/Public/new/js/public.js"></script>
+ <script src="/luobo2/Public/default/js/jquery1.10.2.min.js"></script>
++>>>>>>> .r48
+ <script>
++<<<<<<< .mine
++    var APP_PATH = "/jb/index.php";
++    var MOD_PATH = "/jb/index.php/Home";
++    var CON_PATH = "/jb/index.php/Home/Jobs";
++    var SEL_PATH = "/jb/index.php/Home/Jobs/pageJobsLists?&p=2";
++    var ACT_PATH = "/jb/index.php/Home/Jobs/pageJobsLists";
++||||||| .r47
++    var APP_PATH = "/luobo_new/index.php";
++    var MOD_PATH = "/luobo_new/index.php/Home";
++    var CON_PATH = "/luobo_new/index.php/Home/Jobs";
++    var SEL_PATH = "/luobo_new/index.php/Home/Jobs/pageJobsLists";
++    var ACT_PATH = "/luobo_new/index.php/Home/Jobs/pageJobsLists";
++=======
+     var APP_PATH = "/luobo2/index.php";
+     var MOD_PATH = "/luobo2/index.php/Home";
+     var CON_PATH = "/luobo2/index.php/Home/Jobs";
+     var SEL_PATH = "/luobo2/index.php/Home/Jobs/pageJobsLists";
+     var ACT_PATH = "/luobo2/index.php/Home/Jobs/pageJobsLists";
++>>>>>>> .r48
+ </script>
+ </head>
+ <body>
+@@ -33,12 +65,39 @@
+         <div class="top-line"></div>
+         <div class="container">
+             <div class="ablock">
++<<<<<<< .mine
++                <h1><a href="/jb/index.php/Home/Index"><img src="/jb/Public/new/images/logo.png"></a></h1>
++||||||| .r47
++                <h1><a href="/luobo_new/index.php/Home/Index"><img src="/luobo_new/Public/new/images/logo.png"></a></h1>
++=======
+                 <h1><a href="/luobo2/index.php/Home/Index"><img src="/luobo2/Public/new/images/logo.png"></a></h1>
++>>>>>>> .r48
+                 <div class="chose-city">
+                     <span><?php echo ($nowCity); ?></span>
++<<<<<<< .mine
++                    <a href="/jb/index.php/Home/Index/pageSwopCity" class="change-city" style="color:#808080">切换城市</a>
++||||||| .r47
++                    <a href="/luobo_new/index.php/Home/Index/pageSwopCity" class="change-city" style="color:#808080">切换城市</a>
++=======
+                     <a href="/luobo2/index.php/Home/Index/pageSwopCity" class="change-city" style="color:#808080">切换城市</a>
++>>>>>>> .r48
+                 </div>
+                 <ul class="nav">
++<<<<<<< .mine
++                    <li class="current"><a href="/jb/index.php/Home">首页</a></li>
++                    <li><a href="/jb/index.php/Home/Jobs/pageJobsLists">兼职</a></li>
++                    <li><a href="/jb/index.php/Home/Jobs/pageTailor">量身定制</a></li>
++                    <li><a href="/jb/index.php/Home/Jobs/pageLoan">我要借贷</a></li>
++                    <li><a href="/jb/index.php/Home/Jobs/pagePractice">实习</a></li>
++                    <li><a href="/jb/index.php/Home/Jobs/pageServe">服务</a></li>
++||||||| .r47
++                    <li class="current"><a href="/luobo_new/index.php/Home">首页</a></li>
++                    <li><a href="/luobo_new/index.php/Home/Jobs/pageJobsLists">兼职</a></li>
++                    <li><a href="/luobo_new/index.php/Home/Jobs/pageTailor">量身定制</a></li>
++                    <li><a href="/luobo_new/index.php/Home/Jobs/pageLoan">我要借贷</a></li>
++                    <li><a href="/luobo_new/index.php/Home/Jobs/pagePractice">实习</a></li>
++                    <li><a href="/luobo_new/index.php/Home/Jobs/pageServe">服务</a></li>
++=======
+                     <li class="current"><a href="/luobo2/index.php/Home">首页</a></li>
+                     <li><a href="/luobo2/index.php/Home/Jobs/pageJobsLists">兼职</a></li>
+                     <li><a href="/luobo2/index.php/Home/Jobs/pageTailor">量身定制</a></li>
+@@ -45,6 +104,7 @@
+                     <li><a href="/luobo2/index.php/Home/Jobs/pageLoan">我要借贷</a></li>
+                     <li><a href="/luobo2/index.php/Home/Jobs/pagePractice">实习</a></li>
+                     <li><a href="/luobo2/index.php/Home/Jobs/pageServe">服务</a></li>
++>>>>>>> .r48
+                 </ul>
+                 <div class="col-md-6">
+                     <div class="header-nav pull-right">
+@@ -51,13 +111,31 @@
+                         <!--登录前-->
+ 
+                     <?php if($_SESSION['user']['type']== 'seeker'): ?><ul class="login-before" >
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++=======
+                         <li><a href="/luobo2/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++>>>>>>> .r48
+                         <div class="nav-dlmt"></div>
+                         <li><a href="">手机端</a></li>
+                         <div class="nav-dlmt"></div>
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/User/User/doLogout">退出</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/User/User/doLogout">退出</a></li>
++=======
+                         <li><a href="/luobo2/index.php/User/User/doLogout">退出</a></li>
++>>>>>>> .r48
+                         <div class="nav-dlmt"></div>
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/Home/User/pageMyCenter">人个中心</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/Home/User/pageMyCenter">人个中心</a></li>
++=======
+                         <li><a href="/luobo2/index.php/Home/User/pageMyCenter">人个中心</a></li>
++>>>>>>> .r48
+                     </ul>
+                         <ul class="login-after">
+                             <li><a href="">发布简历</a></li>
+@@ -65,13 +143,31 @@
+ 
+                     <?php elseif($_SESSION['user']['type']== 'company'): ?>
+                     <ul class="login-before">
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++=======
+                         <li><a href="/luobo2/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++>>>>>>> .r48
+                         <div class="nav-dlmt"></div>
+                         <li><a href="">手机端</a></li>
+                         <div class="nav-dlmt"></div>
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/User/User/doLogout">退出</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/User/User/doLogout">退出</a></li>
++=======
+                         <li><a href="/luobo2/index.php/User/User/doLogout">退出</a></li>
++>>>>>>> .r48
+                         <div class="nav-dlmt"></div>
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/Home/User/pageMyCenter">企业中心</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/Home/User/pageMyCenter">企业中心</a></li>
++=======
+                         <li><a href="/luobo2/index.php/Home/User/pageMyCenter">企业中心</a></li>
++>>>>>>> .r48
+                     </ul>
+                         <ul class="login-after">
+                             <li><a href="">发布兼职</a></li>
+@@ -78,13 +174,31 @@
+                         </ul>
+                     <?php elseif($_SESSION['user']['type']== 'school'): ?>
+                     <ul class="login-before">
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++=======
+                         <li><a href="/luobo2/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++>>>>>>> .r48
+                         <div class="nav-dlmt"></div>
+                         <li><a href="">手机端</a></li>
+                         <div class="nav-dlmt"></div>
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/User/User/doLogout">退出</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/User/User/doLogout">退出</a></li>
++=======
+                         <li><a href="/luobo2/index.php/User/User/doLogout">退出</a></li>
++>>>>>>> .r48
+                         <div class="nav-dlmt"></div>
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/Home/User/pageMyCenter">学校中心</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/Home/User/pageMyCenter">学校中心</a></li>
++=======
+                         <li><a href="/luobo2/index.php/Home/User/pageMyCenter">学校中心</a></li>
++>>>>>>> .r48
+                     </ul>
+                         <ul class="login-after">
+                             <li><a href="">发布兼职</a></li>
+@@ -91,23 +205,59 @@
+                         </ul>
+                     <?php elseif($_SESSION['user']['adminname']== 'admin'): ?>
+                     <ul class="login-before">
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++=======
+                         <li><a href="/luobo2/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++>>>>>>> .r48
+                         <div class="nav-dlmt"></div>
+                         <li><a href="">手机端</a></li>
+                         <div class="nav-dlmt"></div>
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/User/User/doLogout">退出</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/User/User/doLogout">退出</a></li>
++=======
+                         <li><a href="/luobo2/index.php/User/User/doLogout">退出</a></li>
++>>>>>>> .r48
+                         <div class="nav-dlmt"></div>
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/Manage/Index/index">进入后台</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/Manage/Index/index">进入后台</a></li>
++=======
+                         <li><a href="/luobo2/index.php/Manage/Index/index">进入后台</a></li>
++>>>>>>> .r48
+                     </ul>
+                     <?php else: ?>
+                     <ul class="login-before">
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/Home/Article/index">关于我们</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++=======
+                         <li><a href="/luobo2/index.php/Home/Article/index">关于我们</a></li>
++>>>>>>> .r48
+                         <div class="nav-dlmt"></div>
+                         <li><a href="">手机端</a></li>
+                         <div class="nav-dlmt"></div>
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/Home/Index/pageReg">注册</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/Home/Index/pageReg">注册</a></li>
++=======
+                         <li><a href="/luobo2/index.php/Home/Index/pageReg">注册</a></li>
++>>>>>>> .r48
+                         <div class="nav-dlmt"></div>
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/Home/Index/pageLogin">登录</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/Home/Index/pageLogin">登录</a></li>
++=======
+                         <li><a href="/luobo2/index.php/Home/Index/pageLogin">登录</a></li>
++>>>>>>> .r48
+                     </ul><?php endif; ?>
+                         
+                     </div>
+@@ -126,7 +276,13 @@
+             </div>
+             <div class="search_hot">
+                 <ul>
++<<<<<<< .mine
++                <?php if(is_array($level2RandomList)): $i = 0; $__LIST__ = $level2RandomList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li><a href="/jb/index.php/Home/Jobs/pageJobsLists?l2=<?php echo ($vo["name"]); ?>"><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
++||||||| .r47
++                <?php if(is_array($level2RandomList)): $i = 0; $__LIST__ = $level2RandomList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li><a href="/luobo_new/index.php/Home/Jobs/pageJobsLists?l2=<?php echo ($vo["name"]); ?>"><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
++=======
+                 <?php if(is_array($level2RandomList)): $i = 0; $__LIST__ = $level2RandomList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li><a href="/luobo2/index.php/Home/Jobs/pageJobsLists?l2=<?php echo ($vo["name"]); ?>"><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
++>>>>>>> .r48
+                 </ul>
+             </div>
+         </div>
+@@ -140,16 +296,40 @@
+ 		<div class="assort_class">
+ 			<div class="trades">
+ 				<span>行业</span>
++<<<<<<< .mine
++				<a href="/jb/index.php/Home/Jobs/pageJobsLists" class="assort_all">全部</a>
++||||||| .r47
++				<a href="/luobo_new/index.php/Home/Jobs/pageJobsLists" class="assort_all">全部</a>
++=======
+ 				<a href="/luobo2/index.php/Home/Jobs/pageJobsLists" class="assort_all">全部</a>
++>>>>>>> .r48
+ 				<ul>
++<<<<<<< .mine
++					<?php if(is_array($job_level1)): $i = 0; $__LIST__ = $job_level1;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li><a href="/jb/index.php/Home/Jobs/pageJobsLists?l1=<?php echo ($vo["name"]); ?>"><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
++||||||| .r47
++					<?php if(is_array($job_level1)): $i = 0; $__LIST__ = $job_level1;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li><a href="/luobo_new/index.php/Home/Jobs/pageJobsLists?l1=<?php echo ($vo["name"]); ?>"><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
++=======
+ 					<?php if(is_array($job_level1)): $i = 0; $__LIST__ = $job_level1;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li><a href="/luobo2/index.php/Home/Jobs/pageJobsLists?l1=<?php echo ($vo["name"]); ?>"><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
++>>>>>>> .r48
+ 				</ul>
+ 			</div>
+ 			<div class="add">
+ 				<span>地区</span>
++<<<<<<< .mine
++				<a href="/jb/index.php/Home/Jobs/pageJobsLists" class="assort_all">全部</a>
++||||||| .r47
++				<a href="/luobo_new/index.php/Home/Jobs/pageJobsLists" class="assort_all">全部</a>
++=======
+ 				<a href="/luobo2/index.php/Home/Jobs/pageJobsLists" class="assort_all">全部</a>
++>>>>>>> .r48
+ 				<ul>
++<<<<<<< .mine
++					<?php if(is_array($countyList)): $i = 0; $__LIST__ = $countyList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li><a href="/jb/index.php/Home/Jobs/pageJobsLists?county=<?php echo ($vo["name"]); ?>"><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
++||||||| .r47
++					<?php if(is_array($countyList)): $i = 0; $__LIST__ = $countyList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li><a href="/luobo_new/index.php/Home/Jobs/pageJobsLists?county=<?php echo ($vo["name"]); ?>"><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
++=======
+ 					<?php if(is_array($countyList)): $i = 0; $__LIST__ = $countyList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li><a href="/luobo2/index.php/Home/Jobs/pageJobsLists?county=<?php echo ($vo["name"]); ?>"><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
++>>>>>>> .r48
+ 				</ul>
+ 			</div>
+ 			<div class="time">
+@@ -178,7 +358,13 @@
+ 			<?php if(is_array($commonJobLists)): $i = 0; $__LIST__ = $commonJobLists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
+ 					<span class="color-class01"><?php echo ($vo["level2"]); ?></span>
+ 					<div class="job_show">
++<<<<<<< .mine
++						<a href="/jb/index.php/Home/Jobs/pageJobsDetails?id=<?php echo ($vo["id"]); ?>" title="<?php echo ($vo["title"]); ?>"><?php echo ($vo["subtitle"]); ?></a>
++||||||| .r47
++						<a href="/luobo_new/index.php/Home/Jobs/pageJobsDetails?id=<?php echo ($vo["id"]); ?>" title="<?php echo ($vo["title"]); ?>"><?php echo ($vo["subtitle"]); ?></a>
++=======
+ 						<a href="/luobo2/index.php/Home/Jobs/pageJobsDetails?id=<?php echo ($vo["id"]); ?>" title="<?php echo ($vo["title"]); ?>"><?php echo ($vo["subtitle"]); ?></a>
++>>>>>>> .r48
+ 						<span><?php echo ($vo["city"]); echo ($vo["county"]); ?></span>
+ 						<span>发布时间：<?php echo ($vo["date"]); ?></span>
+ 						<span>浏览次数：<?php echo ((isset($vo["view"]) && ($vo["view"] !== ""))?($vo["view"]):"0"); ?></span>
+Index: Cache/Home/769e70f2e46f34ceb60619bbda5e4691.php
+===================================================================
+--- Cache/Home/769e70f2e46f34ceb60619bbda5e4691.php	(revision 50)
++++ Cache/Home/769e70f2e46f34ceb60619bbda5e4691.php	(working copy)
+@@ -11,6 +11,26 @@
+ <meta name="baidu-site-verification" content="ID4hXOITos" />
+ <meta name="keywords" content="萝卜兼职，大学生兼职平台，靠谱兼职，luobojianzhi">
+ <meta name="description" content="萝卜兼职，做最靠谱的大学生兼职平台">
++<<<<<<< .mine
++<link rel="stylesheet" href="/jb/Public/new/css/<?php echo IMPORT_CSS;?>.css"/>
++<link rel="stylesheet" href="/jb/Public/new/css/base.css"/>
++<script src="/jb/Public/default/js/geethin.js"></script>
++<script src="/jb/Public/default/js/gtcheck.js"></script>
++<script src="/jb/Public/default/js/gt.home.js"></script>
++<!-- <script src="/jb/Public/new/js/public.js"></script>
++<script src="/jb/Public/new/js/index.js"></script> -->
++<script src="/jb/Public/default/js/jquery1.10.2.min.js"></script>
++||||||| .r47
++<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
++<link rel="stylesheet" href="/luobo_new/Public/new/css/index.css"/>
++<link rel="stylesheet" href="/luobo_new/Public/new/css/base.css"/>
++<script src="/luobo_new/Public/default/js/geethin.js"></script>
++<script src="/luobo_new/Public/default/js/gtcheck.js"></script>
++<script src="/luobo_new/Public/default/js/gt.home.js"></script>
++<script src="/luobo_new/Public/new/js/public.js"></script>
++<script src="/luobo_new/Public/new/js/index.js"></script>
++<script src="/luobo_new/Public/default/js/jquery1.10.2.min.js"></script>
++=======
+ <link rel="stylesheet" href="/luobo2/Public/new/css/<?php echo IMPORT_CSS;?>.css"/>
+ <link rel="stylesheet" href="/luobo2/Public/new/css/base.css"/>
+ <script src="/luobo2/Public/default/js/geethin.js"></script>
+@@ -19,12 +39,27 @@
+ <!-- <script src="/luobo2/Public/new/js/public.js"></script>
+ <script src="/luobo2/Public/new/js/index.js"></script> -->
+ <script src="/luobo2/Public/default/js/jquery1.10.2.min.js"></script>
++>>>>>>> .r48
+ <script>
++<<<<<<< .mine
++    var APP_PATH = "/jb/index.php";
++    var MOD_PATH = "/jb/index.php/Home";
++    var CON_PATH = "/jb/index.php/Home/Index";
++    var SEL_PATH = "/jb/";
++    var ACT_PATH = "/jb/index.php/Home/Index/index";
++||||||| .r47
++    var APP_PATH = "/luobo_new/index.php";
++    var MOD_PATH = "/luobo_new/index.php/Home";
++    var CON_PATH = "/luobo_new/index.php/Home/Index";
++    var SEL_PATH = "/luobo_new/index.php/Home/Index/index.html";
++    var ACT_PATH = "/luobo_new/index.php/Home/Index/index";
++=======
+     var APP_PATH = "/luobo2/index.php";
+     var MOD_PATH = "/luobo2/index.php/Home";
+     var CON_PATH = "/luobo2/index.php/Home/Index";
+     var SEL_PATH = "/luobo2/index.php/Home/Index/index.html";
+     var ACT_PATH = "/luobo2/index.php/Home/Index/index";
++>>>>>>> .r48
+ </script>
+ </head>
+ <body>
+@@ -35,12 +70,39 @@
+         <div class="top-line"></div>
+         <div class="container">
+             <div class="ablock">
++<<<<<<< .mine
++                <h1><a href="/jb/index.php/Home/Index"><img src="/jb/Public/new/images/logo.png"></a></h1>
++||||||| .r47
++                <h1><a href="/luobo_new/index.php/Home/Index"><img src="/luobo_new/Public/new/images/logo.png"></a></h1>
++=======
+                 <h1><a href="/luobo2/index.php/Home/Index"><img src="/luobo2/Public/new/images/logo.png"></a></h1>
++>>>>>>> .r48
+                 <div class="chose-city">
+                     <span><?php echo ($nowCity); ?></span>
++<<<<<<< .mine
++                    <a href="/jb/index.php/Home/Index/pageSwopCity" class="change-city" style="color:#808080">切换城市</a>
++||||||| .r47
++                    <a href="/luobo_new/index.php/Home/Index/pageSwopCity" class="change-city" style="color:#808080">切换城市</a>
++=======
+                     <a href="/luobo2/index.php/Home/Index/pageSwopCity" class="change-city" style="color:#808080">切换城市</a>
++>>>>>>> .r48
+                 </div>
+                 <ul class="nav">
++<<<<<<< .mine
++                    <li class="current"><a href="/jb/index.php/Home">首页</a></li>
++                    <li><a href="/jb/index.php/Home/Jobs/pageJobsLists">兼职</a></li>
++                    <li><a href="/jb/index.php/Home/Jobs/pageTailor">量身定制</a></li>
++                    <li><a href="/jb/index.php/Home/Jobs/pageLoan">我要借贷</a></li>
++                    <li><a href="/jb/index.php/Home/Jobs/pagePractice">实习</a></li>
++                    <li><a href="/jb/index.php/Home/Jobs/pageServe">服务</a></li>
++||||||| .r47
++                    <li class="current"><a href="/luobo_new/index.php/Home">首页</a></li>
++                    <li><a href="/luobo_new/index.php/Home/Jobs/pageJobsLists">兼职</a></li>
++                    <li><a href="/luobo_new/index.php/Home/Jobs/pageTailor">量身定制</a></li>
++                    <li><a href="/luobo_new/index.php/Home/Jobs/pageLoan">我要借贷</a></li>
++                    <li><a href="/luobo_new/index.php/Home/Jobs/pagePractice">实习</a></li>
++                    <li><a href="/luobo_new/index.php/Home/Jobs/pageServe">服务</a></li>
++=======
+                     <li class="current"><a href="/luobo2/index.php/Home">首页</a></li>
+                     <li><a href="/luobo2/index.php/Home/Jobs/pageJobsLists">兼职</a></li>
+                     <li><a href="/luobo2/index.php/Home/Jobs/pageTailor">量身定制</a></li>
+@@ -47,6 +109,7 @@
+                     <li><a href="/luobo2/index.php/Home/Jobs/pageLoan">我要借贷</a></li>
+                     <li><a href="/luobo2/index.php/Home/Jobs/pagePractice">实习</a></li>
+                     <li><a href="/luobo2/index.php/Home/Jobs/pageServe">服务</a></li>
++>>>>>>> .r48
+                 </ul>
+                 <div class="col-md-6">
+                     <div class="header-nav pull-right">
+@@ -53,13 +116,31 @@
+                         <!--登录前-->
+ 
+                     <?php if($_SESSION['user']['type']== 'seeker'): ?><ul class="login-before" >
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++=======
+                         <li><a href="/luobo2/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++>>>>>>> .r48
+                         <div class="nav-dlmt"></div>
+                         <li><a href="">手机端</a></li>
+                         <div class="nav-dlmt"></div>
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/User/User/doLogout">退出</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/User/User/doLogout">退出</a></li>
++=======
+                         <li><a href="/luobo2/index.php/User/User/doLogout">退出</a></li>
++>>>>>>> .r48
+                         <div class="nav-dlmt"></div>
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/Home/User/pageMyCenter">人个中心</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/Home/User/pageMyCenter">人个中心</a></li>
++=======
+                         <li><a href="/luobo2/index.php/Home/User/pageMyCenter">人个中心</a></li>
++>>>>>>> .r48
+                     </ul>
+                         <ul class="login-after">
+                             <li><a href="">发布简历</a></li>
+@@ -67,13 +148,31 @@
+ 
+                     <?php elseif($_SESSION['user']['type']== 'company'): ?>
+                     <ul class="login-before">
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++=======
+                         <li><a href="/luobo2/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++>>>>>>> .r48
+                         <div class="nav-dlmt"></div>
+                         <li><a href="">手机端</a></li>
+                         <div class="nav-dlmt"></div>
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/User/User/doLogout">退出</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/User/User/doLogout">退出</a></li>
++=======
+                         <li><a href="/luobo2/index.php/User/User/doLogout">退出</a></li>
++>>>>>>> .r48
+                         <div class="nav-dlmt"></div>
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/Home/User/pageMyCenter">企业中心</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/Home/User/pageMyCenter">企业中心</a></li>
++=======
+                         <li><a href="/luobo2/index.php/Home/User/pageMyCenter">企业中心</a></li>
++>>>>>>> .r48
+                     </ul>
+                         <ul class="login-after">
+                             <li><a href="">发布兼职</a></li>
+@@ -80,13 +179,31 @@
+                         </ul>
+                     <?php elseif($_SESSION['user']['type']== 'school'): ?>
+                     <ul class="login-before">
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++=======
+                         <li><a href="/luobo2/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++>>>>>>> .r48
+                         <div class="nav-dlmt"></div>
+                         <li><a href="">手机端</a></li>
+                         <div class="nav-dlmt"></div>
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/User/User/doLogout">退出</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/User/User/doLogout">退出</a></li>
++=======
+                         <li><a href="/luobo2/index.php/User/User/doLogout">退出</a></li>
++>>>>>>> .r48
+                         <div class="nav-dlmt"></div>
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/Home/User/pageMyCenter">学校中心</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/Home/User/pageMyCenter">学校中心</a></li>
++=======
+                         <li><a href="/luobo2/index.php/Home/User/pageMyCenter">学校中心</a></li>
++>>>>>>> .r48
+                     </ul>
+                         <ul class="login-after">
+                             <li><a href="">发布兼职</a></li>
+@@ -93,23 +210,59 @@
+                         </ul>
+                     <?php elseif($_SESSION['user']['adminname']== 'admin'): ?>
+                     <ul class="login-before">
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++=======
+                         <li><a href="/luobo2/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++>>>>>>> .r48
+                         <div class="nav-dlmt"></div>
+                         <li><a href="">手机端</a></li>
+                         <div class="nav-dlmt"></div>
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/User/User/doLogout">退出</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/User/User/doLogout">退出</a></li>
++=======
+                         <li><a href="/luobo2/index.php/User/User/doLogout">退出</a></li>
++>>>>>>> .r48
+                         <div class="nav-dlmt"></div>
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/Manage/Index/index">进入后台</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/Manage/Index/index">进入后台</a></li>
++=======
+                         <li><a href="/luobo2/index.php/Manage/Index/index">进入后台</a></li>
++>>>>>>> .r48
+                     </ul>
+                     <?php else: ?>
+                     <ul class="login-before">
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/Home/Article/index">关于我们</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/Home/Feed/pageFeedback">关于我们</a></li>
++=======
+                         <li><a href="/luobo2/index.php/Home/Article/index">关于我们</a></li>
++>>>>>>> .r48
+                         <div class="nav-dlmt"></div>
+                         <li><a href="">手机端</a></li>
+                         <div class="nav-dlmt"></div>
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/Home/Index/pageReg">注册</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/Home/Index/pageReg">注册</a></li>
++=======
+                         <li><a href="/luobo2/index.php/Home/Index/pageReg">注册</a></li>
++>>>>>>> .r48
+                         <div class="nav-dlmt"></div>
++<<<<<<< .mine
++                        <li><a href="/jb/index.php/Home/Index/pageLogin">登录</a></li>
++||||||| .r47
++                        <li><a href="/luobo_new/index.php/Home/Index/pageLogin">登录</a></li>
++=======
+                         <li><a href="/luobo2/index.php/Home/Index/pageLogin">登录</a></li>
++>>>>>>> .r48
+                     </ul><?php endif; ?>
+                         
+                     </div>
+@@ -128,7 +281,13 @@
+             </div>
+             <div class="search_hot">
+                 <ul>
++<<<<<<< .mine
++                <?php if(is_array($level2RandomList)): $i = 0; $__LIST__ = $level2RandomList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li><a href="/jb/index.php/Home/Index/index?l2=<?php echo ($vo["name"]); ?>"><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
++||||||| .r47
++                <?php if(is_array($level2RandomList)): $i = 0; $__LIST__ = $level2RandomList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li><a href="/luobo_new/index.php/Home/Index/index?l2=<?php echo ($vo["name"]); ?>"><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
++=======
+                 <?php if(is_array($level2RandomList)): $i = 0; $__LIST__ = $level2RandomList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li><a href="/luobo2/index.php/Home/Index/index?l2=<?php echo ($vo["name"]); ?>"><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
++>>>>>>> .r48
+                 </ul>
+             </div>
+         </div>
+@@ -142,7 +301,13 @@
+         <div class="left">
+             <ul>
+                 <?php if(is_array($level1list)): $i = 0; $__LIST__ = $level1list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
++<<<<<<< .mine
++                    <h4><a href="/jb/index.php/Home/Index/index?l1=<?php echo ($vo["name"]); ?>">
++||||||| .r47
++                    <h4><a href="/luobo_new/index.php/Home/Index/index?l1=<?php echo ($vo["name"]); ?>">
++=======
+                     <h4><a href="/luobo2/index.php/Home/Index/index?l1=<?php echo ($vo["name"]); ?>">
++>>>>>>> .r48
+                     <?php echo ($vo["name"]); ?>
+                 </a></h4>
+                     <div class="index-job-content">
+@@ -149,7 +314,13 @@
+                         
+                     <?php if(is_array($level2list)): $i = 0; $__LIST__ = $level2list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo2): $mod = ($i % 2 );++$i;?><ul>
+                         <li>
++<<<<<<< .mine
++                        <?php if(($vo["id"]) == $vo2["fid"]): ?><a href="/jb/index.php/Home/Index/index?l2=<?php echo ($vo2["name"]); ?>"><?php echo ($vo2["name"]); ?></a><?php endif; ?>
++||||||| .r47
++                        <?php if(($vo["id"]) == $vo2["fid"]): ?><a href="/luobo_new/index.php/Home/Index/index?l2=<?php echo ($vo2["name"]); ?>"><?php echo ($vo2["name"]); ?></a><?php endif; ?>
++=======
+                         <?php if(($vo["id"]) == $vo2["fid"]): ?><a href="/luobo2/index.php/Home/Index/index?l2=<?php echo ($vo2["name"]); ?>"><?php echo ($vo2["name"]); ?></a><?php endif; ?>
++>>>>>>> .r48
+                         </li>
+                     </ul><?php endforeach; endif; else: echo "" ;endif; ?>
+                         
+@@ -157,10 +328,22 @@
+                     <a href=""><div class="box_sj_show"></div></a>
+                 </li><?php endforeach; endif; else: echo "" ;endif; ?>
+                 <li>
++<<<<<<< .mine
++                    <h4><a href="/jb/index.php/Home/Jobs/pageJobsLists">其它</a></h4>
++||||||| .r47
++                    <h4><a href="/luobo_new/index.php/Home/Jobs/pageJobsLists">其它</a></h4>
++=======
+                     <h4><a href="/luobo2/index.php/Home/Jobs/pageJobsLists">其它</a></h4>
++>>>>>>> .r48
+                     <div class="index-job-content">
+                         <ul>
++<<<<<<< .mine
++                            <li><a href="/jb/index.php/Home/Jobs/pageJobsLists">...</a></li>
++||||||| .r47
++                            <li><a href="/luobo_new/index.php/Home/Jobs/pageJobsLists">...</a></li>
++=======
+                             <li><a href="/luobo2/index.php/Home/Jobs/pageJobsLists">...</a></li>
++>>>>>>> .r48
+                         </ul>
+                     </div>
+                 </li
+@@ -173,10 +356,22 @@
+             <div class="index-job-t">
+                 <div class="index-job-t-l">
+                     <ul>
++<<<<<<< .mine
++                        <li class="cur"><a href=""><img src="/jb/Public/new/images/banner01.jpg" alt="" /></a></li>
++                        <li><a href=""><img src="/jb/Public/new/images/banner02.jpg" alt="" /></a></li>
++                        <li><a href=""><img src="/jb/Public/new/images/banner03.jpg" alt="" /></a></li>
++                        <li><a href=""><img src="/jb/Public/new/images/banner04.jpg" alt="" /></a></li>
++||||||| .r47
++                        <li class="cur"><a href=""><img src="/luobo_new/Public/new/images/banner01.jpg" alt="" /></a></li>
++                        <li><a href=""><img src="/luobo_new/Public/new/images/banner02.jpg" alt="" /></a></li>
++                        <li><a href=""><img src="/luobo_new/Public/new/images/banner03.jpg" alt="" /></a></li>
++                        <li><a href=""><img src="/luobo_new/Public/new/images/banner04.jpg" alt="" /></a></li>
++=======
+                         <li class="cur"><a href=""><img src="/luobo2/Public/new/images/banner01.jpg" alt="" /></a></li>
+                         <li><a href=""><img src="/luobo2/Public/new/images/banner02.jpg" alt="" /></a></li>
+                         <li><a href=""><img src="/luobo2/Public/new/images/banner03.jpg" alt="" /></a></li>
+                         <li><a href=""><img src="/luobo2/Public/new/images/banner04.jpg" alt="" /></a></li>
++>>>>>>> .r48
+                     </ul>
+                 </div>
+                 <div class="index-job-t-r" gt-model="userLogin">
+@@ -212,7 +407,13 @@
+                 <ul>
+                     <li>
+                         <div class="sub-l">
++<<<<<<< .mine
++                            <img src="/jb/Public/new/images/index-top01.jpg" alt="" />
++||||||| .r47
++                            <img src="/luobo_new/Public/new/images/index-top01.jpg" alt="" />
++=======
+                             <img src="/luobo2/Public/new/images/index-top01.jpg" alt="" />
++>>>>>>> .r48
+                         </div>                      
+                         <div>
+                             <h3>标志设计</h3>
+@@ -229,7 +430,13 @@
+                     </li>
+                     <li>
+                         <div class="sub-l">
++<<<<<<< .mine
++                            <img src="/jb/Public/new/images/index-top02.jpg" alt="" />
++||||||| .r47
++                            <img src="/luobo_new/Public/new/images/index-top02.jpg" alt="" />
++=======
+                             <img src="/luobo2/Public/new/images/index-top02.jpg" alt="" />
++>>>>>>> .r48
+                         </div>                  
+                         <div>
+                             <h3>法律服务</h3>
+@@ -245,7 +452,13 @@
+                     </li>
+                     <li>
+                         <div class="sub-l">
++<<<<<<< .mine
++                            <img src="/jb/Public/new/images/index-top03.jpg" alt="" />
++||||||| .r47
++                            <img src="/luobo_new/Public/new/images/index-top03.jpg" alt="" />
++=======
+                             <img src="/luobo2/Public/new/images/index-top03.jpg" alt="" />
++>>>>>>> .r48
+                         </div>                  
+                         <div>
+                             <h3>网站制作</h3>
+@@ -261,7 +474,13 @@
+                     </li>
+                     <li>
+                         <div class="sub-l">
++<<<<<<< .mine
++                            <img src="/jb/Public/new/images/index-top04.jpg" alt="" />
++||||||| .r47
++                            <img src="/luobo_new/Public/new/images/index-top04.jpg" alt="" />
++=======
+                             <img src="/luobo2/Public/new/images/index-top04.jpg" alt="" />
++>>>>>>> .r48
+                         </div>                  
+                         <div>
+                             <h3>VI设计</h3>
+@@ -288,7 +507,13 @@
+             <div class="top">
+                 <h3>热门兼职</h3>
+                 <div class="more">
++<<<<<<< .mine
++                    <a href="/jb/index.php/Home/Jobs/pageJobsLists">更多</a>
++||||||| .r47
++                    <a href="/luobo_new/index.php/Home/Jobs/pageJobsLists">更多</a>
++=======
+                     <a href="/luobo2/index.php/Home/Jobs/pageJobsLists">更多</a>
++>>>>>>> .r48
+                     <i>
+                         <em></em>
+                         <span></span>
+@@ -299,7 +524,13 @@
+             <?php if(is_array($hotJobs)): $i = 0; $__LIST__ = $hotJobs;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
+                     <span class="color-class01"><?php echo ($vo["level2"]); ?></span>
+                     <div class="job-hot">
++<<<<<<< .mine
++                         <a href="/jb/index.php/Home/Jobs/pageJobsDetails?id=<?php echo ($vo["id"]); ?>" title="<?php echo ($vo["title"]); ?>" target="_blank"><?php echo ($vo["subtitle"]); ?></a>
++||||||| .r47
++                         <a href="/luobo_new/index.php/Home/Jobs/pageJobsDetails?id=<?php echo ($vo["id"]); ?>" title="<?php echo ($vo["title"]); ?>" target="_blank"><?php echo ($vo["subtitle"]); ?></a>
++=======
+                          <a href="/luobo2/index.php/Home/Jobs/pageJobsDetails?id=<?php echo ($vo["id"]); ?>" title="<?php echo ($vo["title"]); ?>" target="_blank"><?php echo ($vo["subtitle"]); ?></a>
++>>>>>>> .r48
+                         <span><?php echo ($vo["city"]); echo ($vo["county"]); ?></span>
+                         <span><?php echo ($vo["date"]); ?></span>
+                     </div>
+@@ -318,7 +549,13 @@
+             <div class="top">
+                 <h3>最新兼职</h3>
+                 <div class="more">
++<<<<<<< .mine
++                    <a href="/jb/index.php/Home/Jobs/pageJobsLists">更多</a>
++||||||| .r47
++                    <a href="/luobo_new/index.php/Home/Jobs/pageJobsLists">更多</a>
++=======
+                     <a href="/luobo2/index.php/Home/Jobs/pageJobsLists">更多</a>
++>>>>>>> .r48
+                     <i>
+                         <em></em>
+                         <span></span>
+@@ -329,7 +566,13 @@
+                 <?php if(is_array($lateJobs)): $i = 0; $__LIST__ = $lateJobs;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
+                     <span class="color-class01"><?php echo ($vo["level2"]); ?></span>
+                     <div class="job-hot">
++<<<<<<< .mine
++                         <a href="/jb/index.php/Home/Jobs/pageJobsDetails?id=<?php echo ($vo["id"]); ?>" title="<?php echo ($vo["title"]); ?>" target="_blank"><?php echo ($vo["subtitle"]); ?></a>
++||||||| .r47
++                         <a href="/luobo_new/index.php/Home/Jobs/pageJobsDetails?id=<?php echo ($vo["id"]); ?>" title="<?php echo ($vo["title"]); ?>" target="_blank"><?php echo ($vo["subtitle"]); ?></a>
++=======
+                          <a href="/luobo2/index.php/Home/Jobs/pageJobsDetails?id=<?php echo ($vo["id"]); ?>" title="<?php echo ($vo["title"]); ?>" target="_blank"><?php echo ($vo["subtitle"]); ?></a>
++>>>>>>> .r48
+                         <span><?php echo ($vo["city"]); echo ($vo["county"]); ?></span>
+                         <span><?php echo ($vo["date"]); ?></span>
+                     </div>
+@@ -348,7 +591,13 @@
+             <div class="top">
+                 <h3>热门实习</h3>
+                 <div class="more">
++<<<<<<< .mine
++                    <a href="/jb/index.php/Home/Jobs/pageJobsLists">更多</a>
++||||||| .r47
++                    <a href="/luobo_new/index.php/Home/Jobs/pageJobsLists">更多</a>
++=======
+                     <a href="/luobo2/index.php/Home/Jobs/pageJobsLists">更多</a>
++>>>>>>> .r48
+                     <i>
+                         <em></em>
+                         <span></span>
+@@ -422,7 +671,13 @@
+             <div class="top">
+                 <h3>最新实习</h3>
+                 <div class="more">
++<<<<<<< .mine
++                    <a href="/jb/index.php/Home/Jobs/pageJobsLists">更多</a>
++||||||| .r47
++                    <a href="/luobo_new/index.php/Home/Jobs/pageJobsLists">更多</a>
++=======
+                     <a href="/luobo2/index.php/Home/Jobs/pageJobsLists">更多</a>
++>>>>>>> .r48
+                     <i>
+                         <em></em>
+                         <span></span>
+@@ -491,49 +746,97 @@
+         <ul>
+             <li>
+                 <a href="">
++<<<<<<< .mine
++                    <img src="/jb/Public/new/images/company-demo.jpg" alt="" />
++||||||| .r47
++                    <img src="/luobo_new/Public/new/images/company-demo.jpg" alt="" />
++=======
+                     <img src="/luobo2/Public/new/images/company-demo.jpg" alt="" />
++>>>>>>> .r48
+                     <span>阿里巴巴</span>
+                 </a>
+             </li>
+             <li>
+                 <a href="">
++<<<<<<< .mine
++                    <img src="/jb/Public/new/images/company-demo.jpg" alt="" />
++||||||| .r47
++                    <img src="/luobo_new/Public/new/images/company-demo.jpg" alt="" />
++=======
+                     <img src="/luobo2/Public/new/images/company-demo.jpg" alt="" />
++>>>>>>> .r48
+                     <span>阿里巴巴</span>
+                 </a>
+             </li>
+             <li>
+                 <a href="">
++<<<<<<< .mine
++                    <img src="/jb/Public/new/images/company-demo.jpg" alt="" />
++||||||| .r47
++                    <img src="/luobo_new/Public/new/images/company-demo.jpg" alt="" />
++=======
+                     <img src="/luobo2/Public/new/images/company-demo.jpg" alt="" />
++>>>>>>> .r48
+                     <span>阿里巴巴</span>
+                 </a>
+             </li>
+             <li>
+                 <a href="">
++<<<<<<< .mine
++                    <img src="/jb/Public/new/images/company-demo.jpg" alt="" />
++||||||| .r47
++                    <img src="/luobo_new/Public/new/images/company-demo.jpg" alt="" />
++=======
+                     <img src="/luobo2/Public/new/images/company-demo.jpg" alt="" />
++>>>>>>> .r48
+                     <span>阿里巴巴</span>
+                 </a>
+             </li>
+             <li>
+                 <a href="">
++<<<<<<< .mine
++                    <img src="/jb/Public/new/images/company-demo.jpg" alt="" />
++||||||| .r47
++                    <img src="/luobo_new/Public/new/images/company-demo.jpg" alt="" />
++=======
+                     <img src="/luobo2/Public/new/images/company-demo.jpg" alt="" />
++>>>>>>> .r48
+                     <span>阿里巴巴</span>
+                 </a>
+             </li>
+             <li>
+                 <a href="">
++<<<<<<< .mine
++                    <img src="/jb/Public/new/images/company-demo.jpg" alt="" />
++||||||| .r47
++                    <img src="/luobo_new/Public/new/images/company-demo.jpg" alt="" />
++=======
+                     <img src="/luobo2/Public/new/images/company-demo.jpg" alt="" />
++>>>>>>> .r48
+                     <span>阿里巴巴</span>
+                 </a>
+             </li>
+             <li>
+                 <a href="">
++<<<<<<< .mine
++                    <img src="/jb/Public/new/images/company-demo.jpg" alt="" />
++||||||| .r47
++                    <img src="/luobo_new/Public/new/images/company-demo.jpg" alt="" />
++=======
+                     <img src="/luobo2/Public/new/images/company-demo.jpg" alt="" />
++>>>>>>> .r48
+                     <span>阿里巴巴</span>
+                 </a>
+             </li>
+             <li>
+                 <a href="">
++<<<<<<< .mine
++                    <img src="/jb/Public/new/images/company-demo.jpg" alt="" />
++||||||| .r47
++                    <img src="/luobo_new/Public/new/images/company-demo.jpg" alt="" />
++=======
+                     <img src="/luobo2/Public/new/images/company-demo.jpg" alt="" />
++>>>>>>> .r48
+                     <span>阿里巴巴</span>
+                 </a>
+             </li>
+@@ -622,7 +925,13 @@
+             i = 0;
+         }
+         sc.fadeOut("slow",function(){
++<<<<<<< .mine
++            sc.attr("src", "/jb/Uploads/"+scrolllist[i]['value']);
++||||||| .r47
++            sc.attr("src", "/luobo_new/Uploads/"+scrolllist[i]['value']);
++=======
+             sc.attr("src", "/luobo2/Uploads/"+scrolllist[i]['value']);
++>>>>>>> .r48
+ 			sc.parent().attr("href", scrolllist[i]['else']);
+             console.log(i+"=>"+scrolllist[i]['value']);
+             sc.fadeIn("slow",function(){
